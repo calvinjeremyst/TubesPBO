@@ -5,10 +5,23 @@
  */
 package View;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Hp
  */
 public class Menu {
     
+    public Menu() {
+            showMenuAwal();
+    }
+    
+    private void showMenuAwal() {
+        int cek = JOptionPane.NO_OPTION;
+        while(cek != JOptionPane.YES_OPTION){
+            int number = Integer.parseInt(JOptionPane.showInputDialog(null,"Bis Emen\n 1.Register\n 2.Login"));
+        }
+    }
 }
