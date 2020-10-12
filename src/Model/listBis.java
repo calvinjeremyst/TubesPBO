@@ -25,4 +25,5 @@ public class listBis {
         this.namaKelas = namaKelas;
         this.jumlahKapasitas = jumlahKapasitas;
     }
+    
 }
