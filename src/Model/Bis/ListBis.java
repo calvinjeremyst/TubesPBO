@@ -5,9 +5,8 @@
  */
 
 package Model.Bis;
-import TerminalPusat.Terminal;
+import Model.TerminalPusat.Terminal;
 import java.util.ArrayList;
-
 /**
  *
  * @author Christian
