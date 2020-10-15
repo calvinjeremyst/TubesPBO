@@ -6,6 +6,7 @@
 package Model;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Admin extends User {
     private String ID;
-    ArrayList<Rute> rute;
+    ArrayList<DetailRute> detailR;
   
     public Admin(){
         
@@ -32,11 +33,8 @@ public class Admin extends User {
         this.ID = ID;
     }
     
-    public void tambahPerjalanan(Rute rute){
-        
-    }
-    
     public void lihatMember(){
         
     }
+    
 }
