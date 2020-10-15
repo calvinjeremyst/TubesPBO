@@ -6,7 +6,8 @@
 package Controller;
 
 import java.util.ArrayList;
-
+import Model.User;
+import Model.Admin;
 /**
  *
  * @author Hp
@@ -18,8 +19,10 @@ public class Controller {
     }
     
     public void tambahData() {
-        
-        
+        ArrayList<User> user = new ArrayList<>();
+        user.add(new Admin("Calvin", "1234", "Pagarsih", "087876060872", "1001"));
+        user.add(new Admin("Christian", "abcd", "Ujung Berung", "0888111222", "1002"));
+        user.add(new Admin("Aji", "xyz", "Dago", "087811223344", "1003"));
     }
     
 }
