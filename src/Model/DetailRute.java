@@ -5,6 +5,9 @@
  */
 package Model;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Hp
@@ -14,6 +17,7 @@ public class DetailRute extends Rute {
     private String tanggalBerangkat;
     private double hargaRute;
     private double hargaBis;
+    ArrayList<DetailRute> detailR;
 
     public DetailRute(String jamBerangkat, String tanggalBerangkat, double hargaRute, double hargaBis, String idRute, String kotaAsal, String kotaTujuan) {
         super(idRute, kotaAsal, kotaTujuan);
@@ -22,5 +26,7 @@ public class DetailRute extends Rute {
         this.hargaRute = hargaRute;
         this.hargaBis = hargaBis;
     }
+    
+    
     
 }
