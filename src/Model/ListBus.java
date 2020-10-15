@@ -6,20 +6,46 @@
 package Model;
 
 import java.util.ArrayList;
-
+import Model.EnumBis;
 /**
  *
  * @author Hp
  */
 public class ListBus {
-    private String namaKelas;
+    private String idBis;
+    private String kelasBis;
     private int jumlahKapasitas;
-    private String namaBis;
-    public ArrayList<ListBus> daftarBis;
     
-    public ListBus(String namaKelas, int jumlahKapasitas) {
-        this.namaKelas = namaKelas;
+    public ListBus(String idBis, String kelasBis, int jumlahKapasitas) {
+        this.idBis = idBis;
+        this.kelasBis = kelasBis;
         this.jumlahKapasitas = jumlahKapasitas;
     }
+
+    public String getIdBis() {
+        return idBis;
+    }
+
+    public void setIdBis(String idBis) {
+        this.idBis = idBis;
+    }
+
+    public String getKelasBis() {
+        return kelasBis;
+    }
+
+    public void setKelasBis(String kelasBis) {
+        this.kelasBis = kelasBis;
+    }
+
+    public int getJumlahKapasitas() {
+        return jumlahKapasitas;
+    }
+
+    public void setJumlahKapasitas(int jumlahKapasitas) {
+        this.jumlahKapasitas = jumlahKapasitas;
+    }
+    
+    
     
 }
