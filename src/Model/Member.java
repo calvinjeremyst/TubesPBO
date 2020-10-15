@@ -15,6 +15,7 @@ import Model.TopUp;
 public class Member extends User implements Interface{
     private int umur;
     private String KTP;
+    ArrayList<TransaksiPembayaran> transaksi;
 
     public Member(){
         
