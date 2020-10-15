@@ -11,17 +11,13 @@ import java.util.ArrayList;
  *
  * @author Hp
  */
-public class ListBis {
+public class ListBus {
     private String namaKelas;
     private int jumlahKapasitas;
     private String namaBis;
-    public ArrayList<ListBis> daftarBis;
+    public ArrayList<ListBus> daftarBis;
     
-    public enum bisEnum {
-        Ekonomi,Reguler,VIP;
-    }
-    
-    public ListBis(String namaKelas, int jumlahKapasitas) {
+    public ListBus(String namaKelas, int jumlahKapasitas) {
         this.namaKelas = namaKelas;
         this.jumlahKapasitas = jumlahKapasitas;
     }
