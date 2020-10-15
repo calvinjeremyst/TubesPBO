@@ -9,9 +9,9 @@ package Model;
  *
  * @author Hp
  */
-public class RiwayatPesan extends ListOrder {
+public class RiwayatOrder extends ListOrder {
     
-    public RiwayatPesan(String idOrder, String tanggalOrder){
+    public RiwayatOrder(String idOrder, String tanggalOrder){
         super(idOrder, tanggalOrder);
     }
     
