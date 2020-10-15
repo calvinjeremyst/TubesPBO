@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class Admin extends User {
     private String ID;
-    ArrayList<DetailRute> detailR;
+    ArrayList<Member> listMember;
   
     public Admin(){
         
@@ -33,8 +33,16 @@ public class Admin extends User {
         this.ID = ID;
     }
     
-    public void lihatMember(){
-        
+    public String lihatDataMember(){
+        String hasil = "";
+        for(Member member : listMember){
+            hasil += "Nama: " + member.getNama() + 
+            "\nAlamat: " + member.getAlamat() +
+            "\nNo.HP: " + member.getNoHp() +
+            "\nUmur: " + member.getUmur() +
+            "\nKTP: " + member.getKTP();
+        }
+        return hasil;
     }
     
 }
