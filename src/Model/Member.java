@@ -13,7 +13,7 @@ import Model.TopUp;
  * @author Hp
  */
 public class Member extends User implements Interface{
-    private int umur;
+    private String umur;
     private String KTP;
     ArrayList<TransaksiPembayaran> transaksi;
 
@@ -21,17 +21,17 @@ public class Member extends User implements Interface{
         
     }
     
-    public Member(String nama, String password, String alamat, String noHp, int umur, String KTP) {
+    public Member(String nama, String password, String alamat, String noHp, String umur, String KTP) {
         super(nama, password, alamat, noHp);
         this.umur = umur;
         this.KTP = KTP;
     }
 
-    public int getUmur() {
+    public String getUmur() {
         return umur;
     }
 
-    public void setUmur(int umur) {
+    public void setUmur(String umur) {
         this.umur = umur;
     }
 
