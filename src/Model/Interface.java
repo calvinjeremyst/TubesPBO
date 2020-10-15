@@ -10,7 +10,6 @@ package Model;
  * @author Hp
  */
 public interface Interface {
-    String alamatTerminal = "Jl. Tanjakan Emen 12";
     int totalBis = 50;
     int batasMember = 100;
     int jumlahAdmin = 3;
