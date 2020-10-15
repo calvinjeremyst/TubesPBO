@@ -15,8 +15,8 @@ public class DetailRute extends Rute {
     private double hargaRute;
     private double hargaBis;
 
-    public DetailRute(String jamBerangkat, String tanggalBerangkat, double hargaRute, double hargaBis, String idRute, String kotaAsal, String kotaTujuan, String idOrder, String tanggalOrder) {
-        super(idRute, kotaAsal, kotaTujuan, idOrder, tanggalOrder);
+    public DetailRute(String jamBerangkat, String tanggalBerangkat, double hargaRute, double hargaBis, String idRute, String kotaAsal, String kotaTujuan) {
+        super(idRute, kotaAsal, kotaTujuan);
         this.jamBerangkat = jamBerangkat;
         this.tanggalBerangkat = tanggalBerangkat;
         this.hargaRute = hargaRute;
