@@ -15,7 +15,6 @@ import Model.TopUp;
 public class Member extends User implements Interface{
     private int umur;
     private String KTP;
-    public ArrayList<Member> member;
 
     public Member(){
         
