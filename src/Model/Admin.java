@@ -5,12 +5,15 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Hp
  */
 public class Admin extends User {
     private String ID;
+    ArrayList<Rute> rute;
   
     public Admin(){
         
@@ -29,7 +32,7 @@ public class Admin extends User {
         this.ID = ID;
     }
     
-    public void tambahPerjalanan(){
+    public void tambahPerjalanan(Rute rute){
         
     }
     
