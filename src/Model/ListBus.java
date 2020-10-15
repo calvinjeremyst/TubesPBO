@@ -6,19 +6,19 @@
 package Model;
 
 import java.util.ArrayList;
-import Model.EnumBis;
+import static Model.EnumBis.*;
 /**
  *
  * @author Hp
  */
 public class ListBus {
     private String idBis;
-    private String kelasBis;
+    private EnumBis kelas;
     private int jumlahKapasitas;
     
-    public ListBus(String idBis, String kelasBis, int jumlahKapasitas) {
+    public ListBus(String idBis, int jumlahKapasitas) {
         this.idBis = idBis;
-        this.kelasBis = kelasBis;
+        this.kelas = Reguler;
         this.jumlahKapasitas = jumlahKapasitas;
     }
 
@@ -28,14 +28,6 @@ public class ListBus {
 
     public void setIdBis(String idBis) {
         this.idBis = idBis;
-    }
-
-    public String getKelasBis() {
-        return kelasBis;
-    }
-
-    public void setKelasBis(String kelasBis) {
-        this.kelasBis = kelasBis;
     }
 
     public int getJumlahKapasitas() {
