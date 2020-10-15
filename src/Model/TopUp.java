@@ -10,7 +10,6 @@ package Model;
  * @author Hp
  */
 public class TopUp {
-    public String kodePembayaran;
     private int nominalTopUp;
     private int saldo;
     
@@ -18,18 +17,9 @@ public class TopUp {
         
     }
 
-    public TopUp(String kodePembayaran, int nominalTopUp, int saldo) {
-        this.kodePembayaran = kodePembayaran;
+    public TopUp(int nominalTopUp, int saldo) {
         this.nominalTopUp = nominalTopUp;
         this.saldo = saldo;
-    }
-
-    public String getKodePembayaran() {
-        return kodePembayaran;
-    }
-
-    public void setKodePembayaran(String kodePembayaran) {
-        this.kodePembayaran = kodePembayaran;
     }
 
     public int getNominalTopUp() {
