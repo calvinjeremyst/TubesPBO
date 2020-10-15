@@ -12,9 +12,11 @@ package Model;
  * @author lenovo
  */
 public abstract class harga {
-    
     String kodePembayaran;
-    public harga(){}
+    
+    public harga(){
+    
+    }
     
     public harga(String kodePembayaran){
         this.kodePembayaran = kodePembayaran;
