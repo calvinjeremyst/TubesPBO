@@ -20,10 +20,12 @@ public class TransaksiPembayaran extends harga {
     private String metodePembayaran;
     private Date tanggalTransaksi;
     
-    public TransaksiPembayaran(){}
+    public TransaksiPembayaran(){
+    
+    }
     
     public TransaksiPembayaran(String kodePembayaran,String idTransaksi,double grandTotal,double cashBack,boolean useOVO,
-            String metodePembayaran,Date tanggalTransaksi){
+        String metodePembayaran,Date tanggalTransaksi){
         super(kodePembayaran);
         this.idTransaksi = idTransaksi;
         this.grandTotal = grandTotal;
@@ -31,6 +33,63 @@ public class TransaksiPembayaran extends harga {
         this.useOVO = useOVO;
         this.metodePembayaran = metodePembayaran;
         this.tanggalTransaksi = tanggalTransaksi;
+    }
+
+    public String getIdTransaksi() {
+        return idTransaksi;
+    }
+
+    public void setIdTransaksi(String idTransaksi) {
+        this.idTransaksi = idTransaksi;
+    }
+
+    public double getGrandTotal() {
+        return grandTotal;
+    }
+
+    public void setGrandTotal(double grandTotal) {
+        this.grandTotal = grandTotal;
+    }
+
+    public double getCashBack() {
+        return cashBack;
+    }
+
+    public void setCashBack(double cashBack) {
+        this.cashBack = cashBack;
+    }
+
+    public boolean isUseOVO() {
+        return useOVO;
+    }
+
+    public void setUseOVO(boolean useOVO) {
+        this.useOVO = useOVO;
+    }
+
+    public String getMetodePembayaran() {
+        return metodePembayaran;
+    }
+
+    public void setMetodePembayaran(String metodePembayaran) {
+        this.metodePembayaran = metodePembayaran;
+    }
+
+    public Date getTanggalTransaksi() {
+        return tanggalTransaksi;
+    }
+
+    public void setTanggalTransaksi(Date tanggalTransaksi) {
+        this.tanggalTransaksi = tanggalTransaksi;
+    }
+    
+    public double bayarTiket(){
+        int bayar = 0;
+        return bayar;
+    }
+    
+    public void printTiket(){
+        
     }
     
 }
