@@ -14,7 +14,7 @@ import Model.*;
  */
 public class Menu {
     boolean cekAdmin = false;
-    public static Rute rute = new Rute();
+    public static DetailRute detailR = new DetailRute();
     public static Admin admins = new Admin();
     public static ArrayList<User> listUser = new ArrayList<>();
     public static ArrayList<Admin> listAdmin = new ArrayList<>();
@@ -66,7 +66,8 @@ public class Menu {
             if(cekAdmin = true){
                 int number = Integer.parseInt(JOptionPane.showInputDialog(null,"Travel Bis Emen\n 1.List Rute \n2.Tambah Rute \n3.Lihat Data Member"));
                 if(number == 1){
-                    
+                    String data = detailR.tampilRute();
+                    JOptionPane.showMessageDialog(null, data);
                 }else if(number == 2){
                     String jam = JOptionPane.showInputDialog(null, "Input Jam : ");
                     String tanggal = JOptionPane.showInputDialog(null, "Input Tanggal : ");
@@ -75,7 +76,7 @@ public class Menu {
                     String idRute = JOptionPane.showInputDialog(null, "ID Rute : ");
                     String kotaAsal = JOptionPane.showInputDialog(null, "Kota Asal : ");
                     String kotaTujuan = JOptionPane.showInputDialog(null, "Kota Tujuan : ");
-                    rute.tambahRute(jam, tanggal, hargaRute, hargaBis, idRute, kotaAsal, kotaTujuan);
+                    detailR.tambahRute(jam, tanggal, hargaRute, hargaBis, idRute, kotaAsal, kotaTujuan);
                 }else if(number == 3){
                     String data = admins.lihatDataMember();
                     JOptionPane.showMessageDialog(null, data);

@@ -16,7 +16,6 @@ public class Rute {
     private String kotaAsal;
     private String kotaTujuan;
     ArrayList<ListBus> bis;
-    ArrayList<DetailRute> detailR;
     
     public Rute(){
         
@@ -59,13 +58,5 @@ public class Rute {
     public void setBis(ArrayList<ListBus> bis) {
         this.bis = bis;
     }
-    
-    public void tampilRute(){
-        
-    }
-    
-    public void tambahRute(String jam, String tanggal, double hargaRute, double hargaBis, String idRute, String kotaAsal, String kotaTujuan){
-        detailR.add(new DetailRute(jam,tanggal,hargaRute,hargaBis,idRute,kotaAsal,kotaTujuan));
-    }
-    
+       
 }
