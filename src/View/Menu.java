@@ -15,6 +15,7 @@ import Model.*;
 public class Menu {
     boolean cekAdmin = false;
     public static Rute rute = new Rute();
+    public static Admin admins = new Admin();
     public static ArrayList<User> listUser = new ArrayList<>();
     public static ArrayList<Admin> listAdmin = new ArrayList<>();
     
@@ -31,7 +32,7 @@ public class Menu {
                 String password = JOptionPane.showInputDialog("Password : ");
                 String alamat = JOptionPane.showInputDialog("Alamat : ");
                 String noHP = JOptionPane.showInputDialog("No.HP : ");
-                int umur = Integer.parseInt(JOptionPane.showInputDialog("Umur : "));
+                String umur = JOptionPane.showInputDialog("Umur : ");
                 String ktp = JOptionPane.showInputDialog("No.KTP : ");
                 listUser.add(new Member(nama, password, alamat, noHP, umur, ktp));
             }else if(number == 2){
@@ -76,7 +77,8 @@ public class Menu {
                     String kotaTujuan = JOptionPane.showInputDialog(null, "Kota Tujuan : ");
                     rute.tambahRute(jam, tanggal, hargaRute, hargaBis, idRute, kotaAsal, kotaTujuan);
                 }else if(number == 3){
-                    
+                    String data = admins.lihatDataMember();
+                    JOptionPane.showMessageDialog(null, data);
                 }
             }else{
                 int number = Integer.parseInt(JOptionPane.showInputDialog(null,"Travel Bis Emen\n1.Pesan Tiket \n2.Pembatalan Tiket \n3.Riwayat Pemesanan \n4.Cek Saldo OVO \n5.TopUp OVO"));
