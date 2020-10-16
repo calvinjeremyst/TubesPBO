@@ -30,6 +30,7 @@ public class TransaksiPembayaran extends harga {
         this.useOVO = useOVO;
         this.metodePembayaran = metodePembayaran;
         this.tanggalTransaksi = tanggalTransaksi;
+         
     }
     
 }
