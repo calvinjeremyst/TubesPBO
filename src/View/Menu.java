@@ -13,7 +13,8 @@ import Model.*;
  * @author Hp
  */
 public class Menu {
-    boolean cekAdmin = false;
+    static boolean cekAdmin = false;
+    public static User user = new User();
     public static DetailRute detailR = new DetailRute();
     public static Admin admins = new Admin();
     public static ArrayList<User> listUser = new ArrayList<>();
@@ -23,79 +24,147 @@ public class Menu {
         showMenuAwal();
     }
     
-    private void showMenuAwal() {
-        int cek = JOptionPane.NO_OPTION;
-        while(cek != JOptionPane.YES_OPTION){
-            int number = Integer.parseInt(JOptionPane.showInputDialog(null,"Travel Bis Emen\n 1.Register\n 2.Login"));
-            if(number == 1){
-                String nama = JOptionPane.showInputDialog("Nama : ");
-                String password = JOptionPane.showInputDialog("Password : ");
-                String alamat = JOptionPane.showInputDialog("Alamat : ");
-                String noHP = JOptionPane.showInputDialog("No.HP : ");
-                String umur = JOptionPane.showInputDialog("Umur : ");
-                String ktp = JOptionPane.showInputDialog("No.KTP : ");
-                listUser.add(new Member(nama, password, alamat, noHP, umur, ktp));
-            }else if(number == 2){
-                String nama = JOptionPane.showInputDialog("Nama : ");
-                String password = JOptionPane.showInputDialog("Password : ");
-                for(User user : listUser){
-                    Member member = (Member) user;
-                    Admin admin = (Admin) user;
-                    if(member.getNama().equals(nama) && member.getPassword().equals(password)){
-                        JOptionPane.showMessageDialog(null, "Welcome Back, " + user.getNama() + " !");
-                        showMenuLanjut();
+    static void showMenuAwal() {
+        boolean isLanjut = true;
+        while(isLanjut){
+            String choice_str = JOptionPane.showInputDialog(null,"Travel Bis Emen\n 1.Register\n 2.Login");      
+            if(choice_str == null || choice_str.equals("")){
+                JOptionPane.showMessageDialog(null,"Input pilihan menu","Alert",JOptionPane.WARNING_MESSAGE);
+            }else{ 
+                int choice = Integer.parseInt(choice_str);
+                switch (choice) {
+                    case 1:
+                        Register();         
                         break;
-                    }else if(admin.getNama().equals(nama) && admin.getPassword().equals(password)){
-                        cekAdmin = true;
-                        showMenuLanjut();
+                    case 2:
+                        Login();
                         break;
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Nama dan/atau Password Salah!");
+                    case 3:
+                        isLanjut = false;
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null,"Pilihan tidak tersedia!","Alert",JOptionPane.WARNING_MESSAGE);
+                        break;
+                }
+            }
+        }
+    }
+    
+    static void Register(){
+        String nama = JOptionPane.showInputDialog("Nama : ");
+        String password = JOptionPane.showInputDialog("Password : ");
+        String alamat = JOptionPane.showInputDialog("Alamat : ");
+        String noHP = JOptionPane.showInputDialog("No.HP : ");
+        String umur = JOptionPane.showInputDialog("Umur : ");
+        String ktp = JOptionPane.showInputDialog("No.KTP : ");
+        listUser.add(new Member(nama, password, alamat, noHP, umur, ktp));
+    }
+    
+    static void Login(){
+        boolean cek = user.login();
+        if(cek){
+            JOptionPane.showMessageDialog(null, "Welcome Back, " + user.getNama() + " !");
+            showMenuLanjut();
+        }else{
+            JOptionPane.showMessageDialog(null, "Nama dan/atau Password Salah!");
+        }
+    }
+    
+    static void showMenuLanjut(){
+        boolean isLanjut = true;
+        while(isLanjut){
+            if(cekAdmin = true){
+                String choice_str = JOptionPane.showInputDialog(null,"Travel Bis Emen\n 1.List Rute \n2.Tambah Rute \n3.Lihat Data Member");      
+                if(choice_str == null || choice_str.equals("")){
+                    JOptionPane.showMessageDialog(null,"Input pilihan menu","Alert",JOptionPane.WARNING_MESSAGE);
+                }else{ 
+                    int choice = Integer.parseInt(choice_str);
+                    switch (choice) {
+                        case 1:
+                            tampilRute();         
+                            break;
+                        case 2:
+                            tambahRute();
+                            break;
+                        case 3:
+                            dataMember();
+                            break;
+                        case 4:
+                            isLanjut = false;
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(null,"Pilihan tidak tersedia!","Alert",JOptionPane.WARNING_MESSAGE);
+                            break;
                     }
                 }
             }else{
-                JOptionPane.showMessageDialog(null,"Input Salah!");
-            }
-        }
-        cek = JOptionPane.showConfirmDialog(null,"Ulang Program?");
-    }
-    
-    private void showMenuLanjut(){
-        int cek = JOptionPane.NO_OPTION;
-        while(cek != JOptionPane.YES_OPTION){
-            if(cekAdmin = true){
-                int number = Integer.parseInt(JOptionPane.showInputDialog(null,"Travel Bis Emen\n 1.List Rute \n2.Tambah Rute \n3.Lihat Data Member"));
-                if(number == 1){
-                    String data = detailR.tampilRute();
-                    JOptionPane.showMessageDialog(null, data);
-                }else if(number == 2){
-                    String jam = JOptionPane.showInputDialog(null, "Input Jam : ");
-                    String tanggal = JOptionPane.showInputDialog(null, "Input Tanggal : ");
-                    double hargaRute = Double.parseDouble(JOptionPane.showInputDialog(null, "Input Harga Rute : "));
-                    double hargaBis = Double.parseDouble(JOptionPane.showInputDialog(null, "Input Harga Bis : "));
-                    String idRute = JOptionPane.showInputDialog(null, "ID Rute : ");
-                    String kotaAsal = JOptionPane.showInputDialog(null, "Kota Asal : ");
-                    String kotaTujuan = JOptionPane.showInputDialog(null, "Kota Tujuan : ");
-                    detailR.tambahRute(jam, tanggal, hargaRute, hargaBis, idRute, kotaAsal, kotaTujuan);
-                }else if(number == 3){
-                    String data = admins.lihatDataMember();
-                    JOptionPane.showMessageDialog(null, data);
-                }
-            }else{
-                int number = Integer.parseInt(JOptionPane.showInputDialog(null,"Travel Bis Emen\n1.Pesan Tiket \n2.Pembatalan Tiket \n3.Riwayat Pemesanan \n4.Cek Saldo OVO \n5.TopUp OVO"));
-                if(number == 1){
-                    
-                }else if(number == 2){
-                    
-                }else if(number == 3){
-                    
-                }else if(number == 4){
-                    
-                }else if(number == 5){
-                    
+                String choice_str = JOptionPane.showInputDialog(null,"Travel Bis Emen\n1.Pesan Tiket \n2.Pembatalan Tiket \n3.Riwayat Pemesanan \n4.Cek Saldo OVO \n5.TopUp OVO");
+                if(choice_str == null || choice_str.equals("")){
+                    JOptionPane.showMessageDialog(null,"Input pilihan menu","Alert",JOptionPane.WARNING_MESSAGE);
+                }else{ 
+                    int choice = Integer.parseInt(choice_str);
+                    switch (choice) {
+                        case 1:
+                            pesanTiket();         
+                            break;
+                        case 2:
+                            batalTiket();
+                            break;
+                        case 3:
+                            riwayat();
+                            break;
+                        case 4:
+                            cekSaldo();
+                            break;
+                        case 5:
+                            topUp();
+                            break;
+                        case 6:
+                            isLanjut = false;
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(null,"Pilihan tidak tersedia!","Alert",JOptionPane.WARNING_MESSAGE);
+                            break;
+                    }
                 }
             }
         }
     }
     
+    static void tampilRute(){
+        String data = detailR.tampilRute();
+        JOptionPane.showMessageDialog(null, data);
+    }
+                    
+    static void tambahRute(){
+        String jam = JOptionPane.showInputDialog(null, "Input Jam : ");
+        String tanggal = JOptionPane.showInputDialog(null, "Input Tanggal : ");
+        double hargaRute = Double.parseDouble(JOptionPane.showInputDialog(null, "Input Harga Rute : "));
+        double hargaBis = Double.parseDouble(JOptionPane.showInputDialog(null, "Input Harga Bis : "));
+        String idRute = JOptionPane.showInputDialog(null, "ID Rute : ");
+        String kotaAsal = JOptionPane.showInputDialog(null, "Kota Asal : ");
+        String kotaTujuan = JOptionPane.showInputDialog(null, "Kota Tujuan : ");
+        detailR.tambahRute(jam, tanggal, hargaRute, hargaBis, idRute, kotaAsal, kotaTujuan);
+    }
+    
+    static void dataMember(){
+        String data = admins.lihatDataMember();
+        JOptionPane.showMessageDialog(null, data);
+    }
+        
+    static void pesanTiket(){
+        
+    }
+    static void batalTiket(){
+        
+    }
+    static void riwayat(){
+        
+    }
+    static void cekSaldo(){
+        
+    }
+    static void topUp(){
+        
+    }
 }
