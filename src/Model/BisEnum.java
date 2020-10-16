@@ -3,19 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model.Administrasi;
+package Model;
 
 /**
  *
  * @author lenovo
  */
-public abstract class harga {
+public enum BisEnum {
     
-    String kodePembayaran;
-    public harga(){}
-    
-    public harga(String kodePembayaran){
-        this.kodePembayaran = kodePembayaran;
-    }
+    VIP,reguler,ekonomi
     
 }
