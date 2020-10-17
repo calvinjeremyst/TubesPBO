@@ -116,6 +116,7 @@ public class DetailRute extends RutePerjalanan {
     }
     
     public void pesanTiket(String kotaAsal,String kotaTujuan){
+        listBis bis = null;
         kotaAsal = JOptionPane.showInputDialog("Input kota asal : ");
         kotaTujuan = JOptionPane.showInputDialog("Input kota tujuan : ");
         String hasil = "";
@@ -129,13 +130,31 @@ public class DetailRute extends RutePerjalanan {
                     String id = JOptionPane.showInputDialog("Input ID Rute : ");
                     for(int j = 0; j < rute.size();j++){
                         if(id.equals(rute.get(j).getID_Rute())){
-                            String idOrder = UUID.randomUUID().toString();
+                            String kotaAsalPilihan = super.getKotaAsal();
+                            String kotaTujuanPilihan = super.getKotaTujuan();
+                            String tanggalBerangkatMember = this.getTanggalBerangkat();
+                            String jamBerangkatMember = this.getJamBerangkat();
+                            double hargaBayar = this.getHargaRute() + bis.HargaBis(this.jenisBis);
+                            String kodePembayaran = UUID.randomUUID().toString();
                             String tanggalOrder = JOptionPane.showInputDialog("Input tnaggal pemesan-an : ");
-                            order.add(new listOrder(idOrder,tanggalOrder));
+                            order.add(new listOrder(kodePembayaran,tanggalOrder,kotaAsalPilihan,kotaTujuanPilihan,tanggalBerangkatMember
+                            ,jamBerangkatMember,hargaBayar));
                         }
                     }
             }
+          
         }
         
     }
+    public double totalHarga(String kodeBayar){
+    double totalBayar = 0;
+    for(int i = 0; i < order.size(); i++){
+        if(kodeBayar.equals(order.get(i).getKodeBayarMember())){
+            totalBayar = order.get(i).getTotalBayarMember();
+        }
+    }
+
+    return totalBayar;
+    }
+    
 }
