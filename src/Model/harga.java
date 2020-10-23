@@ -9,7 +9,7 @@ package Model;
  *
  * @author lenovo
  */
-public abstract class harga {
+public abstract class harga  {
     
     String kodePembayaran;
     public harga(){}

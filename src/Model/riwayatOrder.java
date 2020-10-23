@@ -15,9 +15,13 @@ public class riwayatOrder extends listOrder {
     
     public riwayatOrder(){}
     
-    public riwayatOrder(String ID_Order, String TanggalOrder){
+    public riwayatOrder(String ID_Order, String TanggalOrder, String kotaAsalPilihan, String kotaTujuanPilihan,
+            String tanggalBerangkatMember, String jamBerangkatMember, double totalBayarMember){
         
-        super(ID_Order,TanggalOrder);
+        super(ID_Order,TanggalOrder,kotaAsalPilihan,kotaTujuanPilihan,
+            tanggalBerangkatMember, jamBerangkatMember, totalBayarMember);
     }
+    
+    
     
 }
