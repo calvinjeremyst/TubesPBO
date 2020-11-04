@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package GUI;
+import Controller.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -11,16 +12,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import java.awt.*;
-import java.util.*;
-import java.awt.event.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.event.*;
 import GUI.tools.fontStyle;
+import Model.Member;
 
 /**
  *
@@ -40,6 +35,8 @@ public class RegisterScreen implements ActionListener{
     JTextField umurField = new JTextField();
     JLabel alamat = new JLabel("Alamat : ");
     JTextField alamatField = new JTextField();
+    JLabel KTP = new JLabel("NO KTP : ");
+    JTextField KTPfield = new JTextField();
     JLabel noHP = new JLabel("No. HP : ");
     JTextField noHPfield = new JTextField();
     JButton submit = new JButton("Submit");
@@ -72,8 +69,14 @@ public class RegisterScreen implements ActionListener{
         noHP.setBounds(400,520,200,20);
         noHPfield.setBounds(600,515,200,30);
         noHP.setFont(fontStyle.small);
-        submit.setBounds(490,600,200,50);
+        
+        KTP.setBounds(400,580,200,20);
+        KTPfield.setBounds(600,580,230,30);
+        KTP.setFont(fontStyle.small);
+        
+        submit.setBounds(490,650,200,50);
         submit.setFont(fontStyle.small);
+        submit.addActionListener(this);
         Regisframe.add(title);
         Regisframe.add(username);
         Regisframe.add(usernameField);
@@ -85,6 +88,8 @@ public class RegisterScreen implements ActionListener{
         Regisframe.add(umurField);
         Regisframe.add(alamat);
         Regisframe.add(alamatField);
+        Regisframe.add(KTP);
+        Regisframe.add(KTPfield);
         Regisframe.add(noHP);
         Regisframe.add(noHPfield);
         Regisframe.add(submit);
@@ -97,17 +102,55 @@ public class RegisterScreen implements ActionListener{
     @Override
 public void actionPerformed(ActionEvent e){
    
+    Member mem = new Member();
+   String username = this.usernameField.getText();
+   String password = new String(passwordField.getPassword());
+   String repassword = new String(repassField.getPassword());
+   int umur = Integer.parseInt(umurField.getText());
    
-    if(e.getActionCommand().equals("Submit")){
-        String pass = passwordField.getText();
-        String pass2 = repassField.getText();
-        if(pass.equals(pass2)){
-            JOptionPane.showMessageDialog(null, "Registrasi Berhasil !");
-        
-        }
-        
-    }
-
+   String KTP = KTPfield.getText();
+   String alamat = alamatField.getText();
+   String noHp = noHPfield.getText();
+   
+       int pilih = JOptionPane.showOptionDialog(null, "Are you sure?", "Confirm", 
+               JOptionPane.YES_NO_OPTION, 
+               JOptionPane.QUESTION_MESSAGE, null, null, null);
+       
+       if(pilih == JOptionPane.YES_OPTION){
+           
+            if(username.length() == 0 || password.length() == 0 || repassword.length() == 0
+           || umur == 0 || alamat.length() == 0 || noHp.length() == 0 || KTP.length() == 0){
+       
+        JOptionPane.showMessageDialog(null, "Input all the data!", "Alert", JOptionPane.WARNING_MESSAGE);
+   }
+   else{
+      
+       
+       mem.setUsername(username);
+       mem.setPassword(password);
+       mem.setRepassword(repassword);
+       mem.setAlamat(alamat);
+      
+       mem.setKTP(KTP);
+       mem.setUmur(umur);
+       mem.setNoHp(noHp);
+       if(Controller.insertMember(mem)){
+           if(repassword.equals(password)){
+             JOptionPane.showMessageDialog(null, "Registrasi berhasil");
+             Regisframe.dispose();
+             new LoginScreen();
+           }
+           
+       }else{
+       
+            JOptionPane.showMessageDialog(null, "Data can't be inserted!", "Alert", JOptionPane.WARNING_MESSAGE);
+       }
+           
+       
+       }
+       
+       
+   }
 }
 
  public static void main(String[] args) {
