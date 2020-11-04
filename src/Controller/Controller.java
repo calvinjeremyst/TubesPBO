@@ -7,32 +7,99 @@ package Controller;
 
 import java.util.ArrayList;
 import Model.*;
+import View.Helper.TampungDipilih;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
 /**
  *
  * @author Hp
  */
 public class Controller {
+    static controller.DatabaseHandler conn = new controller.DatabaseHandler();
     
-    public Controller() {
-        tambahData();
+    public static ArrayList<DetailRute> cariRute(String kotaAsal, String kotaTujuan, Date tanggalPergi) {
+        ArrayList<DetailRute> droute = new ArrayList<>();
+        conn.connect();
+        String query = "SELECT rute.ID_Rute,rute.kotaAsal,rute.kotaTujuan,rute.ID_Bis,detailrute.jamBerangkat,"
+                + "detailrute.tanggalBerangkat,detailrute.hargaRute,detailrute.hargaBis FROM rute,detailrute "
+                + "WHERE rute.ID_Rute = detailrute.ID_Rute && rute.kotaAsal='"+kotaAsal+"' && "
+                + "rute.kotaTujuan='"+kotaTujuan+"'&& detailrute.tanggalBerangkat='" + tanggalPergi + "'";
+                
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                DetailRute drute = new DetailRute();
+                drute.setIdRute(rs.getString("ID_Rute"));
+                drute.setKotaAsal(rs.getString("kotaAsal"));
+                drute.setKotaTujuan(rs.getString("kotaTujuan"));
+                drute.setListbis(rs.getString("ID_Bis"));
+                drute.setJamBerangkat(rs.getString("jamBerangkat"));
+                drute.setTanggalBerangkat(rs.getDate("tanggalBerangkat"));
+                drute.setHargaBis(rs.getDouble("hargaBis"));
+                drute.setHargaRute(rs.getDouble("hargaRute"));
+                droute.add(drute);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return droute;
     }
     
-    public void tambahData() {
-        ArrayList<User> user = new ArrayList<>();
-        user.add(new Admin("Calvin", "1234", "Pagarsih", "087876060872", "1001"));
-        user.add(new Admin("Christian", "abcd", "Ujung Berung", "0888111222", "1002"));
-        user.add(new Admin("Aji", "xyz", "Dago", "087811223344", "1003"));
+    public static ArrayList<TampungDipilih> pilihanRute(String jamBerangkat, Date tanggalBerangkat,
+        double hargaRute, double hargaBis, String idRute, String kotaAsal, String kotaTujuan, String idBis){
         
-        ArrayList<DetailRute> rute = new ArrayList<>();
-        rute.add(new DetailRute("","",50000,10000,"101","Bandung","Jakarta"));
-        rute.add(new DetailRute("","",35000,15000,"102","Bekasi","Depok"));
-        rute.add(new DetailRute("","",100000,25000,"103","Lampung","Banten"));
-        rute.add(new DetailRute("","",50000,20000,"104","Bogor","Majalengka"));
-        rute.add(new DetailRute("","",20000,5000,"105","Indramayu","Cirebon"));
-        rute.add(new DetailRute("","",80000,40000,"106","Tasikmalaya","Cicalengka"));
-        rute.add(new DetailRute("","",75000,25000,"107","Subang","Pamanukan"));
-        rute.add(new DetailRute("","",25000,10000,"108","Tangerang","Jakarta"));
+        ArrayList<TampungDipilih> dipilih = new ArrayList<>();
+        TampungDipilih pilihan = new TampungDipilih();
+        pilihan.setJamBerangkat(jamBerangkat);
+        pilihan.setTanggalBerangkat(tanggalBerangkat);
+        pilihan.setHargaRute(hargaRute);
+        pilihan.setHargaBis(hargaBis);
+        pilihan.setIdRute(idRute);
+        pilihan.setKotaAsal(kotaAsal);
+        pilihan.setKotaTujuan(kotaTujuan);
+        pilihan.setListbis(idBis);
+        dipilih.add(pilihan);
         
+        return dipilih;
+    }
+    
+    public static boolean deleteTiket(int id) {
+        conn.connect();
+        String query = "DELETE FROM listorder WHERE ID_Order='" + id + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
+    }
+    
+    public static ArrayList<Member> getAllMember() {
+        ArrayList<Member> members = new ArrayList<>();
+        conn.connect();
+        String query = "SELECT * FROM usr";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Member member = new Member();
+                member.setId_user(rs.getInt("ID_User"));
+                member.setNama(rs.getString("nama"));
+                member.setPassword(rs.getString("pass"));
+                member.setAlamat(rs.getString("alamat"));
+                member.setNoHp(rs.getString("noHp"));
+                members.add(member);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return (members);
     }
     
 }
