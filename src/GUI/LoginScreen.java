@@ -21,7 +21,10 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.event.*;
 import GUI.tools.fontStyle;
-
+import Model.User;
+import Model.enumUser;
+import Controller.Controller;
+import Model.Member;
 /**
  *
  * @author lenovo
@@ -35,7 +38,7 @@ public class LoginScreen implements ActionListener{
     JLabel password = new JLabel("Password : ");
     JPasswordField passwordField = new JPasswordField();
     JButton submit = new JButton("Submit");
-    
+    Member mem = new Member();
     public LoginScreen(){
         
         Loginframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,8 +54,8 @@ public class LoginScreen implements ActionListener{
         password.setFont(fontStyle.small);
         
         submit.setBounds(600,420,150,50);
-       submit.setFont(fontStyle.small);
-        
+        submit.setFont(fontStyle.small);
+        submit.addActionListener(this);
       
         Loginframe.add(title);
         Loginframe.add(username);
@@ -62,19 +65,32 @@ public class LoginScreen implements ActionListener{
         Loginframe.add(submit);
         Loginframe.setLayout(null);
         Loginframe.setVisible(true);
+        
+        
+        
     }
     
    
     
     @Override
 public void actionPerformed(ActionEvent e){
-   
-   
- 
+    String usernameLogin = usernameField.getText();
+    String passwordLogin = new String(passwordField.getPassword()); 
+    if(e.getActionCommand().equals("Submit")){
+        mem = Controller.loginMember(usernameLogin, passwordLogin);
+        JOptionPane.showMessageDialog(null, "Welcom : " + mem.getUsername());
+        new MenuUtamaScreen(mem);
 
-}
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Login Gagal");
+        }
+    }
+   
 
- public static void main(String[] args) {
+
+    public static void main(String[] args) {
         new LoginScreen();
     }
+
 }
