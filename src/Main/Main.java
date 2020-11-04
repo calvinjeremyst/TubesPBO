@@ -5,13 +5,14 @@
  */
 
 package Main;
-import Model.*;
+import View.*;
 /**
  *
  * @author Christian
  */
 public class Main {
     public static void main(String[] args) {
-    new OVO(); 
+        new View();
     }
 }
+

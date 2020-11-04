@@ -5,25 +5,21 @@
  */
 
 package Model;
-import Model.*;
 
 /**
  *
  * @author Christian
  */
-public abstract class User {
-    public String ID;
-    public String nama;
-    public String pass;
-    
-    public User(){}
+public class Member extends User{
+    private double saldo;
 
-    public User(String ID, String nama, String pass) {
-        this.ID = ID;
-        this.nama = nama;
-        this.pass = pass;
+    public Member(){}
+
+    public Member(String ID, String nama, String pass, double saldo) {
+        super(ID, nama, pass);
+        this.saldo = saldo;
     }
-
+    
     public String getID() {
         return ID;
     }
@@ -48,9 +44,17 @@ public abstract class User {
         this.pass = pass;
     }
     
-    @Override
-    public String toString() {
-        return "User {" + "id=" + getID() + ", name=" + getID() + ", pass=" + getPass() + "'";
+    public double getSaldo() {
+        return saldo;
     }
-}
 
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+    
+    @Override
+    public String toString(){
+        return "User {" + "id=" + getID() + ", name=" + getNama() + ", pass=" + getPass() + ", Saldo=" + getSaldo() + "}";
+    }
+    
+}
