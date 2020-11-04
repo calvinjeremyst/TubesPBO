@@ -91,7 +91,7 @@ public class PemilihanKursi implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Summary")){
             ArrayList<TampungDipilih> dipilih = new ArrayList<>();
-            new BanyakPenumpangScreen(dipilih);
+            new SummaryScreen(dipilih);
             frame.dispose();
         }else if(e.getActionCommand().equals("BACK")){
             new MenuUtamaMember();
