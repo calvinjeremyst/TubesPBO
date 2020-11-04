@@ -41,7 +41,7 @@ public class PembatalanTiketScreen implements ActionListener {
         idOrder.setFont(new Font("Consolas", Font.PLAIN, 20));
         idOrder.setBounds(140, 220, 250, 30);
         
-        cancel = new JButton("SUBMIT");
+        cancel = new JButton("Cancel Ticket");
         cancel.setBounds(400, 360, 250, 30);
         cancel.setEnabled(true);
         cancel.addActionListener(this);
@@ -65,7 +65,7 @@ public class PembatalanTiketScreen implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String id = this.idOrder.getText();
         int idAngka = Integer.parseInt(id);
-        if(e.getActionCommand().equals("SUBMIT")){
+        if(e.getActionCommand().equals("Cancel Ticket")){
             if(Controller.deleteTiket(idAngka)){
                 JOptionPane.showMessageDialog(null,"Tiket Berhasil Dibatalkan!");
                 new MenuUtamaMember();
