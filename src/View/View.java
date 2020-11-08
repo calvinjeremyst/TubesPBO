@@ -34,15 +34,17 @@ public class View implements ActionListener{
     JScrollPane sp;
     JComboBox comboNominal,comboMetode;
     int jmlNom;
-    String comboMetodeOVO;
+    String comboMetodeOVO, id;
     RiwayatTopUp riwayatTopUp;
     Controller controller =  new Controller();
     
-    
-    ArrayList<Member> members = controller.getData();
+    ArrayList<Member> members;
     //RiwayatTopUp topup = new RiwayatTopUp();
-    ArrayList<RiwayatTopUp> topups = controller.getHistory();
     public View(){
+        int aaaaaaaaaaaaaaaaaaaaa =1;
+        id = JOptionPane.showInputDialog("Masukan id : ");
+        ArrayList<RiwayatTopUp> topups = controller.getHistory(id);
+        members = controller.getData(id);
         for (Member member :members) {
            System.out.println(member.toString());
         }

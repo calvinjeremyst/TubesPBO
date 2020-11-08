@@ -25,10 +25,10 @@ public class Controller{
     static DatabaseHandler conn = new DatabaseHandler();
 
     // SELECT ALL from table users
-    public static ArrayList<Member> getData() {
+    public static ArrayList<Member> getData(String id) {
         ArrayList<Member> members = new ArrayList<>();
         conn.connect();
-        String query = "select a.ID_User, a.nama, a.pass, b.ovoBalance from usr a join member b on a.ID_User=b.ID_User;";
+        String query = "select a.ID_User, a.nama, a.pass, b.ovoBalance from usr a join member b on a.ID_User=b.ID_User where b.ID_Member='" + id + "'";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -46,11 +46,11 @@ public class Controller{
         return (members);
     }
     
-    public static ArrayList<RiwayatTopUp> getHistory() {
+    public static ArrayList<RiwayatTopUp> getHistory(String id) {
         
         ArrayList<RiwayatTopUp> riwayats = new ArrayList<>();
         conn.connect();
-        String query = "select nominal, metode, tanggalTopUp from topup";
+        String query = "select nominal, metode, tanggalTopUp from topup WHERE ID_Member='" + id + "'";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -120,7 +120,7 @@ public class Controller{
                     //System.out.println(jmlNom);
                     //System.out.println(metodeOVO);
                     //Date date = new Date();
-                    SimpleDateFormat SDF = new SimpleDateFormat("dd-MM-yyyy");
+                    //SimpleDateFormat SDF = new SimpleDateFormat("dd-MM-yyyy");
                     long millis=System.currentTimeMillis();
                     java.sql.Date tanggal = new java.sql.Date(millis);
                     RiwayatTopUp riwayat = new RiwayatTopUp(jmlNom,metodeOVO,tanggal,ID);
