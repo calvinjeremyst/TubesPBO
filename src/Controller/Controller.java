@@ -12,9 +12,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+//import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.sql.Date;
 /**
  *
  * @author Christian
@@ -57,7 +58,7 @@ public class Controller{
                 RiwayatTopUp riwayat = new RiwayatTopUp();
                 double nominal =rs.getDouble("nominal");
                 String metode = rs.getString("metode");
-                String date = rs.getString("tanggalTopUp");
+                Date date = rs.getDate("tanggalTopUp");
                 riwayat.setNominal(nominal);
                 riwayat.setMetode(metode);
                 riwayat.setDate(date);
@@ -69,34 +70,35 @@ public class Controller{
         }
         return (riwayats);
     }
-        //SELECT WHERE
-        public static Member getMember(String ID, String nama) {
-        conn.connect();
-        Member member = new Member();
-        String query = "SELECT * FROM usr WHERE ID_User='" + ID + "'&&nama='" + nama + "'";
-        try {
-            Statement stmt = conn.con.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                member.setID(rs.getString("ID_User"));
-                member.setNama(rs.getString("nama"));
-                member.setPass(rs.getString("pass"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return (member);
-    }
-    
+//        //SELECT WHERE
+//        public static Member getMember(String ID, String nama) {
+//        conn.connect();
+//        Member member = new Member();
+//        String query = "SELECT * FROM usr WHERE ID_User='" + ID + "'&&nama='" + nama + "'";
+//        try {
+//            Statement stmt = conn.con.createStatement();
+//            ResultSet rs = stmt.executeQuery(query);
+//            while (rs.next()) {
+//                member.setID(rs.getString("ID_User"));
+//                member.setNama(rs.getString("nama"));
+//                member.setPass(rs.getString("pass"));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return (member);
+//    }
+//    
     // INSERT
     public static boolean insertHistory(RiwayatTopUp rtu) {
         conn.connect();
-        String query = "INSERT INTO topup VALUES(?,?,?)";
+        String query = "INSERT INTO topup (nominal, metode, tanggalTopUp, ID_Member) VALUES(?,?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setDouble(1, rtu.getNominal());
             stmt.setString(2, rtu.getMetode());
-            stmt.setString(3, rtu.getDate());
+            stmt.setDate(3, rtu.getDate());
+            stmt.setString(4, rtu.getId());
             stmt.executeUpdate();
             return (true);
         } catch (SQLException e) {
@@ -105,9 +107,8 @@ public class Controller{
         }
     }
     
-    
     public static int konfirmasi(ArrayList<Member> member, int nominal, String metode){
-        Member memberr = new Member("aa","asdf","123",5000);
+        //Member memberr = new Member("aa","asdf","123",5000);
         String ID = JOptionPane.showInputDialog("Masukan ID anda : ");
         String pass = JOptionPane.showInputDialog("Masukan password anda : ");
         if (ID.equals(member.get(0).getID())){
@@ -118,10 +119,11 @@ public class Controller{
                     String metodeOVO = metode;
                     //System.out.println(jmlNom);
                     //System.out.println(metodeOVO);
-                    Date date = new Date();
+                    //Date date = new Date();
                     SimpleDateFormat SDF = new SimpleDateFormat("dd-MM-yyyy");
-                    String tanggal = (String) SDF.format(date);
-                    RiwayatTopUp riwayat = new RiwayatTopUp(jmlNom,metodeOVO,tanggal);
+                    long millis=System.currentTimeMillis();
+                    java.sql.Date tanggal = new java.sql.Date(millis);
+                    RiwayatTopUp riwayat = new RiwayatTopUp(jmlNom,metodeOVO,tanggal,ID);
                     System.out.println(riwayat.getDate());
                     System.out.println(riwayat.getMetode());
                     System.out.println(riwayat.getNominal());

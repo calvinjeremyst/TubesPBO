@@ -153,7 +153,7 @@ public class View implements ActionListener{
     //        panel.setVisible(false);
     //        panel.setBackground(new java.awt.Color(76, 52, 148));
         
-        JTable table = new JTable();
+        jt = new JTable();
         DefaultTableModel model = new DefaultTableModel();
         Object[] namaKolom = new Object[3];
         namaKolom[0] = "Nominal Topup";
@@ -167,11 +167,12 @@ public class View implements ActionListener{
            dataKolom[2] = topups.get(i).getDate();
            model.addRow(dataKolom);
         }
-        table.setModel(model);
-        JPanel panel = new JPanel();
+        jt.setModel(model);
+        panel = new JPanel();
         panel.setLayout(new BorderLayout());
-        JScrollPane sp = new JScrollPane(table);
+        sp = new JScrollPane(jt);
         sp.setVisible(false);
+        
         panel.add(sp);
         panel.setBackground(new java.awt.Color(76, 52, 148));
         panel.setVisible(false);

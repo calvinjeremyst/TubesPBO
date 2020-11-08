@@ -18,7 +18,7 @@ public class DatabaseHandler {
 
     public Connection con;
     private String driver = "com.mysql.cj.jdbc.Driver";
-//    private String url = "jdbc:mysql://localhost/pbotubes"; //db lama=tubespbo baru=
+//    private String url = "jdbc:mysql://localhost/pbotubes";
     private String url = "jdbc:mysql://localhost/pbotubes?serverTimezone=" + TimeZone.getDefault().getID();
     private String username = "root";
     private String password = "";
