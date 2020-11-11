@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
-import Controller.Controller;
+package view;
+import controller.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.*;
 import javax.swing.event.*;
-import GUI.tools.fontStyle;
-import Model.Member;
+import view.tools.fontStyle;
+import model.Member;
 
 /**
  *

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -11,20 +11,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import java.awt.*;
-import java.util.*;
-import java.awt.event.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
-import javax.swing.event.*;
-import GUI.tools.fontStyle;
-import Model.User;
-import Model.enumUser;
-import Controller.Controller;
-import Model.Member;
+import view.tools.fontStyle;
+import controller.Controller;
+import model.Member;
 /**
  *
  * @author lenovo
@@ -39,6 +29,7 @@ public class LoginScreen implements ActionListener{
     JPasswordField passwordField = new JPasswordField();
     JButton submit = new JButton("Submit");
     Member mem = new Member();
+    
     public LoginScreen(){
         
         Loginframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

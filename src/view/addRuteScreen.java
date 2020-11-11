@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
-import Controller.Controller;
-import Controller.DataBaseHandler;
+package view;
+import controller.Controller;
+import controller.DataBaseHandler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -16,16 +16,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import GUI.tools.fontStyle;
-import GUI.tools.DateFormat;
+import view.tools.fontStyle;
+import view.tools.DateFormat;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
-import Model.DetailRute;
+import model.DetailRute;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import Model.RutePerjalanan;
-import Model.listBis;
+import model.RutePerjalanan;
+import model.listBis;
 
 /**
  *

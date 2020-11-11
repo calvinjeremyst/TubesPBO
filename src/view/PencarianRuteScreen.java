@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package view;
 
 /**
  *
  * @author lenovo
  */
-import Controller.Controller;
-import GUI.tools.DateFormat;
+import model.DetailRute;
+import controller.Controller;
+import view.tools.DateFormat;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -22,7 +23,6 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
-import Model.*;
 import java.util.ArrayList;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
