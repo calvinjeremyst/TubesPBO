@@ -5,8 +5,6 @@
  */
 package Model;
 
-import java.util.ArrayList;
-import static Model.EnumBis.*;
 /**
  *
  * @author Hp
@@ -18,10 +16,17 @@ public class ListBus {
     
     public ListBus(String idBis, int jumlahKapasitas) {
         this.idBis = idBis;
-        this.kelas = Reguler;
         this.jumlahKapasitas = jumlahKapasitas;
     }
 
+    public EnumBis getKelas() {
+        return kelas;
+    }
+
+    public void setKelas(EnumBis kelas) {
+        this.kelas = kelas;
+    }
+    
     public String getIdBis() {
         return idBis;
     }
@@ -37,7 +42,5 @@ public class ListBus {
     public void setJumlahKapasitas(int jumlahKapasitas) {
         this.jumlahKapasitas = jumlahKapasitas;
     }
-    
-    
     
 }
