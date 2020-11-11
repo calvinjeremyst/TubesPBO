@@ -82,7 +82,7 @@ public class PencarianPerjalananScreen implements ActionListener {
         if(e.getActionCommand().equals("PESAN")){
            
         }else if(e.getActionCommand().equals("BACK")){
-            new PencarianRuteScreen();
+            new PencarianRuteScreenAdmin();
         }
         
     }

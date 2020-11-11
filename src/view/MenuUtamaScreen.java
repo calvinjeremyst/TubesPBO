@@ -93,7 +93,7 @@ public class MenuUtamaScreen implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Pesan Tiket")){
-            new PencarianRuteScreen(); 
+            new PencarianRuteScreenAdmin(); 
         }else if(e.getActionCommand().equals("Pembatalan Tiket")){
             //new PembatalanTiketScreen();
         }else if(e.getActionCommand().equals("Riwayat Pemesanan Tiket")){

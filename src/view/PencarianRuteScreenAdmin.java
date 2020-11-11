@@ -32,7 +32,7 @@ import org.jdatepicker.impl.UtilDateModel;
  *
  * @author user
  */
-public class PencarianRuteScreen implements ActionListener {
+public class PencarianRuteScreenAdmin implements ActionListener {
     Properties p;
     UtilDateModel model;
     JDatePanelImpl datePanel;
@@ -42,7 +42,7 @@ public class PencarianRuteScreen implements ActionListener {
     JButton next,back;
     JTextField kotaAsal,kotaTujuan;
     
-    public PencarianRuteScreen() {
+    public PencarianRuteScreenAdmin() {
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
@@ -115,7 +115,7 @@ public class PencarianRuteScreen implements ActionListener {
         try {
             tanggalPergi = new SimpleDateFormat("yyyy-MM-dd").parse(this.datePicker.getJFormattedTextField().getText());
         } catch (ParseException ex) {
-            Logger.getLogger(PencarianRuteScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PencarianRuteScreenAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
             
         int a = JOptionPane.showOptionDialog(null, "Are you sure?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);

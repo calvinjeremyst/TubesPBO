@@ -6,7 +6,7 @@
 package view;
 
 import view.HasilPencarianScreen;
-import view.PencarianRuteScreen;
+import view.PencarianRuteScreenAdmin;
 import view.addRuteScreen;
 import model.DetailRute;
 import model.Member;
@@ -76,7 +76,7 @@ public class MenuUtamaAdmin implements ActionListener {
         if(e.getActionCommand().equals("Lihat Data Member")){
             //new LihatDataMember();
         }else if(e.getActionCommand().equals("Cek List Perjalanan")){
-            new PencarianRuteScreen();
+            new PencarianRuteScreenAdmin();
         }else if(e.getActionCommand().equals("Tambah List Perjalanan")){
             new addRuteScreen();
         }
