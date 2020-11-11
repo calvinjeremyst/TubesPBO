@@ -6,8 +6,6 @@
 package Model;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import Model.TopUp;
 /**
  *
  * @author Hp
@@ -15,14 +13,14 @@ import Model.TopUp;
 public class Member extends User implements Interface{
     private String umur;
     private String KTP;
-    ArrayList<TransaksiPembayaran> transaksi;
-
+    private double ovoBalance;
+    
     public Member(){
         
     }
     
-    public Member(String nama, String password, String alamat, String noHp, String umur, String KTP) {
-        super(nama, password, alamat, noHp);
+    public Member(int id_user, String nama, String password, String alamat, String noHp, String umur, String KTP) {
+        super(id_user, nama, password, alamat, noHp);
         this.umur = umur;
         this.KTP = KTP;
     }
@@ -42,13 +40,23 @@ public class Member extends User implements Interface{
     public void setKTP(String KTP) {
         this.KTP = KTP;
     }
-    
-    public void riwayatPemesanan(){
-        LinkedList<String> listP = new LinkedList<>(); 
+
+    public double getOvoBalance() {
+        return ovoBalance;
+    }
+
+    public void setOvoBalance(double ovoBalance) {
+        this.ovoBalance = ovoBalance;
     }
     
     public double cekSaldoOVO(){
         int saldo = saldoOVOAwal;
         return saldo;
     }
+    
+    @Override
+    public String toString(){
+        return this.getNama() + this.getNoHp() + this.getAlamat() + this.getKTP() + this.getUmur();
+    }
+    
 }
