@@ -5,16 +5,10 @@
  */
 package view;
 
-import view.HasilPencarianScreen;
-import view.PencarianRuteScreenAdmin;
-import view.addRuteScreen;
-import model.DetailRute;
-import model.Member;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -62,13 +56,6 @@ public class MenuUtamaAdmin implements ActionListener {
         frame.add(lihatDataMember);
         frame.add(cekListPerjalanan);
         frame.add(tambahListPerjalanan);
-        
-        
-        
-    }
-    
-    public static void main(String[] args) {
-        new MenuUtamaAdmin();
     }
     
     @Override
