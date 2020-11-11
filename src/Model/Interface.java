@@ -10,8 +10,5 @@ package Model;
  * @author Hp
  */
 public interface Interface {
-    int totalBis = 50;
-    int batasMember = 100;
-    int jumlahAdmin = 3;
     int saldoOVOAwal = 50000;
 }
