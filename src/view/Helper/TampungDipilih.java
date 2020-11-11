@@ -5,7 +5,6 @@
  */
 package view.Helper;
 
-import model.DetailRute;
 import java.util.Date;
 
 /**
