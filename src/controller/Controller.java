@@ -38,7 +38,7 @@ public class Controller {
                 + "VALUES(?,?,?,?,?)";
         
         try{
-            PreparedStatement statement = dbh.conn.prepareStatement(queryListBis);
+            PreparedStatement statement = dbh.con.prepareStatement(queryListBis);
             statement.setString(1,list.getIDbis());
             statement.setString(2,list.getKelasBis());
             statement.setInt(3,list.getJumlahKapasitas());
@@ -46,7 +46,7 @@ public class Controller {
           
             statement.close();
             
-            statement = dbh.conn.prepareStatement(queryRute);
+            statement = dbh.con.prepareStatement(queryRute);
             statement.setString(1,rute.getID_Rute());
             statement.setString(2,rute.getKotaAsal());
             statement.setString(3,rute.getKotaTujuan());
@@ -55,7 +55,7 @@ public class Controller {
            
             statement.close();
           
-            statement = dbh.conn.prepareStatement(queryDetail);
+            statement = dbh.con.prepareStatement(queryDetail);
             statement.setString(1, rute.getJamBerangkat());
             statement.setDate(2, new java.sql.Date(rute.getTanggalBerangkat().getTime()));
             statement.setDouble(3, rute.getHargaRute());
@@ -73,8 +73,8 @@ public class Controller {
       }
     }
   
-  public static boolean insertMember(Member member){
-      
+    public static boolean insertMember(Member member){
+
       dbh.Connect();
       String query = "INSERT INTO usr(nama,pass,alamat,nohp)"
               + "VALUES(?,?,?,?)";
@@ -83,13 +83,13 @@ public class Controller {
               + "VALUES(?,?,?,?)";
       
       try{
-          Statement stmts = dbh.conn.createStatement();
+          Statement stmts = dbh.con.createStatement();
           ResultSet rs = stmts.executeQuery(query2);
           while(rs.next()){
             member.setID_User(rs.getInt("ID_User"));
           }
           
-          PreparedStatement stmt = dbh.conn.prepareStatement(query);
+          PreparedStatement stmt = dbh.con.prepareStatement(query);
           stmt.setString(1, member.getUsername());
           stmt.setString(2, member.getPassword());
           stmt.setString(3, member.getAlamat());
@@ -97,7 +97,7 @@ public class Controller {
           stmt.executeUpdate();
           stmt.close();
           
-          stmt = dbh.conn.prepareStatement(query3);
+          stmt = dbh.con.prepareStatement(query3);
           stmt.setInt(1, member.getUmur());
           stmt.setString(2, member.getKTP());
           stmt.setDouble(3,50000);
@@ -107,14 +107,12 @@ public class Controller {
           return true;
       
       }catch(SQLException ex){
-          
           ex.printStackTrace();
           return false;
       }
+    }
   
-  }
-  public static ArrayList<DetailRute> cariDetailRute(String kotaAsal,String kotaTujuan){
-      
+    public static ArrayList<DetailRute> cariDetailRute(String kotaAsal,String kotaTujuan){
       ArrayList<DetailRute> dtrute = new ArrayList();
       dbh.Connect();
       String query = "SELECT rute.ID_Rute,rute.kotaAsal,rute.kotaTujuan,rute.ID_Bis,detailrute.jamBerangkat,"
@@ -123,7 +121,7 @@ public class Controller {
                 + "rute.kotaTujuan='"+kotaTujuan+"'";
      
        try{
-           Statement statement = dbh.conn.createStatement();
+           Statement statement = dbh.con.createStatement();
            ResultSet result = statement.executeQuery(query);
            int i = 0;
            while(result.next()){
@@ -144,22 +142,20 @@ public class Controller {
        }
        return dtrute;
   }
-  
- 
+    
   public static Member loginMember(String username,String password){
       dbh.Connect();
       String query = "SELECT * FROM usr WHERE nama = '"+username+"' &&  pass = '"+password+"'";
       Member mem = new Member();
       try{
-          Statement stmt = dbh.conn.createStatement();
+          Statement stmt = dbh.con.createStatement();
           ResultSet rs = stmt.executeQuery(query);
           while(rs.next()){
                mem.setID_User(rs.getInt("ID_User"));
                mem.setUsername(rs.getString("nama"));
                mem.setPassword(rs.getString("pass"));
                mem.setAlamat(rs.getString("alamat"));
-               mem.setNoHp(rs.getString("noHp"));
-              
+               mem.setNoHp(rs.getString("noHp")); 
           }
       }
       catch(SQLException ex){
@@ -174,7 +170,7 @@ public class Controller {
       Admin adm = new Admin();
       Member mem = new Member();
       try{ 
-          Statement stmt = dbh.conn.createStatement();
+          Statement stmt = dbh.con.createStatement();
           ResultSet rs = stmt.executeQuery(query);
           while(rs.next()){
                mem.setID_User(rs.getInt("ID_User"));
@@ -189,4 +185,5 @@ public class Controller {
       }
       return adm;
   }
+  
 }
