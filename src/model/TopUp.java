@@ -37,10 +37,5 @@ public class TopUp {
     public void setSaldo(int saldo) {
         this.saldo = saldo;
     }
-    
-    public double topUpOVO(){
-        double nominal = 100000;
-        saldo += nominal;
-        return nominal;
-    }
+  
 }

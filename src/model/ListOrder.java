@@ -5,13 +5,15 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author Hp
  */
 public class ListOrder {
     private int idOrder;
-    private String tanggalOrder;
+    private Date tanggalOrder;
     private int banyakPenumpang;
     private Member member;
     private Rute rute;
@@ -21,7 +23,7 @@ public class ListOrder {
         
     }
     
-    public ListOrder(int idOrder, String tanggalOrder, int banyakPenumpang, Member member, Rute rute, TransaksiPembayaran transaksi) {
+    public ListOrder(int idOrder, Date tanggalOrder, int banyakPenumpang, Member member, Rute rute, TransaksiPembayaran transaksi) {
         this.idOrder = idOrder;
         this.tanggalOrder = tanggalOrder;
         this.banyakPenumpang = banyakPenumpang;
@@ -38,11 +40,11 @@ public class ListOrder {
         this.idOrder = idOrder;
     }
 
-    public String getTanggalOrder() {
+    public Date getTanggalOrder() {
         return tanggalOrder;
     }
 
-    public void setTanggalOrder(String tanggalOrder) {
+    public void setTanggalOrder(Date tanggalOrder) {
         this.tanggalOrder = tanggalOrder;
     }
 

@@ -82,13 +82,4 @@ public class TransaksiPembayaran extends Harga {
         this.tanggalTransaksi = tanggalTransaksi;
     }
     
-    public double bayarTiket(){
-        int bayar = 0;
-        return bayar;
-    }
-    
-    public void printTiket(){
-        
-    }
-    
 }

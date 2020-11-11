@@ -16,17 +16,19 @@ public class DetailRute extends Rute {
     private Date tanggalBerangkat;
     private double hargaRute;
     private double hargaBis;
+    private String jenisBis;
 
     public DetailRute(){
         
     }
     
-    public DetailRute(String jamBerangkat, Date tanggalBerangkat, double hargaRute, double hargaBis, String idRute, String kotaAsal, String kotaTujuan, String listbis,boolean dipilih) {
-        super(idRute, kotaAsal, kotaTujuan, listbis);
+    public DetailRute(String jamBerangkat, Date tanggalBerangkat, double hargaRute, double hargaBis, String idRute, String kotaAsal, String kotaTujuan, String idbis, String jenisBis) {
+        super(idRute, kotaAsal, kotaTujuan, idbis);
         this.jamBerangkat = jamBerangkat;
         this.tanggalBerangkat = tanggalBerangkat;
         this.hargaRute = hargaRute;
         this.hargaBis = hargaBis;
+        this.jenisBis = jenisBis;
     }
 
     @Override
@@ -60,13 +62,13 @@ public class DetailRute extends Rute {
     }
 
     @Override
-    public String getListbis() {
-        return listbis;
+    public String getIdbis() {
+        return idbis;
     }
 
     @Override
-    public void setListbis(String listbis) {
-        this.listbis = listbis;
+    public void setIdbis(String idbis) {
+        this.idbis = idbis;
     }
     
     public String getJamBerangkat() {
@@ -104,7 +106,7 @@ public class DetailRute extends Rute {
     @Override
     public String toString(){
         return this.getIdRute() + this.getKotaAsal() + this.getKotaTujuan() +
-               this.getListbis() + this.getJamBerangkat() + this.getTanggalBerangkat() +
+               this.getIdbis() + this.getJamBerangkat() + this.getTanggalBerangkat() +
                this.getHargaRute() + this.getHargaBis();
     }
     

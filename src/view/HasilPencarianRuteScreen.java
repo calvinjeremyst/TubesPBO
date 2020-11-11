@@ -104,7 +104,7 @@ public class HasilPencarianRuteScreen implements ActionListener {
                 dipilih.setIdRute(drutes.get(i).getIdRute());
                 dipilih.setKotaAsal(drutes.get(i).getKotaAsal());
                 dipilih.setKotaTujuan(drutes.get(i).getKotaTujuan());
-                dipilih.setListbis(drutes.get(i).getListbis());
+                dipilih.setIdbis(drutes.get(i).getIdbis());
                 dipilih.setJamBerangkat(drutes.get(i).getJamBerangkat());
                 dipilih.setTanggalBerangkat(drutes.get(i).getTanggalBerangkat());
                 dipilih.setHargaBis(drutes.get(i).getHargaBis());
