@@ -7,8 +7,6 @@ package Controller;
 
 import java.util.ArrayList;
 import Model.*;
-import View.Helper.TampungDipilih;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,6 +16,7 @@ import java.util.Date;
  * @author Hp
  */
 public class Controller {
+    
     static controller.DatabaseHandler conn = new controller.DatabaseHandler();
     
     public static ArrayList<DetailRute> cariRute(String kotaAsal, String kotaTujuan, Date tanggalPergi) {
@@ -27,7 +26,6 @@ public class Controller {
                 + "detailrute.tanggalBerangkat,detailrute.hargaRute,detailrute.hargaBis FROM rute,detailrute "
                 + "WHERE rute.ID_Rute = detailrute.ID_Rute && rute.kotaAsal='"+kotaAsal+"' && "
                 + "rute.kotaTujuan='"+kotaTujuan+"'&& detailrute.tanggalBerangkat='" + tanggalPergi + "'";
-                
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -49,22 +47,20 @@ public class Controller {
         return droute;
     }
     
-    public static ArrayList<TampungDipilih> pilihanRute(String jamBerangkat, Date tanggalBerangkat,
-        double hargaRute, double hargaBis, String idRute, String kotaAsal, String kotaTujuan, String idBis){
-        
-        ArrayList<TampungDipilih> dipilih = new ArrayList<>();
-        TampungDipilih pilihan = new TampungDipilih();
-        pilihan.setJamBerangkat(jamBerangkat);
-        pilihan.setTanggalBerangkat(tanggalBerangkat);
-        pilihan.setHargaRute(hargaRute);
-        pilihan.setHargaBis(hargaBis);
-        pilihan.setIdRute(idRute);
-        pilihan.setKotaAsal(kotaAsal);
-        pilihan.setKotaTujuan(kotaTujuan);
-        pilihan.setListbis(idBis);
-        dipilih.add(pilihan);
-        
-        return dipilih;
+    public static boolean cekTiket(int id) {
+        conn.connect();
+        String query = "SELECT * FROM listorder WHERE ID_Order='" + id + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            if(rs.next()){
+                return (true);
+            }
+            return (false);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
     }
     
     public static boolean deleteTiket(int id) {
