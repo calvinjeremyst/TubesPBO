@@ -13,17 +13,17 @@ public abstract class Rute {
     public String idRute;
     public String kotaAsal;
     public String kotaTujuan;
-    public String listbis;
+    public String idbis;
     
     public Rute(){
         
     }
     
-    public Rute(String idRute, String kotaAsal, String kotaTujuan, String listbis) {
+    public Rute(String idRute, String kotaAsal, String kotaTujuan, String idbis) {
         this.idRute = idRute;
         this.kotaAsal = kotaAsal;
         this.kotaTujuan = kotaTujuan;
-        this.listbis = listbis;
+        this.idbis = idbis;
     }
 
     public String getIdRute() {
@@ -50,12 +50,12 @@ public abstract class Rute {
         this.kotaTujuan = kotaTujuan;
     }
 
-    public String getListbis() {
-        return listbis;
+    public String getIdbis() {
+        return idbis;
     }
 
-    public void setListbis(String listbis) {
-        this.listbis = listbis;
+    public void setIdbis(String idbis) {
+        this.idbis = idbis;
     }
     
 }

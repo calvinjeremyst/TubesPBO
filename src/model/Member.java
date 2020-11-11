@@ -5,7 +5,6 @@
  */
 package model;
 
-import java.util.ArrayList;
 /**
  *
  * @author Hp
@@ -19,8 +18,8 @@ public class Member extends User implements Interface{
         
     }
     
-    public Member(int id_user, String nama, String password, String alamat, String noHp, String umur, String KTP) {
-        super(id_user, nama, password, alamat, noHp);
+    public Member(int ID_User, String username, String password, String repassword, String alamat, String noHp, String umur, String KTP) {
+        super(ID_User, username, password, repassword, alamat, noHp);
         this.umur = umur;
         this.KTP = KTP;
     }
@@ -56,7 +55,7 @@ public class Member extends User implements Interface{
     
     @Override
     public String toString(){
-        return this.getNama() + this.getNoHp() + this.getAlamat() + this.getKTP() + this.getUmur();
+        return this.getUsername() + this.getNoHp() + this.getAlamat() + this.getKTP() + this.getUmur();
     }
     
 }

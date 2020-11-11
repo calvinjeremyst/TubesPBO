@@ -5,16 +5,15 @@
  */
 package model;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Hp
  */
 public abstract class User {
-    private int id_user;
-    private String nama;
+    private int ID_User;
+    private String username;
     private String password;
+    private String repassword;
     private String alamat;
     private String noHp;
     
@@ -22,28 +21,29 @@ public abstract class User {
         
     }
     
-    public User(int id_user, String nama, String password, String alamat, String noHp) {
-        this.id_user = id_user;
-        this.nama = nama;
+    public User(int ID_User, String username, String password, String repassword, String alamat, String noHp) {
+        this.ID_User = ID_User;
+        this.username = username;
         this.password = password;
+        this.repassword = repassword;
         this.alamat = alamat;
         this.noHp = noHp;
     }
 
-    public int getId_user() {
-        return id_user;
+    public int getID_User() {
+        return ID_User;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setID_User(int ID_User) {
+        this.ID_User = ID_User;
     }
     
-    public String getNama() {
-        return nama;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -54,6 +54,14 @@ public abstract class User {
         this.password = password;
     }
 
+    public String getRepassword() {
+        return repassword;
+    }
+
+    public void setRepassword(String repassword) {
+        this.repassword = repassword;
+    }
+    
     public String getAlamat() {
         return alamat;
     }
@@ -72,7 +80,7 @@ public abstract class User {
     
     @Override
     public String toString(){
-        return "ID : " + this.getId_user() + " Nama : " + this.getNama() + " Alamat : " + this.getAlamat() + " No.HP : " + this.getNoHp();
+        return "ID : " + this.getID_User() + " Nama : " + this.getUsername() + " Alamat : " + this.getAlamat() + " No.HP : " + this.getNoHp();
     }
 
 }

@@ -35,7 +35,7 @@ public class Controller {
                 drute.setIdRute(rs.getString("ID_Rute"));
                 drute.setKotaAsal(rs.getString("kotaAsal"));
                 drute.setKotaTujuan(rs.getString("kotaTujuan"));
-                drute.setListbis(rs.getString("ID_Bis"));
+                drute.setIdbis(rs.getString("ID_Bis"));
                 drute.setJamBerangkat(rs.getString("jamBerangkat"));
                 drute.setTanggalBerangkat(rs.getDate("tanggalBerangkat"));
                 drute.setHargaBis(rs.getDouble("hargaBis"));
@@ -86,8 +86,8 @@ public class Controller {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 Member member = new Member();
-                member.setId_user(rs.getInt("ID_User"));
-                member.setNama(rs.getString("nama"));
+                member.setID_User(rs.getInt("ID_User"));
+                member.setUsername(rs.getString("nama"));
                 member.setPassword(rs.getString("pass"));
                 member.setAlamat(rs.getString("alamat"));
                 member.setNoHp(rs.getString("noHp"));

@@ -5,7 +5,6 @@
  */
 package view.Helper;
 
-import model.DetailRute;
 import java.util.Date;
 
 /**
@@ -21,16 +20,16 @@ public class TampungDipilih {
     String idRute;
     String kotaAsal;
     String kotaTujuan;
-    String listbis;
+    String idbis;
     
     public TampungDipilih() {
     }
 
-    public TampungDipilih(String jamBerangkat, Date tanggalBerangkat, double hargaRute, double hargaBis, String idRute, String kotaAsal, String kotaTujuan, String listbis, int banyakPenumpang) {
+    public TampungDipilih(String jamBerangkat, Date tanggalBerangkat, double hargaRute, double hargaBis, String idRute, String kotaAsal, String kotaTujuan, String idbis, int banyakPenumpang) {
         this.idRute = idRute;
         this.kotaAsal = kotaAsal;
         this.kotaTujuan = kotaTujuan;
-        this.listbis = listbis;
+        this.idbis = idbis;
         this.jamBerangkat = jamBerangkat;
         this.tanggalBerangkat = tanggalBerangkat;
         this.hargaBis = hargaBis;
@@ -70,12 +69,12 @@ public class TampungDipilih {
         this.kotaTujuan = kotaTujuan;
     }
 
-    public String getListbis() {
-        return listbis;
+    public String getIdbis() {
+        return idbis;
     }
 
-    public void setListbis(String listbis) {
-        this.listbis = listbis;
+    public void setIdbis(String idbis) {
+        this.idbis = idbis;
     }
 
     public String getJamBerangkat() {
@@ -113,7 +112,7 @@ public class TampungDipilih {
     @Override
     public String toString(){
         return this.getIdRute() + this.getKotaAsal() + this.getKotaTujuan() +
-               this.getListbis() + this.getJamBerangkat() + this.getTanggalBerangkat() +
+               this.getIdbis() + this.getJamBerangkat() + this.getTanggalBerangkat() +
                this.getHargaRute() + this.getHargaBis();
     }
     

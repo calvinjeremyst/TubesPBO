@@ -5,13 +5,15 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author Hp
  */
 public class RiwayatOrder extends ListOrder {
 
-    public RiwayatOrder(int idOrder, String tanggalOrder, int banyakPenumpang, Member member, Rute rute, TransaksiPembayaran transaksi) {
+    public RiwayatOrder(int idOrder, Date tanggalOrder, int banyakPenumpang, Member member, Rute rute, TransaksiPembayaran transaksi) {
         super(idOrder, tanggalOrder, banyakPenumpang, member, rute, transaksi);
     }
     

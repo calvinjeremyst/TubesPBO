@@ -12,8 +12,8 @@ package model;
 public class Admin extends User {
     private String IDAdmin;
     
-    public Admin(int id_user, String nama, String password, String alamat, String noHp, String IDAdmin) {
-        super(id_user, nama, password, alamat, noHp);
+    public Admin(int id_user, String nama, String password, String repassword, String alamat, String noHp, String IDAdmin) {
+        super(id_user, nama, password, repassword, alamat, noHp);
         this.IDAdmin = IDAdmin;
     }
 
