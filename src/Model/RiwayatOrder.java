@@ -10,11 +10,9 @@ package Model;
  * @author Hp
  */
 public class RiwayatOrder extends ListOrder {
-    
-    public RiwayatOrder(String idOrder, String tanggalOrder){
-        super(idOrder, tanggalOrder);
+
+    public RiwayatOrder(int idOrder, String tanggalOrder, int banyakPenumpang, Member member, Rute rute, TransaksiPembayaran transaksi) {
+        super(idOrder, tanggalOrder, banyakPenumpang, member, rute, transaksi);
     }
-    
-    
     
 }
