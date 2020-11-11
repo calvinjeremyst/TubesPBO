@@ -50,7 +50,7 @@ public class DetailRute extends Rute {
     public void setKotaAsal(String kotaAsal) {
         this.kotaAsal = kotaAsal;
     }
-    
+
     @Override
     public String getKotaTujuan() {
         return kotaTujuan;
@@ -94,7 +94,7 @@ public class DetailRute extends Rute {
     public void setHargaRute(double hargaRute) {
         this.hargaRute = hargaRute;
     }
-
+  
     public double getHargaBis() {
         return hargaBis;
     }
@@ -103,11 +103,26 @@ public class DetailRute extends Rute {
         this.hargaBis = hargaBis;
     }
     
+    public String getJenisBis() {
+        return jenisBis;
+    }
+
+    public void setJenisBis(String jenisBis) {
+        this.jenisBis = jenisBis;
+    }
+  
     @Override
     public String toString(){
-        return this.getIdRute() + this.getKotaAsal() + this.getKotaTujuan() +
-               this.getIdbis() + this.getJamBerangkat() + this.getTanggalBerangkat() +
-               this.getHargaRute() + this.getHargaBis();
+        String hasil = "";
+        hasil = "ID_Rute : " + this.getID_Rute()+ "\n" + 
+                "ID Bis : " + this.getID_Bis()+ "\n" + 
+                "Kota Asal : " + this.getKotaAsal() + "\n" + 
+                "Kota Tujuan : " + this.getKotaTujuan() + "\n" +
+                "Harga Bis : " + this.getHargaBis() + "\n" + 
+                "Tanggal Berangkat : " + this.getTanggalBerangkat() + "\n" +
+                "Jam Berangkat : " + this.getJamBerangkat() + "\n" +
+                "Harga Rute : " + this.getHargaRute();
+                return hasil;
     }
-    
-}
+  
+}       

@@ -10,18 +10,18 @@ package model;
  * @author Hp
  */
 public abstract class User {
-    private int ID_User;
-    private String username;
-    private String password;
-    private String repassword;
-    private String alamat;
-    private String noHp;
+    public int ID_User;
+    public String username;
+    public String password;
+    public String repassword;
+    public String alamat;
+    public String noHp;
     
-    public User() {
-        
+    public User(){
+    
     }
-    
-    public User(int ID_User, String username, String password, String repassword, String alamat, String noHp) {
+
+    public User(int ID_User,String username, String password,String repassword ,String alamat, String noHp) {
         this.ID_User = ID_User;
         this.username = username;
         this.password = password;
@@ -37,7 +37,7 @@ public abstract class User {
     public void setID_User(int ID_User) {
         this.ID_User = ID_User;
     }
-    
+
     public String getUsername() {
         return username;
     }
@@ -53,7 +53,7 @@ public abstract class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
+  
     public String getRepassword() {
         return repassword;
     }

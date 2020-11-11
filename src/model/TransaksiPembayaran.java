@@ -18,13 +18,13 @@ public class TransaksiPembayaran extends Harga {
     private boolean useOVO;
     private String metodePembayaran;
     private Date tanggalTransaksi;
-    
+
     public TransaksiPembayaran() {
     
     }
     
     public TransaksiPembayaran(String kodePembayaran,String idTransaksi,double grandTotal,double cashBack,boolean useOVO,
-        String metodePembayaran,Date tanggalTransaksi){
+            String metodePembayaran,Date tanggalTransaksi){
         super(kodePembayaran);
         this.idTransaksi = idTransaksi;
         this.grandTotal = grandTotal;

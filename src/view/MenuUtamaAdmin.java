@@ -21,7 +21,7 @@ public class MenuUtamaAdmin implements ActionListener {
     JFrame frame = new JFrame("Terminal Bis Emen");
     JButton lihatDataMember,tambahListPerjalanan, cekListPerjalanan;
     JLabel judul;
-    
+
     public MenuUtamaAdmin() {
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -56,17 +56,17 @@ public class MenuUtamaAdmin implements ActionListener {
         frame.add(lihatDataMember);
         frame.add(cekListPerjalanan);
         frame.add(tambahListPerjalanan);
-        
     }
-   
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Lihat Data Member")){
             new LihatDataMember();
         }else if(e.getActionCommand().equals("Cek List Perjalanan")){
-            //new PencarianPerjalananScreen();
+            new PencarianRuteScreenAdmin();
         }else if(e.getActionCommand().equals("Tambah List Perjalanan")){
-            //new TambahListPerjalanan();
+            new addRuteScreen();
+        
         }
     }
     
