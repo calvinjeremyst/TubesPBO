@@ -5,7 +5,6 @@
  */
 package model;
 
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,8 +17,6 @@ public abstract class User {
     private String password;
     private String alamat;
     private String noHp;
-    ArrayList<Admin> listAdmin;
-    ArrayList<Member> listMember;
     
     public User() {
         
@@ -77,30 +74,5 @@ public abstract class User {
     public String toString(){
         return "ID : " + this.getId_user() + " Nama : " + this.getNama() + " Alamat : " + this.getAlamat() + " No.HP : " + this.getNoHp();
     }
-    
-    public boolean login(){
-        boolean loginUser = false;
-        String nama = JOptionPane.showInputDialog("Nama : ");
-        String password = JOptionPane.showInputDialog("Password : ");
-        for(int i = 0; i<listMember.size(); i++){
-            if(listMember.get(i).getNama().equals(nama) && listMember.get(i).getPassword().equals(password)){
-                loginUser = true;
-            }else{
-                loginA();
-            } 
-        }   
-        return loginUser;
-    }
-    
-    public boolean loginA(){
-        boolean loginAdmin = false;
-        for(int i = 0; i<listAdmin.size(); i++){
-            if(listAdmin.get(i).getNama().equals(nama) && listAdmin.get(i).getPassword().equals(password)){
-                loginAdmin = true;
-            }else{
-                loginAdmin = false;
-            }
-        }
-        return loginAdmin;
-    }
+
 }
