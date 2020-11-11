@@ -5,8 +5,7 @@
  */
 package Model;
 
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import java.util.Date;
 
 /**
  *
@@ -14,40 +13,99 @@ import javax.swing.JOptionPane;
  */
 public class DetailRute extends Rute {
     private String jamBerangkat;
-    private String tanggalBerangkat;
+    private Date tanggalBerangkat;
     private double hargaRute;
     private double hargaBis;
-    ArrayList<DetailRute> detailR;
 
     public DetailRute(){
         
     }
     
-    public DetailRute(String jamBerangkat, String tanggalBerangkat, double hargaRute, double hargaBis, String idRute, String kotaAsal, String kotaTujuan) {
-        super(idRute, kotaAsal, kotaTujuan);
+    public DetailRute(String jamBerangkat, Date tanggalBerangkat, double hargaRute, double hargaBis, String idRute, String kotaAsal, String kotaTujuan, String listbis,boolean dipilih) {
+        super(idRute, kotaAsal, kotaTujuan, listbis);
         this.jamBerangkat = jamBerangkat;
         this.tanggalBerangkat = tanggalBerangkat;
         this.hargaRute = hargaRute;
         this.hargaBis = hargaBis;
     }
-    
-    public String tampilRute(){
-        String hasil = "";
-        for(DetailRute rute : detailR){
-            hasil += "ID Rute: " + rute.getIdRute() + 
-                    "\nKota Asal: " + rute.getKotaAsal() +
-                    "\nKota Tujuan: " + rute.getKotaTujuan()+
-                    "\nJam Berangkat: " + rute.jamBerangkat+
-                    "\nTanggal Berangkat: " + rute.tanggalBerangkat+
-                    "\nHarga Rute: " + rute.hargaRute +
-                    "\nHarga Bis: " + rute.hargaBis + 
-                    "\nJenis Bis: " + rute.bis;
-        }
-        return hasil;
+
+    @Override
+    public String getIdRute() {
+        return idRute;
     }
     
-    public void tambahRute(String jam, String tanggal, double hargaRute, double hargaBis, String idRute, String kotaAsal, String kotaTujuan){
-        detailR.add(new DetailRute(jam,tanggal,hargaRute,hargaBis,idRute,kotaAsal,kotaTujuan));
+    @Override
+    public void setIdRute(String idRute) {
+        this.idRute = idRute;
+    }
+
+    @Override
+    public String getKotaAsal() {
+        return kotaAsal;
+    }
+
+    @Override
+    public void setKotaAsal(String kotaAsal) {
+        this.kotaAsal = kotaAsal;
+    }
+    
+    @Override
+    public String getKotaTujuan() {
+        return kotaTujuan;
+    }
+
+    @Override
+    public void setKotaTujuan(String kotaTujuan) {
+        this.kotaTujuan = kotaTujuan;
+    }
+
+    @Override
+    public String getListbis() {
+        return listbis;
+    }
+
+    @Override
+    public void setListbis(String listbis) {
+        this.listbis = listbis;
+    }
+    
+    public String getJamBerangkat() {
+        return jamBerangkat;
+    }
+
+    public void setJamBerangkat(String jamBerangkat) {
+        this.jamBerangkat = jamBerangkat;
+    }
+
+    public Date getTanggalBerangkat() {
+        return tanggalBerangkat;
+    }
+
+    public void setTanggalBerangkat(Date tanggalBerangkat) {
+        this.tanggalBerangkat = tanggalBerangkat;
+    }
+
+    public double getHargaRute() {
+        return hargaRute;
+    }
+
+    public void setHargaRute(double hargaRute) {
+        this.hargaRute = hargaRute;
+    }
+
+    public double getHargaBis() {
+        return hargaBis;
+    }
+
+    public void setHargaBis(double hargaBis) {
+        this.hargaBis = hargaBis;
+    }
+    
+    @Override
+    public String toString(){
+        return this.getIdRute() + this.getKotaAsal() + this.getKotaTujuan() +
+               this.getListbis() + this.getJamBerangkat() + this.getTanggalBerangkat() +
+               this.getHargaRute() + this.getHargaBis();
     }
     
 }
