@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author lenovo
+ * @author Hp
  */
 public class DetailRute extends Rute {
     private String jamBerangkat;
@@ -17,47 +17,28 @@ public class DetailRute extends Rute {
     private double hargaRute;
     private double hargaBis;
     private String jenisBis;
-    
-    public DetailRute(){
-    
-    }
 
-    public DetailRute(String ID_Rute,String ID_Bis ,String kotaAsal, String kotaTujuan,String jamBerangkat, 
-             double hargaRute,double hargaBis, String jenisBis) {
-        super(ID_Rute,ID_Bis,kotaAsal,kotaTujuan);
-        this.jamBerangkat = jamBerangkat; 
+    public DetailRute(){
+        
+    }
+    
+    public DetailRute(String jamBerangkat, Date tanggalBerangkat, double hargaRute, double hargaBis, String idRute, String kotaAsal, String kotaTujuan, String idbis, String jenisBis) {
+        super(idRute, kotaAsal, kotaTujuan, idbis);
+        this.jamBerangkat = jamBerangkat;
         this.tanggalBerangkat = tanggalBerangkat;
         this.hargaRute = hargaRute;
         this.hargaBis = hargaBis;
         this.jenisBis = jenisBis;
     }
+
+    @Override
+    public String getIdRute() {
+        return idRute;
+    }
     
-    public double getHargaBis() {
-        return hargaBis;
-    }
-
-    public void setHargaBis(double hargaBis) {
-        this.hargaBis = hargaBis;
-    }
-   
     @Override
-    public String getID_Rute() {
-        return ID_Rute;
-    }
-
-    @Override
-    public void setID_Rute(String ID_Rute) {
-        this.ID_Rute = ID_Rute;
-    }
-
-    @Override
-    public String getID_Bis() {
-        return ID_Bis;
-    }
-
-    @Override
-    public void setID_Bis(String ID_Bis) {
-        this.ID_Bis = ID_Bis;
+    public void setIdRute(String idRute) {
+        this.idRute = idRute;
     }
 
     @Override
@@ -80,6 +61,16 @@ public class DetailRute extends Rute {
         this.kotaTujuan = kotaTujuan;
     }
 
+    @Override
+    public String getIdbis() {
+        return idbis;
+    }
+
+    @Override
+    public void setIdbis(String idbis) {
+        this.idbis = idbis;
+    }
+    
     public String getJamBerangkat() {
         return jamBerangkat;
     }
@@ -95,7 +86,7 @@ public class DetailRute extends Rute {
     public void setTanggalBerangkat(Date tanggalBerangkat) {
         this.tanggalBerangkat = tanggalBerangkat;
     }
-    
+
     public double getHargaRute() {
         return hargaRute;
     }
@@ -103,7 +94,15 @@ public class DetailRute extends Rute {
     public void setHargaRute(double hargaRute) {
         this.hargaRute = hargaRute;
     }
+  
+    public double getHargaBis() {
+        return hargaBis;
+    }
 
+    public void setHargaBis(double hargaBis) {
+        this.hargaBis = hargaBis;
+    }
+    
     public String getJenisBis() {
         return jenisBis;
     }
@@ -111,7 +110,7 @@ public class DetailRute extends Rute {
     public void setJenisBis(String jenisBis) {
         this.jenisBis = jenisBis;
     }
-
+  
     @Override
     public String toString(){
         String hasil = "";
@@ -124,6 +123,6 @@ public class DetailRute extends Rute {
                 "Jam Berangkat : " + this.getJamBerangkat() + "\n" +
                 "Harga Rute : " + this.getHargaRute();
                 return hasil;
-    
     }
+  
 }       

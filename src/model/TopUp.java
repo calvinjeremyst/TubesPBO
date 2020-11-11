@@ -10,16 +10,14 @@ package model;
  * @author Hp
  */
 public class TopUp {
-   
     private double nominalTopUp;
     private double saldo;
-    
+  
     public TopUp(){
         
     }
 
-    public TopUp(int nominalTopUp, int saldo) {
-        
+    public TopUp(double nominalTopUp, double saldo) {
         this.nominalTopUp = nominalTopUp;
         this.saldo = saldo;
     }
@@ -28,7 +26,7 @@ public class TopUp {
         return nominalTopUp;
     }
 
-    public void setNominalTopUp(int nominalTopUp) {
+    public void setNominalTopUp(double nominalTopUp) {
         this.nominalTopUp = nominalTopUp;
     }
 
@@ -36,8 +34,8 @@ public class TopUp {
         return saldo;
     }
 
-    public void setSaldo(int saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-   
+
 }
