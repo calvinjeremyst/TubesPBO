@@ -5,14 +5,13 @@
  */
 package Model;
 
-import Model.harga;
 import java.util.Date;
 
 /**
  *
  * @author lenovo
  */
-public class TransaksiPembayaran extends harga {
+public class TransaksiPembayaran extends Harga {
     private String idTransaksi;
     private double grandTotal;
     private double cashBack;
@@ -20,7 +19,7 @@ public class TransaksiPembayaran extends harga {
     private String metodePembayaran;
     private Date tanggalTransaksi;
     
-    public TransaksiPembayaran(){
+    public TransaksiPembayaran() {
     
     }
     
