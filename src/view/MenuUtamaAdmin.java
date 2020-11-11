@@ -58,11 +58,7 @@ public class MenuUtamaAdmin implements ActionListener {
         frame.add(tambahListPerjalanan);
         
     }
-    
-    public static void main(String[] args) {
-        new MenuUtamaAdmin();
-    }
-    
+   
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Lihat Data Member")){

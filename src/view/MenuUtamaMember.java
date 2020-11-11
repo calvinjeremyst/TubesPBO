@@ -70,11 +70,7 @@ public class MenuUtamaMember implements ActionListener {
         frame.add(topupOvo);
         
     }
-    
-    public static void main(String[] args) {
-        new MenuUtamaMember();
-    }
-    
+   
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Pesan Tiket")){
