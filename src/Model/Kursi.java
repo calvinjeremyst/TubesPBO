@@ -12,8 +12,16 @@ package Model;
 public class Kursi extends ListOrder {
     private String nomorKursi;
 
-    public Kursi(String nomorKursi, String idOrder, String tanggalOrder) {
-        super(idOrder, tanggalOrder);
+    public Kursi(String nomorKursi, int idOrder, String tanggalOrder, int banyakPenumpang, Member member, Rute rute, TransaksiPembayaran transaksi) {
+        super(idOrder, tanggalOrder, banyakPenumpang, member, rute, transaksi);
+        this.nomorKursi = nomorKursi;
+    }
+
+    public String getNomorKursi() {
+        return nomorKursi;
+    }
+
+    public void setNomorKursi(String nomorKursi) {
         this.nomorKursi = nomorKursi;
     }
     
