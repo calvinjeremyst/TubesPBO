@@ -5,44 +5,24 @@
  */
 package Model;
 
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Hp
  */
 public class Admin extends User {
-    private String ID;
-    ArrayList<Member> listMember;
-  
-    public Admin(){
-        
-    }
+    private String IDAdmin;
     
-    public Admin(String nama, String password, String alamat, String noHp, String ID){
-        super(nama, password, alamat, noHp);
-        this.ID = ID;
+    public Admin(int id_user, String nama, String password, String alamat, String noHp, String IDAdmin) {
+        super(id_user, nama, password, alamat, noHp);
+        this.IDAdmin = IDAdmin;
     }
 
-    public String getID() {
-        return ID;
+    public String getIDAdmin() {
+        return IDAdmin;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
-    
-    public String lihatDataMember(){
-        String hasil = "";
-        for(Member member : listMember){
-            hasil += "Nama: " + member.getNama() + 
-            "\nAlamat: " + member.getAlamat() +
-            "\nNo.HP: " + member.getNoHp() +
-            "\nUmur: " + member.getUmur() +
-            "\nKTP: " + member.getKTP();
-        }
-        return hasil;
+    public void setIDAdmin(String IDAdmin) {
+        this.IDAdmin = IDAdmin;
     }
     
 }
