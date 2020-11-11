@@ -5,26 +5,25 @@
  */
 package Model;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Hp
  */
-public class Rute {
-    private String idRute;
-    private String kotaAsal;
-    private String kotaTujuan;
-    ArrayList<ListBus> bis;
+public abstract class Rute {
+    public String idRute;
+    public String kotaAsal;
+    public String kotaTujuan;
+    public String listbis;
     
     public Rute(){
         
     }
     
-    public Rute(String idRute, String kotaAsal, String kotaTujuan) {
+    public Rute(String idRute, String kotaAsal, String kotaTujuan, String listbis) {
         this.idRute = idRute;
         this.kotaAsal = kotaAsal;
         this.kotaTujuan = kotaTujuan;
+        this.listbis = listbis;
     }
 
     public String getIdRute() {
@@ -51,12 +50,12 @@ public class Rute {
         this.kotaTujuan = kotaTujuan;
     }
 
-    public ArrayList<ListBus> getBis() {
-        return bis;
+    public String getListbis() {
+        return listbis;
     }
 
-    public void setBis(ArrayList<ListBus> bis) {
-        this.bis = bis;
+    public void setListbis(String listbis) {
+        this.listbis = listbis;
     }
-       
+    
 }
