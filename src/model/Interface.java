@@ -3,23 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
-
-import java.util.ArrayList;
+package model;
 
 /**
  *
  * @author Hp
  */
-public class Controller {
-    
-    public Controller() {
-        tambahData();
-    }
-    
-    public void tambahData() {
-        
-        
-    }
-    
+public interface Interface {
+    int saldoOVOAwal = 50000;
 }
