@@ -18,17 +18,15 @@ public class listBis  {
     private int jumlahKapasitas;
     private String namaBis;
     private String kelasBis;
-    public ArrayList<listBis> daftarBis;
+   
+    public listBis(){
     
-    public listBis(){}
+    }
     
-    
-    public listBis(String IDbis,String namaKelas, int jumlahKapasitas,String kelasBis,listBis daftarBis) {
+    public listBis(String IDbis,String namaKelas, int jumlahKapasitas,String kelasBis) {
         this.IDbis = IDbis;
         this.jumlahKapasitas = jumlahKapasitas;
         this.kelasBis = kelasBis;
-        this.daftarBis = new ArrayList<listBis>();
-        
     }
 
     public String getIDbis() {
@@ -64,18 +62,5 @@ public class listBis  {
     public void setKelasBis(String kelasBis) {
         this.kelasBis = kelasBis;
     }
-
-    public ArrayList<listBis> getDaftarBis() {
-        return daftarBis;
-    }
-
-    public void setDaftarBis(ArrayList<listBis> daftarBis) {
-        this.daftarBis = daftarBis;
-    }
-
-   
-    
-    
-   
     
 }

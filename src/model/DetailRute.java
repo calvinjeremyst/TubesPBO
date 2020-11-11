@@ -13,13 +13,14 @@ import java.util.Date;
  * @author lenovo
  */
 public class DetailRute extends RutePerjalanan {
-    private ArrayList<DetailRute> dtrute = new ArrayList<>();
     private String jamBerangkat;
     private double hargaRute;
     private double hargaBis;
     private String jenisBis;
     
-    public DetailRute(){}
+    public DetailRute(){
+    
+    }
 
     public DetailRute(String ID_Rute,String ID_Admin,String ID_Bis ,String kotaAsal, String kotaTujuan,Date tanggalBerangkat,String jamBerangkat, 
              double hargaRute,double hargaBis, String jenisBis) {
@@ -28,10 +29,7 @@ public class DetailRute extends RutePerjalanan {
         this.hargaRute = hargaRute;
         this.hargaBis = hargaBis;
         this.jenisBis = jenisBis;
-        this.dtrute = new ArrayList<DetailRute>();
-      
     }
-
     
     public double getHargaBis() {
         return hargaBis;
@@ -40,43 +38,53 @@ public class DetailRute extends RutePerjalanan {
     public void setHargaBis(double hargaBis) {
         this.hargaBis = hargaBis;
     }
-
+    
+    @Override
     public String getID_Admin() {
         return ID_Admin;
     }
 
+    @Override
     public void setID_Admin(String ID_Admin) {
         this.ID_Admin = ID_Admin;
     }
 
+    @Override
     public String getID_Rute() {
         return ID_Rute;
     }
 
+    @Override
     public void setID_Rute(String ID_Rute) {
         this.ID_Rute = ID_Rute;
     }
 
+    @Override
     public String getID_Bis() {
         return ID_Bis;
     }
 
+    @Override
     public void setID_Bis(String ID_Bis) {
         this.ID_Bis = ID_Bis;
     }
 
+    @Override
     public String getKotaAsal() {
         return kotaAsal;
     }
 
+    @Override
     public void setKotaAsal(String kotaAsal) {
         this.kotaAsal = kotaAsal;
     }
 
+    @Override
     public String getKotaTujuan() {
         return kotaTujuan;
     }
 
+    @Override
     public void setKotaTujuan(String kotaTujuan) {
         this.kotaTujuan = kotaTujuan;
     }
@@ -85,6 +93,7 @@ public class DetailRute extends RutePerjalanan {
         return tanggalBerangkat;
     }
 
+    @Override
     public void setTanggalBerangkat(Date tanggalBerangkat) {
         this.tanggalBerangkat = tanggalBerangkat;
     }
@@ -116,7 +125,6 @@ public class DetailRute extends RutePerjalanan {
     @Override
     public String toString(){
         String hasil = "";
-       
         hasil = "ID_Rute : " + this.getID_Rute()+ "\n" + 
                 "ID Bis : " + this.getID_Bis()+ "\n" + 
                 "Kota Asal : " + this.getKotaAsal() + "\n" + 
@@ -128,10 +136,4 @@ public class DetailRute extends RutePerjalanan {
                 return hasil;
     
     }
-    
-    
-    }
-
-    
-       
-
+}       

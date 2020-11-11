@@ -48,8 +48,6 @@ public abstract class User {
         this.repassword = repassword;
     }
     
-  
-
     public String getUsername() {
         return username;
     }
@@ -65,8 +63,7 @@ public abstract class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-  
+    
     public String getAlamat() {
         return alamat;
     }
@@ -79,12 +76,8 @@ public abstract class User {
         return noHp;
     }
     
- 
     public void setNoHp(String noHp) {
         this.noHp = noHp;
     }
-
- 
-    
     
 }

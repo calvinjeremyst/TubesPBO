@@ -4,10 +4,8 @@
  * and open the template in the editor.
  */
 package model;
-import model.listOrder;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,21 +13,17 @@ import javax.swing.JOptionPane;
  * @author lenovo
  */
 public class TransaksiPembayaran extends harga {
-  
-    public ArrayList<TransaksiPembayaran>bayar;
-    public ArrayList<Member>member;
     private String idTransaksi;
     private double grandTotal;
     private double cashBack;
     private boolean useOVO;
     private String metodePembayaran;
     private Date tanggalTransaksi;
-    private statusBayar status;
-    
+  
     public TransaksiPembayaran(){}
     
     public TransaksiPembayaran(String kodePembayaran,String idTransaksi,double grandTotal,double cashBack,boolean useOVO,
-            String metodePembayaran,Date tanggalTransaksi,statusBayar status){
+            String metodePembayaran,Date tanggalTransaksi){
         super(kodePembayaran);
         this.idTransaksi = idTransaksi;
         this.grandTotal = grandTotal;
@@ -37,12 +31,6 @@ public class TransaksiPembayaran extends harga {
         this.useOVO = useOVO;
         this.metodePembayaran = metodePembayaran;
         this.tanggalTransaksi = tanggalTransaksi;
-        this.status = status;
-        this.bayar = new ArrayList<TransaksiPembayaran>();
-        this.member = new ArrayList<Member>();
-        
-       
-         
     }
 
     public String getIdTransaksi() {
@@ -91,29 +79,6 @@ public class TransaksiPembayaran extends harga {
 
     public void setTanggalTransaksi(Date tanggalTransaksi) {
         this.tanggalTransaksi = tanggalTransaksi;
-    }
-
-    public statusBayar getStatus() {
-        return status;
-    }
-
-    public void setStatus(statusBayar status) {
-        this.status = status;
-    }
-    
-   
-    public void printTiket(String idTransaksi,String status){
-        String hasil = "";
-        idTransaksi = JOptionPane.showInputDialog(null, "Input id Transaksi Pembayaran");
-              for(int i = 0; i < bayar.size(); i++){
-                if(bayar.get(i).status.paid.equals(status)){
-                    hasil += bayar.get(i).idTransaksi;
-                }
-              
-          
-          }
-          
-    
     }
     
 }

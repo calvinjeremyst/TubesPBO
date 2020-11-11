@@ -10,10 +10,6 @@ package model;
  * @author lenovo
  */
 public interface interfaceTubes {
-    String alamatTerminal = "Jl. Tanjakan Emen 12";
-    int totalBis = 50;
-    int batasMember = 100;
-    int jumlahAdmin = 3;
     int saldoOVOAwal = 50000;
     
 }

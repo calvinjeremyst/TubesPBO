@@ -16,8 +16,6 @@ import javax.swing.JOptionPane;
  * @author lenovo
  */
 public class listOrder {
-    
-    public LinkedList<listOrder>order;
     private String kodeBayarMember;
     private String TanggalOrder;
     private String kotaAsalPilihan;
@@ -25,6 +23,7 @@ public class listOrder {
     private String tanggalBerangkatMember;
     private String jamBerangkatMember;
     private double totalBayarMember;
+    
     public listOrder(){
         
     }
@@ -47,9 +46,7 @@ public class listOrder {
     public void setKodeBayarMember(String kodeBayarMember) {
         this.kodeBayarMember = kodeBayarMember;
     }
-
-   
-
+    
     public String getTanggalOrder() {
         return TanggalOrder;
     }
@@ -97,25 +94,5 @@ public class listOrder {
     public void setTotalBayarMember(double totalBayarMember) {
         this.totalBayarMember = totalBayarMember;
     }
-
- 
-    
-    public void batalTiket(String IDorder){
-        IDorder = JOptionPane.showInputDialog("Input ID Order : ");
-        boolean cek = false;
-        while(cek == false){
-            for(int i = 0; i < order.size();i++){
-                if(IDorder.equals(order.get(i).kodeBayarMember)){
-                    order.remove(order.get(i).kodeBayarMember);
-                    order.remove(order.get(i).TanggalOrder);
-                    cek = true;
-                }
-            }
-        }
-        
-        
-    }
-    
-    
     
 }

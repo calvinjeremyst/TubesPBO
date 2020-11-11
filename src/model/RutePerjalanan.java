@@ -83,6 +83,4 @@ public class RutePerjalanan {
         this.kotaTujuan = kotaTujuan;
     }
     
-   
-    
 }

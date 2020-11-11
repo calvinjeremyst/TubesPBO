@@ -27,13 +27,5 @@ public class Admin extends User{
     public void setID(String ID) {
         this.ID = ID;
     }
-    
-    public void tambahPerjalanan(){
-        
-    }
-    
-    public void lihatMember(){
-        
-    }
-    
+   
 }

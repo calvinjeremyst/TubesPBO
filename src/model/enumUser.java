@@ -10,7 +10,5 @@ package model;
  * @author lenovo
  */
 public enum enumUser {
-    
     Admin,Member
-    
 }
