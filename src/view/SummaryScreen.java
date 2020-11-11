@@ -5,7 +5,7 @@
  */
 package view;
 
-import view.helper.TampungDipilih;
+import view.Helper.TampungDipilih;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
