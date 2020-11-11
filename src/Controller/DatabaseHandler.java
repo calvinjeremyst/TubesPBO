@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 public class DatabaseHandler {
     public Connection con;
     private String driver = "com.mysql.cj.jdbc.Driver";
-    private String url = "jdbc:mysql://localhost/terminalbis3";
+    private String url = "jdbc:mysql://localhost/terminal2";
     private String username = "root";
     private String password = "";
 
