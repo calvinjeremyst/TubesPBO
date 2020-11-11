@@ -5,7 +5,6 @@
  */
 package Model;
 
-import static View.Menu.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -13,7 +12,8 @@ import javax.swing.JOptionPane;
  *
  * @author Hp
  */
-public class User {
+public abstract class User {
+    private int id_user;
     private String nama;
     private String password;
     private String alamat;
@@ -21,18 +21,26 @@ public class User {
     ArrayList<Admin> listAdmin;
     ArrayList<Member> listMember;
     
-    
-    public User(){
-    
+    public User() {
+        
     }
     
-    public User(String nama, String password, String alamat, String noHp) {
+    public User(int id_user, String nama, String password, String alamat, String noHp) {
+        this.id_user = id_user;
         this.nama = nama;
         this.password = password;
         this.alamat = alamat;
         this.noHp = noHp;
     }
 
+    public int getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
+    
     public String getNama() {
         return nama;
     }
@@ -63,6 +71,11 @@ public class User {
 
     public void setNoHp(String noHp) {
         this.noHp = noHp;
+    }
+    
+    @Override
+    public String toString(){
+        return "ID : " + this.getId_user() + " Nama : " + this.getNama() + " Alamat : " + this.getAlamat() + " No.HP : " + this.getNoHp();
     }
     
     public boolean login(){
