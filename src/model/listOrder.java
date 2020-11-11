@@ -5,94 +5,76 @@
  */
 package model;
 
-import model.DetailRute;
-import model.RutePerjalanan;
 import java.util.Date;
-import java.util.LinkedList;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author lenovo
  */
 public class listOrder {
-    private String kodeBayarMember;
-    private String TanggalOrder;
-    private String kotaAsalPilihan;
-    private String kotaTujuanPilihan;
-    private String tanggalBerangkatMember;
-    private String jamBerangkatMember;
-    private double totalBayarMember;
+    private int idOrder;
+    private Date TanggalOrder;
+    private int banyakPenumpang;
+    private Member member;
+    private Rute rute;
+    private TransaksiPembayaran transaksi;
     
     public listOrder(){
         
     }
 
-    public listOrder(String kodeBayarMember, String TanggalOrder, String kotaAsalPilihan, String kotaTujuanPilihan,
-            String tanggalBerangkatMember, String jamBerangkatMember, double totalBayarMember) {
-        this.kodeBayarMember = kodeBayarMember;
+    public listOrder(int idOrder, Date TanggalOrder, int banyakPenumpang) {
+        this.idOrder = idOrder;
         this.TanggalOrder = TanggalOrder;
-        this.kotaAsalPilihan = kotaAsalPilihan;
-        this.kotaTujuanPilihan = kotaTujuanPilihan;
-        this.tanggalBerangkatMember = tanggalBerangkatMember;
-        this.jamBerangkatMember = jamBerangkatMember;
-        this.totalBayarMember = totalBayarMember;
+        this.banyakPenumpang = banyakPenumpang;
     }
 
-    public String getKodeBayarMember() {
-        return kodeBayarMember;
+    public int getIdOrder() {
+        return idOrder;
     }
 
-    public void setKodeBayarMember(String kodeBayarMember) {
-        this.kodeBayarMember = kodeBayarMember;
+    public void setIdOrder(int idOrder) {
+        this.idOrder = idOrder;
     }
-    
-    public String getTanggalOrder() {
+
+    public Date getTanggalOrder() {
         return TanggalOrder;
     }
 
-    public void setTanggalOrder(String TanggalOrder) {
+    public void setTanggalOrder(Date TanggalOrder) {
         this.TanggalOrder = TanggalOrder;
     }
 
-    public String getKotaAsalPilihan() {
-        return kotaAsalPilihan;
+    public int getBanyakPenumpang() {
+        return banyakPenumpang;
     }
 
-    public void setKotaAsalPilihan(String kotaAsalPilihan) {
-        this.kotaAsalPilihan = kotaAsalPilihan;
+    public void setBanyakPenumpang(int banyakPenumpang) {
+        this.banyakPenumpang = banyakPenumpang;
     }
 
-    public String getKotaTujuanPilihan() {
-        return kotaTujuanPilihan;
+    public Member getMember() {
+        return member;
     }
 
-    public void setKotaTujuanPilihan(String kotaTujuanPilihan) {
-        this.kotaTujuanPilihan = kotaTujuanPilihan;
+    public void setMember(Member member) {
+        this.member = member;
     }
 
-    public String getTanggalBerangkatMember() {
-        return tanggalBerangkatMember;
+    public Rute getRute() {
+        return rute;
     }
 
-    public void setTanggalBerangkatMember(String tanggalBerangkatMember) {
-        this.tanggalBerangkatMember = tanggalBerangkatMember;
+    public void setRute(Rute rute) {
+        this.rute = rute;
     }
 
-    public String getJamBerangkatMember() {
-        return jamBerangkatMember;
+    public TransaksiPembayaran getTransaksi() {
+        return transaksi;
     }
 
-    public void setJamBerangkatMember(String jamBerangkatMember) {
-        this.jamBerangkatMember = jamBerangkatMember;
-    }
-
-    public double getTotalBayarMember() {
-        return totalBayarMember;
-    }
-
-    public void setTotalBayarMember(double totalBayarMember) {
-        this.totalBayarMember = totalBayarMember;
+    public void setTransaksi(TransaksiPembayaran transaksi) {
+        this.transaksi = transaksi;
     }
     
 }

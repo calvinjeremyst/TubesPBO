@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package model;
-import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,7 +18,9 @@ public class TransaksiPembayaran extends harga {
     private String metodePembayaran;
     private Date tanggalTransaksi;
   
-    public TransaksiPembayaran(){}
+    public TransaksiPembayaran(){
+    
+    }
     
     public TransaksiPembayaran(String kodePembayaran,String idTransaksi,double grandTotal,double cashBack,boolean useOVO,
             String metodePembayaran,Date tanggalTransaksi){

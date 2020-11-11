@@ -5,15 +5,15 @@
  */
 package model;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
  *
  * @author lenovo
  */
-public class DetailRute extends RutePerjalanan {
+public class DetailRute extends Rute {
     private String jamBerangkat;
+    private Date tanggalBerangkat;
     private double hargaRute;
     private double hargaBis;
     private String jenisBis;
@@ -22,10 +22,11 @@ public class DetailRute extends RutePerjalanan {
     
     }
 
-    public DetailRute(String ID_Rute,String ID_Admin,String ID_Bis ,String kotaAsal, String kotaTujuan,Date tanggalBerangkat,String jamBerangkat, 
+    public DetailRute(String ID_Rute,String ID_Bis ,String kotaAsal, String kotaTujuan,String jamBerangkat, 
              double hargaRute,double hargaBis, String jenisBis) {
-        super(ID_Rute,ID_Admin,ID_Bis,kotaAsal,kotaTujuan,tanggalBerangkat);
+        super(ID_Rute,ID_Bis,kotaAsal,kotaTujuan);
         this.jamBerangkat = jamBerangkat; 
+        this.tanggalBerangkat = tanggalBerangkat;
         this.hargaRute = hargaRute;
         this.hargaBis = hargaBis;
         this.jenisBis = jenisBis;
@@ -38,17 +39,7 @@ public class DetailRute extends RutePerjalanan {
     public void setHargaBis(double hargaBis) {
         this.hargaBis = hargaBis;
     }
-    
-    @Override
-    public String getID_Admin() {
-        return ID_Admin;
-    }
-
-    @Override
-    public void setID_Admin(String ID_Admin) {
-        this.ID_Admin = ID_Admin;
-    }
-
+   
     @Override
     public String getID_Rute() {
         return ID_Rute;
@@ -89,15 +80,6 @@ public class DetailRute extends RutePerjalanan {
         this.kotaTujuan = kotaTujuan;
     }
 
-    public Date getTanggalBerangkat() {
-        return tanggalBerangkat;
-    }
-
-    @Override
-    public void setTanggalBerangkat(Date tanggalBerangkat) {
-        this.tanggalBerangkat = tanggalBerangkat;
-    }
-    
     public String getJamBerangkat() {
         return jamBerangkat;
     }
@@ -106,6 +88,14 @@ public class DetailRute extends RutePerjalanan {
         this.jamBerangkat = jamBerangkat;
     }
 
+    public Date getTanggalBerangkat() {
+        return tanggalBerangkat;
+    }
+
+    public void setTanggalBerangkat(Date tanggalBerangkat) {
+        this.tanggalBerangkat = tanggalBerangkat;
+    }
+    
     public double getHargaRute() {
         return hargaRute;
     }

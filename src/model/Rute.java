@@ -11,36 +11,23 @@ import java.util.Date;
  *
  * @author lenovo
  */
-public class RutePerjalanan {
-    public String ID_Admin;
+public class Rute {
     public String ID_Rute;
     public String ID_Bis;
     public String kotaAsal;
     public String kotaTujuan;
-    public Date tanggalBerangkat;
     
-    public RutePerjalanan(){}
+    public Rute(){
+    
+    }
 
-    public RutePerjalanan(String ID_Rute,String ID_Admin,String ID_Bis, String kotaAsal, String kotaTujuan,Date tanggalBerangkat) {
-        
-        this.ID_Admin = ID_Admin;
+    public Rute(String ID_Rute,String ID_Bis, String kotaAsal, String kotaTujuan) {
         this.ID_Rute = ID_Rute;
-        this.ID_Admin = ID_Admin;
         this.ID_Bis = ID_Bis;
         this.kotaAsal = kotaAsal;
         this.kotaTujuan = kotaTujuan;
-        this.tanggalBerangkat = tanggalBerangkat;
     }
 
-    public String getID_Admin() {
-        return ID_Admin;
-    }
-
-    public void setID_Admin(String ID_Admin) {
-        this.ID_Admin = ID_Admin;
-    }
-
-    
     public String getID_Bis() {
         return ID_Bis;
     }
@@ -49,16 +36,6 @@ public class RutePerjalanan {
         this.ID_Bis = ID_Bis;
     }
     
-    public Date getTanggalBerangkat() {
-        return tanggalBerangkat;
-    }
-
-    public void setTanggalBerangkat(Date tanggalBerangkat) {
-        this.tanggalBerangkat = tanggalBerangkat;
-    }
-    
-    
-
     public String getID_Rute() {
         return ID_Rute;
     }

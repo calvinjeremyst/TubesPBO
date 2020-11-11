@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.Date;
+
 
 /**
  *
@@ -12,14 +14,8 @@ package model;
  */
 public class riwayatOrder extends listOrder {
     
-    public riwayatOrder(){
-    
-    }
-    
-    public riwayatOrder(String ID_Order, String TanggalOrder, String kotaAsalPilihan, String kotaTujuanPilihan,
-            String tanggalBerangkatMember, String jamBerangkatMember, double totalBayarMember){
-            super(ID_Order,TanggalOrder,kotaAsalPilihan,kotaTujuanPilihan,
-            tanggalBerangkatMember, jamBerangkatMember, totalBayarMember);
+    public riwayatOrder(int ID_Order, Date TanggalOrder, int banyakPenumpang){
+            super(ID_Order, TanggalOrder, banyakPenumpang);
     }
     
 }

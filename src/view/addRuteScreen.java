@@ -24,7 +24,7 @@ import org.jdatepicker.impl.UtilDateModel;
 import model.DetailRute;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import model.RutePerjalanan;
+import model.Rute;
 import model.listBis;
 
 /**
@@ -190,7 +190,7 @@ public class addRuteScreen implements ActionListener{
                 JOptionPane.showMessageDialog(null, "Input all the data ", "Alert", JOptionPane.WARNING_MESSAGE);
             }else{
            DetailRute Detailrute = new DetailRute();
-           RutePerjalanan rute = new RutePerjalanan();
+           Rute rute = new Rute();
           
            listBis list = new listBis();
           

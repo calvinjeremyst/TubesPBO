@@ -9,23 +9,23 @@ package model;
  * @author Hp
  */
 public class Admin extends User{
-    private String ID;
+    private String IDAdmin;
   
     public Admin(){
         
     }
     
-    public Admin(int id_user, String username, String password, String repassword, String alamat, String noHp, String ID){
+    public Admin(int id_user, String username, String password, String repassword, String alamat, String noHp, String IDAdmin){
         super(id_user, username, password, repassword, alamat, noHp);
-        this.ID = ID;
+        this.IDAdmin = IDAdmin;
     }
 
     public String getID() {
-        return ID;
+        return IDAdmin;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setID(String IDAdmin) {
+        this.IDAdmin = IDAdmin;
     }
    
 }

@@ -10,7 +10,6 @@ package model;
  * @author Hp
  */
 public class Member extends User implements interfaceTubes {
-   
     private int ID_Member;
     private int umur;
     private String KTP;
