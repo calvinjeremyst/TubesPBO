@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.*;
 import javax.swing.event.*;
-import view.tools.fontStyle;
+import view.Helper.fontStyle;
 import model.Member;
 
 /**

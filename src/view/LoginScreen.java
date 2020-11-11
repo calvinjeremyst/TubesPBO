@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.*;
-import view.tools.fontStyle;
+import view.Helper.fontStyle;
 import controller.Controller;
 import model.Member;
 /**

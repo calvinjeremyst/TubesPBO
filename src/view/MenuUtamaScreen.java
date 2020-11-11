@@ -11,7 +11,7 @@ package view;
  */
 import model.Member;
 import controller.Controller;
-import view.tools.fontStyle;
+import view.Helper.fontStyle;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;

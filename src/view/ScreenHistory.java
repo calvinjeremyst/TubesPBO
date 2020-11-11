@@ -5,7 +5,7 @@
  */
 package view;
 
-import view.tools.fontStyle;
+import view.Helper.fontStyle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
