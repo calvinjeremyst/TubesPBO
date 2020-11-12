@@ -11,11 +11,7 @@ import Model.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,52 +20,35 @@ import javax.swing.table.DefaultTableModel;
  * @author Christian
  */
 public class View implements ActionListener{
-    static JFrame frameOVO,frameTopUp;
+    static JFrame frameOVO,frameTopUp,frameMember;
     JLayeredPane layerLogo,layerBack,layerTable;
     JLabel logo,lsaldo,saldo,salam,lcomboNominal,lcomboMetode;
     JButton buttonCek,buttonTopUp,buttonHistory,buttonKonfirmasi;
     JPanel panel;
     JPanel p1,p2,p3;
-    JTable jt;
-    JScrollPane sp;
+    JTable jt,table;
+    JScrollPane sp,scroll;
     JComboBox comboNominal,comboMetode;
     int jmlNom;
     String comboMetodeOVO, id;
-    RiwayatTopUp riwayatTopUp;
-    Controller controller =  new Controller();
+    RiwayatTopup riwayatTopUp;
+    ArrayList<Member> riwayat,members;
+    ArrayList<RiwayatTopup> topups;
     
-    ArrayList<Member> members;
-    //RiwayatTopUp topup = new RiwayatTopUp();
     public View(){
-        int aaaaaaaaaaaaaaaaaaaaa =1;
-        id = JOptionPane.showInputDialog("Masukan id : ");
-        ArrayList<RiwayatTopUp> topups = controller.getHistory(id);
-        members = controller.getData(id);
+        members = Controller.getAllData();
         for (Member member :members) {
            System.out.println(member.toString());
         }
-//        for(RiwayatTopUp topup:topups){
-//            System.out.println(topup.toString());
-//        }
-        //Member getmember = Controller.getMember("2001","john");
-        //System.out.println(getmember.toString());
+        id = JOptionPane.showInputDialog("Masukan id : ");
+        riwayat = Controller.getData(id);
+        topups = Controller.getHistory(id);
         
-        //ArrayList<Member> listMember = Controller.getData();
-        
-         
+
         frameOVO = new JFrame("OVO");
         frameTopUp = new JFrame("Top Up OVO");
-        //frameOVO.getContentPane().setLayout(null);
-        frameOVO.setSize(1200, 800);
-        frameOVO.setVisible(true);
-        frameOVO.getContentPane().setBackground(new java.awt.Color(76, 52, 148));
-        frameOVO.setResizable(false);
-        frameOVO.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        
-        frameTopUp.getContentPane().setLayout(null);
-        frameTopUp.setSize(500, 400);
-        frameTopUp.setVisible(false);
-        frameTopUp.getContentPane().setBackground(new java.awt.Color(76, 52, 148));
+        frameMember = new JFrame("Lihat data member");
+       
         //logo
         logo = new JLabel("OVO");
         logo.setBounds(0,0,300,50);
@@ -80,10 +59,8 @@ public class View implements ActionListener{
         layerLogo.setBounds(0,0,300,50);
         frameOVO.add(layerLogo);
         
-        //salam nama
-        //for (int i = 0; i < members.size(); i++) {
-            salam = new JLabel("Hi, " + members.get(0).getNama());
-        //}
+        //salam 
+        salam = new JLabel("Hi, " + riwayat.get(0).getNama());
         salam.setBounds(950,10,400,50);
         salam.setFont(font.small);
         salam.setForeground(Color.white);
@@ -99,9 +76,7 @@ public class View implements ActionListener{
 
         //button buttonCek saldo
         lsaldo = new JLabel("Jumlah saldo :");
-        //for (int i = 0; i < members.size(); i++) {
-        saldo = new JLabel("Rp." + members.get(0).getSaldo() + ",00");
-        //}
+        saldo = new JLabel("Rp." + riwayat.get(0).getSaldo() + ",00");
         buttonTopUp = new JButton("Top Up");
         lsaldo.setBounds(300,150,300,300);
         lsaldo.setFont(font.medium);
@@ -138,23 +113,7 @@ public class View implements ActionListener{
         buttonKonfirmasi.addActionListener(this);
         frameTopUp.add(lcomboNominal);frameTopUp.add(comboNominal);frameTopUp.add(lcomboMetode);frameTopUp.add(comboMetode);frameTopUp.add(buttonKonfirmasi);
 
-        //button riwayat transaksi
-        //String data[][]=topup.arrayData();
-//        String data[][] = {{"101","Amit","670000"},    
-//                          {"102","Jai","780000"},    
-//                          {"101","Sachin","700000"}};
-        //String column[]={"Topup","Penarikan","Tanggal"}; 
-    //        jt=new JTable(data,column);
-    //        jt.setBounds(100,250,1100,700);
-    //        sp = new JScrollPane(jt);
-    //        sp.setVisible(false);
-    //        //jt.setVisible(false); 
-    //        JPanel panel=new JPanel();
-    //        panel.setBounds(100,100,500,300);
-    //        panel.add(sp);
-    //        panel.setVisible(false);
-    //        panel.setBackground(new java.awt.Color(76, 52, 148));
-        
+        //lihat riwayatTopUp
         jt = new JTable();
         DefaultTableModel model = new DefaultTableModel();
         Object[] namaKolom = new Object[3];
@@ -174,20 +133,46 @@ public class View implements ActionListener{
         panel.setLayout(new BorderLayout());
         sp = new JScrollPane(jt);
         sp.setVisible(false);
-        
-        panel.add(sp);
-        panel.setBackground(new java.awt.Color(76, 52, 148));
-        panel.setVisible(false);
         frameOVO.add(sp);
+
+        //lihat data member
+        table = new JTable();
+        DefaultTableModel tableModel = new DefaultTableModel();
+        Object[] kolomNama = new Object[4];
+        kolomNama[0] = "ID";
+        kolomNama[1] = "Nama";
+        kolomNama[2] = "Pass";
+        kolomNama[3] = "Saldo";
+        tableModel.setColumnIdentifiers(kolomNama);
+        Object[] kolomData = new Object[4];
+        for (int i = 0; i < members.size(); i++) {
+           kolomData[0] = members.get(i).getID();
+           kolomData[1] = members.get(i).getNama();
+           kolomData[2] = members.get(i).getPass();
+           kolomData[3] = members.get(i).getSaldo();
+           tableModel.addRow(kolomData);
+        }
+        table.setModel(tableModel);
+        panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        scroll = new JScrollPane(table);
+        scroll.setVisible(true);
+        frameMember.add(scroll);
         
-//        layerTable = new JLayeredPane();
-//        layerTable.add(sp);
-//        layerTable.setBounds(100,100,500,300);
-//        frameOVO.add(layerTable);
-//        frameOVO.getContentPane().add(sp);
-//        frameOVO.add(sp);
-        //frameOVO.add(panel);
         
+        frameOVO.setSize(1200, 800);
+        frameOVO.setVisible(true);
+        frameOVO.getContentPane().setBackground(new java.awt.Color(76, 52, 148));
+        frameOVO.setResizable(false);
+        frameOVO.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        
+        frameTopUp.getContentPane().setLayout(null);
+        frameTopUp.setSize(500, 400);
+        frameTopUp.setVisible(false);
+        frameTopUp.getContentPane().setBackground(new java.awt.Color(76, 52, 148));
+        
+        frameMember.setSize(1000, 700);
+        frameMember.setVisible(true);
     }
      public static void main(String[] args) {
         new View();
@@ -206,12 +191,10 @@ public class View implements ActionListener{
         }else if(e.getActionCommand().equals("Konfirmasi")){
             int jmlNominal =(Integer) this.comboNominal.getSelectedItem();
             String comboMetodeOVO = (String) this.comboMetode.getSelectedItem();
-            System.out.println(Controller.konfirmasi(members, jmlNominal, comboMetodeOVO));
+            System.out.println(Controller.konfirmasi(riwayat, jmlNominal, comboMetodeOVO));
         }else if(e.getActionCommand().equals("Riwayat")){
             System.out.println("aaaa");
             sp.setVisible(true);
-            jt.setVisible(true);
-            panel.setVisible(true);
             lsaldo.setVisible(false);
             saldo.setVisible(false);
             buttonTopUp.setVisible(false);
