@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Model;
+package Controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
