@@ -5,7 +5,7 @@
  */
 
 package Model;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -14,12 +14,15 @@ import java.util.Date;
 public class RiwayatTopup {
     private double nominal;
     private String metode;
-    private String date;
+    private Date date;
+    private String id;
 
-    public RiwayatTopup(double nominal, String metode, String date) {
+    public RiwayatTopup(){}
+    public RiwayatTopup(double nominal, String metode, Date date, String id) {
         this.nominal = nominal;
         this.metode = metode;
         this.date = date;
+        this.id = id;
     }
 
     public double getNominal() {
@@ -38,15 +41,19 @@ public class RiwayatTopup {
         this.metode = metode;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
-    
+    public String getId(){
+        return id;
+    }
+    public void setId(String id){
+        this.id=id;
+    }
     
 }
-
 
