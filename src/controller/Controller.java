@@ -151,6 +151,7 @@ public class Controller {
           Statement stmt = dbh.con.createStatement();
           ResultSet rs = stmt.executeQuery(query);
           while(rs.next()){
+              
                mem.setID_User(rs.getInt("ID_User"));
                mem.setUsername(rs.getString("nama"));
                mem.setPassword(rs.getString("pass"));
@@ -172,6 +173,7 @@ public class Controller {
       try{ 
           Statement stmt = dbh.con.createStatement();
           ResultSet rs = stmt.executeQuery(query);
+          
           while(rs.next()){
                mem.setID_User(rs.getInt("ID_User"));
                mem.setUsername(rs.getString("nama"));
