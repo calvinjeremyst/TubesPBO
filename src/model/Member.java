@@ -13,16 +13,18 @@ public class Member extends User implements interfaceTubes {
     private int ID_Member;
     private int umur;
     private String KTP;
-    
+    private double ovoBalance;
+
     public Member(){
         
     }
     
-    public Member(int ID_User,String username, String password,String repassword, String alamat, String noHp,int ID_Member,int umur, String KTP) {
+    public Member(int ID_User,String username, String password,String repassword, String alamat, String noHp,int ID_Member,int umur, String KTP, double ovoBalance) {
         super(ID_User,username, password,repassword, alamat, noHp);
         this.ID_Member = ID_Member;
         this.umur = umur;
         this.KTP = KTP;
+        this.ovoBalance = ovoBalance;
     }
 
     public int getID_Member() {
@@ -107,6 +109,19 @@ public class Member extends User implements interfaceTubes {
 
     public void setKTP(String KTP) {
         this.KTP = KTP;
+    }
+    
+    public double getOvoBalance() {
+        return ovoBalance;
+    }
+
+    public void setOvoBalance(double ovoBalance) {
+        this.ovoBalance = ovoBalance;
+    }
+    
+    @Override
+    public String toString(){
+        return this.getUsername() + this.getNoHp() + this.getAlamat() + this.getKTP() + this.getUmur();
     }
     
 }

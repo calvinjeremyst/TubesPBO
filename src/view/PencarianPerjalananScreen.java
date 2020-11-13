@@ -9,7 +9,7 @@ package view;
  *
  * @author lenovo
  */
-import controller.DataBaseHandler;
+import controller.DatabaseHandler;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;

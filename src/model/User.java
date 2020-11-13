@@ -38,14 +38,6 @@ public abstract class User {
         this.ID_User = ID_User;
     }
 
-    public String getRepassword() {
-        return repassword;
-    }
-
-    public void setRepassword(String repassword) {
-        this.repassword = repassword;
-    }
-    
     public String getUsername() {
         return username;
     }
@@ -61,6 +53,14 @@ public abstract class User {
     public void setPassword(String password) {
         this.password = password;
     }
+  
+    public String getRepassword() {
+        return repassword;
+    }
+
+    public void setRepassword(String repassword) {
+        this.repassword = repassword;
+    }
     
     public String getAlamat() {
         return alamat;
@@ -73,9 +73,14 @@ public abstract class User {
     public String getNoHp() {
         return noHp;
     }
-    
+
     public void setNoHp(String noHp) {
         this.noHp = noHp;
     }
     
+    @Override
+    public String toString(){
+        return "ID : " + this.getID_User() + " Nama : " + this.getUsername() + " Alamat : " + this.getAlamat() + " No.HP : " + this.getNoHp();
+    }
+
 }

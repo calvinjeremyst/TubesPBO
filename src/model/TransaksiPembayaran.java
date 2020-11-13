@@ -4,21 +4,22 @@
  * and open the template in the editor.
  */
 package model;
+
 import java.util.Date;
 
 /**
  *
  * @author lenovo
  */
-public class TransaksiPembayaran extends harga {
+public class TransaksiPembayaran extends Harga {
     private String idTransaksi;
     private double grandTotal;
     private double cashBack;
     private boolean useOVO;
     private String metodePembayaran;
     private Date tanggalTransaksi;
-  
-    public TransaksiPembayaran(){
+
+    public TransaksiPembayaran() {
     
     }
     

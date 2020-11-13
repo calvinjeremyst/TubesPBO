@@ -5,7 +5,7 @@
  */
 package view;
 import controller.Controller;
-import controller.DataBaseHandler;
+import controller.DatabaseHandler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -190,7 +190,6 @@ public class addRuteScreen implements ActionListener{
                 JOptionPane.showMessageDialog(null, "Input all the data ", "Alert", JOptionPane.WARNING_MESSAGE);
             }else{
            DetailRute Detailrute = new DetailRute();
-           Rute rute = new Rute();
           
            listBis list = new listBis();
           
@@ -199,8 +198,8 @@ public class addRuteScreen implements ActionListener{
            list.setJumlahKapasitas(jumlahMuatan);
         
            
-           rute.setID_Rute(ID_Rute);
-           rute.setID_Bis(ID_Bis);
+           Detailrute.setIdRute(ID_Rute);
+           Detailrute.setIdbis(ID_Bis);
            Detailrute.setKotaAsal(kotaAsal);
            Detailrute.setKotaTujuan(kotaTujuan);
            
@@ -208,7 +207,6 @@ public class addRuteScreen implements ActionListener{
            Detailrute.setHargaRute(hargaRute);
            Detailrute.setJamBerangkat(jam);
            Detailrute.setTanggalBerangkat(tgl);
-           Detailrute.setID_Rute(rute.getID_Rute());
            
            if(Controller.insertPerjalanan(Detailrute, list)){
                JOptionPane.showMessageDialog(null, "Rute berhasil ditambahkan !");

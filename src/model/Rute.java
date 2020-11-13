@@ -5,43 +5,33 @@
  */
 package model;
 
-import java.util.Date;
-
 /**
  *
- * @author lenovo
+ * @author Hp
  */
-public class Rute {
-    public String ID_Rute;
-    public String ID_Bis;
+public abstract class Rute {
+    public String idRute;
     public String kotaAsal;
     public String kotaTujuan;
+    public String idbis;
     
     public Rute(){
-    
+        
     }
-
-    public Rute(String ID_Rute,String ID_Bis, String kotaAsal, String kotaTujuan) {
-        this.ID_Rute = ID_Rute;
-        this.ID_Bis = ID_Bis;
+    
+    public Rute(String idRute, String kotaAsal, String kotaTujuan, String idbis) {
+        this.idRute = idRute;
         this.kotaAsal = kotaAsal;
         this.kotaTujuan = kotaTujuan;
+        this.idbis = idbis;
     }
 
-    public String getID_Bis() {
-        return ID_Bis;
+    public String getIdRute() {
+        return idRute;
     }
 
-    public void setID_Bis(String ID_Bis) {
-        this.ID_Bis = ID_Bis;
-    }
-    
-    public String getID_Rute() {
-        return ID_Rute;
-    }
-
-    public void setID_Rute(String ID_Rute) {
-        this.ID_Rute = ID_Rute;
+    public void setIdRute(String idRute) {
+        this.idRute = idRute;
     }
 
     public String getKotaAsal() {
@@ -58,6 +48,14 @@ public class Rute {
 
     public void setKotaTujuan(String kotaTujuan) {
         this.kotaTujuan = kotaTujuan;
+    }
+
+    public String getIdbis() {
+        return idbis;
+    }
+
+    public void setIdbis(String idbis) {
+        this.idbis = idbis;
     }
     
 }
