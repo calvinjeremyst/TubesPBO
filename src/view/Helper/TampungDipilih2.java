@@ -11,21 +11,21 @@ import java.util.Date;
  *
  * @author user
  */
-public class TampungDipilih {
+public class TampungDipilih2 {
     int banyakPenumpang = 0;
     String jamBerangkat;
     Date tanggalBerangkat;
     double hargaRute;
     double hargaBis;
-    String idRute;
+    int idRute;
     String kotaAsal;
     String kotaTujuan;
-    String idbis;
+    int idbis;
     
-    public TampungDipilih() {
+    public TampungDipilih2() {
     }
 
-    public TampungDipilih(String jamBerangkat, Date tanggalBerangkat, double hargaRute, double hargaBis, String idRute, String kotaAsal, String kotaTujuan, String idbis, int banyakPenumpang) {
+    public TampungDipilih2(String jamBerangkat, Date tanggalBerangkat, double hargaRute, double hargaBis, int idRute, String kotaAsal, String kotaTujuan, int idbis, int banyakPenumpang) {
         this.idRute = idRute;
         this.kotaAsal = kotaAsal;
         this.kotaTujuan = kotaTujuan;
@@ -45,11 +45,11 @@ public class TampungDipilih {
         this.banyakPenumpang = banyakPenumpang;
     }
     
-    public String getIdRute() {
+    public int getIdRute() {
         return idRute;
     }
 
-    public void setIdRute(String idRute) {
+    public void setIdRute(int idRute) {
         this.idRute = idRute;
     }
 
@@ -69,11 +69,11 @@ public class TampungDipilih {
         this.kotaTujuan = kotaTujuan;
     }
 
-    public String getIdbis() {
+    public int getIdbis() {
         return idbis;
     }
 
-    public void setIdbis(String idbis) {
+    public void setIdbis(int idbis) {
         this.idbis = idbis;
     }
 
