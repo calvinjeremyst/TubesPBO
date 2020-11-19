@@ -7,58 +7,58 @@ package controller;
 
 /**
  *
- * @author hanschristian
+ * @author lenovo
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.TimeZone;
 import javax.swing.JOptionPane;
 
-public class DatabaseHandler {
-
+public class DataBaseHandler {
     public Connection con;
     private String driver = "com.mysql.cj.jdbc.Driver";
-    private String url = "jdbc:mysql://localhost/terminal2";
-    private String username = "root";
+    private String uname = "root";
     private String password = "";
-
-    private Connection logOn() {
-        try {
-            //Load JDBC Driver
+    private String url = "jdbc:mysql://localhost/terminal2?serverTimezone=" + TimeZone.getDefault().getID();
+    
+    private Connection start(){
+        try{         
             Class.forName(driver).newInstance();
-            //Buat Object Connection
-            con = DriverManager.getConnection(url, username, password);
-        } catch (Exception ex) {
-            // handle any errors
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getLocalizedMessage());
-            JOptionPane.showMessageDialog(null, "Error Ocurred when login" + ex);
+            con = DriverManager.getConnection(url,uname,password);
+        }
+        catch(Exception e){
+            System.out.println("SQLException : " + e.getMessage());
+            System.out.println("SQLState : " + e.getLocalizedMessage());
+            JOptionPane.showMessageDialog(null, "Error login" + e);
         }
         return con;
     }
-
-    private void logOff() {
-        try {
-            //tutup koneksi
+    
+    private void Off(){
+        try{
             con.close();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error Ocurred when login" + ex);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error" + e);
         }
     }
-
-    public void connect() {
-        try {
-            con = logOn();
-        } catch (Exception ex) {
-            System.out.println("Error occured when connecting to database");
+    
+    public void Connect(){
+        try{
+            con = start();
+        }
+        catch(Exception e){
+            System.out.println("Error connect to Database");
+        }  
+    }
+    
+    public void Disconnect(){
+        try{
+             Off();
+        }
+        catch(Exception e){
+            System.out.println("Error connect to Database");
         }
     }
-
-    public void disconnect() {
-        try {
-            logOff();
-        } catch (Exception ex) {
-            System.out.println("Error occured when connecting to database");
-        }
-    }
+    
 }
