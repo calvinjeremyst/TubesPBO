@@ -5,7 +5,7 @@
  */
 package main;
 
-import view.LoginScreen;
+import view.MenuUtamaScreen;
 
 /**
  *
@@ -14,7 +14,7 @@ import view.LoginScreen;
 public class main {
     
     public static void main(String[] args){
-        new LoginScreen();
+        new MenuUtamaScreen();
     }
     
 }
