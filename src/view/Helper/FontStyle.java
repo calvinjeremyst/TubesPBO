@@ -11,7 +11,7 @@ import java.awt.Font;
  *
  * @author lenovo
  */
-public class FontStyle2 {
+public class FontStyle {
     public static Font large = new Font("Verdana",Font.PLAIN,45);
     public static Font medium = new Font("Verdana",Font.PLAIN,30);
     public static Font small = new Font("Verdana",Font.PLAIN,20);

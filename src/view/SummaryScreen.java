@@ -5,7 +5,7 @@
  */
 package view;
 
-import view.Helper.TampungDipilih2;
+import view.Helper.TampungDipilih;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -22,9 +22,9 @@ public class SummaryScreen implements ActionListener {
     JLabel hasil = new JLabel();
     JLabel banyak2 = new JLabel();
     JButton bayar,back;
-    TampungDipilih2 dipilih2 = new TampungDipilih2();
+    TampungDipilih dipilih2 = new TampungDipilih();
  
-    public SummaryScreen(TampungDipilih2 dipilih) {
+    public SummaryScreen(TampungDipilih dipilih) {
         dipilih2 = dipilih;
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);

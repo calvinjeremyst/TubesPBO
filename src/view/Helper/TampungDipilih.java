@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author user
  */
-public class TampungDipilih2 {
+public class TampungDipilih {
     int banyakPenumpang = 0;
     String jamBerangkat;
     Date tanggalBerangkat;
@@ -22,10 +22,10 @@ public class TampungDipilih2 {
     String kotaTujuan;
     int idbis;
     
-    public TampungDipilih2() {
+    public TampungDipilih() {
     }
 
-    public TampungDipilih2(String jamBerangkat, Date tanggalBerangkat, double hargaRute, double hargaBis, int idRute, String kotaAsal, String kotaTujuan, int idbis, int banyakPenumpang) {
+    public TampungDipilih(String jamBerangkat, Date tanggalBerangkat, double hargaRute, double hargaBis, int idRute, String kotaAsal, String kotaTujuan, int idbis, int banyakPenumpang) {
         this.idRute = idRute;
         this.kotaAsal = kotaAsal;
         this.kotaTujuan = kotaTujuan;

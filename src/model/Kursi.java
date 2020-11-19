@@ -11,7 +11,7 @@ import java.sql.Date;
  *
  * @author Hp
  */
-public class Kursi extends ListOrder2 {
+public class Kursi extends ListOrder {
     
     private String nomorKursi;
 

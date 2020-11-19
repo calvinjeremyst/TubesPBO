@@ -6,7 +6,7 @@
 package view;
 
 import controller.Controller;
-import view.Helper.TampungDipilih2;
+import view.Helper.TampungDipilih;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -16,7 +16,7 @@ import java.awt.event.ItemListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
-import model.ListOrder2;
+import model.ListOrder;
 import model.TransaksiPembayaran;
 
 /**
@@ -30,9 +30,9 @@ public class PembayaranTiketScreen implements ActionListener {
     JRadioButton credit,ovo;
     JButton bayar,back;
     ButtonGroup bg;
-    TampungDipilih2 dipilih2;
+    TampungDipilih dipilih2;
     
-    public PembayaranTiketScreen(TampungDipilih2 dipilih) {
+    public PembayaranTiketScreen(TampungDipilih dipilih) {
         dipilih2 = dipilih;
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -169,7 +169,7 @@ public class PembayaranTiketScreen implements ActionListener {
         
         if(e.getActionCommand().equals("SUBMIT")){
             TransaksiPembayaran trk = new TransaksiPembayaran(banyakPenumpang,grandTotal,cashback,useOvo,metode,tanggalPesan2);
-            ListOrder2 order = new ListOrder2(tanggalPesan2,idRute,kotaAsal,kotaTujuan,idBis,jam,tanggalPergi);
+            ListOrder order = new ListOrder(tanggalPesan2,idRute,kotaAsal,kotaTujuan,idBis,jam,tanggalPergi);
             if(Controller.insertOrder(trk,order)){
                 JOptionPane.showMessageDialog(null,"Tiket Anda Berhasil Dipesan!"); 
                 new MenuUtamaMember();

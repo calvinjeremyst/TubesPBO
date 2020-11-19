@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import model.Member;
 import model.UserManager;
-import view.Helper.FontStyle2;
+import view.Helper.FontStyle;
 
 /**
  *
@@ -33,17 +33,17 @@ public class CekSaldo implements ActionListener {
         
         lsaldo = new JLabel("Jumlah saldo :");
         lsaldo.setBounds(300,150,300,300);
-        lsaldo.setFont(FontStyle2.medium);
+        lsaldo.setFont(FontStyle.medium);
         lsaldo.setVisible(true);
         
         saldo = new JLabel("Rp. " + member.getOvoBalance());
         saldo.setBounds(700,150,300,300);
-        saldo.setFont(FontStyle2.medium);
+        saldo.setFont(FontStyle.medium);
         saldo.setVisible(true);
         
         back = new JButton("Back To Main Menu");
         back.setBounds(500,500,400,50);
-        back.setFont(FontStyle2.medium);
+        back.setFont(FontStyle.medium);
         back.setVisible(true);
         back.addActionListener(this);
         

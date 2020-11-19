@@ -14,7 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import view.Helper.FontStyle2;
+import view.Helper.FontStyle;
 import view.Helper.DateLabelFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -27,7 +27,7 @@ import model.ListBus;
  *
  * @author lenovo
  */
-public class AddRuteScreen2 implements ActionListener {
+public class AddRuteScreen implements ActionListener {
     JFrame frameRute = new JFrame("Menambahkan List perjalanan");
     JLabel title = new JLabel("Menambahkan Rute");
     JLabel idRute = new JLabel("ID Rute : ");
@@ -65,24 +65,24 @@ public class AddRuteScreen2 implements ActionListener {
     
     JButton buttonAdd = new JButton("Add");
     
-    public AddRuteScreen2() {
+    public AddRuteScreen() {
         title.setBounds(500,1,400,150);
-        title.setFont(FontStyle2.medium);
+        title.setFont(FontStyle.medium);
         
         idRute.setBounds(450,70,230,100);
         idRuteText.setBounds(600,110,300,30);
-        idRute.setFont(FontStyle2.small);
+        idRute.setFont(FontStyle.small);
         
         kotaAsal.setBounds(450,110,230,100);
         kotaAsalText.setBounds(600,150,300,30);
-        kotaAsal.setFont(FontStyle2.small);
+        kotaAsal.setFont(FontStyle.small);
         
         kotaTujuan.setBounds(450,150,230,100);
         kotaTujuanText.setBounds(600,190,300,30);
-        kotaTujuan.setFont(FontStyle2.small);
+        kotaTujuan.setFont(FontStyle.small);
         
         tanggalBerangkat.setBounds(450,200,200,100);
-        tanggalBerangkat.setFont(FontStyle2.small);
+        tanggalBerangkat.setFont(FontStyle.small);
         
         model = new UtilDateModel();
         p = new Properties();
@@ -93,36 +93,36 @@ public class AddRuteScreen2 implements ActionListener {
         datePanel = new JDatePanelImpl(model, p);
         datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         datePicker.setBounds(600, 240, 50, 20);
-        datePicker.setFont(FontStyle2.small);
+        datePicker.setFont(FontStyle.small);
         datePicker.setBackground(new Color(200, 200, 100));
         
         jam.setBounds(450,270,200,50);
         jamText.setBounds(620,270,90,40);
-        jam.setFont(FontStyle2.small);
+        jam.setFont(FontStyle.small);
         
         kelasBis.setBounds(450,320,200,50);
         kelasBisText.setBounds(600,330,300,30);
-        kelasBis.setFont(FontStyle2.small);
+        kelasBis.setFont(FontStyle.small);
         
         hargaRute.setBounds(450,370,200,50);
         hargaRuteText.setBounds(600,380,300,30);
-        hargaRute.setFont(FontStyle2.small);
+        hargaRute.setFont(FontStyle.small);
         
         hargaBis.setBounds(450,420,200,50);
         hargaBisText.setBounds(600,430,300,30);
-        hargaBis.setFont(FontStyle2.small);
+        hargaBis.setFont(FontStyle.small);
         
         idBis.setBounds(450,470,200,50);
         idBisText.setBounds(600,480,300,30);
-        idBis.setFont(FontStyle2.small);
+        idBis.setFont(FontStyle.small);
         
         jumlahKapasitas.setBounds(450,520,200,50);
-        jumlahKapasitas.setFont(FontStyle2.small);
+        jumlahKapasitas.setFont(FontStyle.small);
         isiJumlahKapasitas.setBounds(650,530,300,30);
         
         buttonAdd.setBounds(580,600,100,30);
         buttonAdd.addActionListener(this);
-        buttonAdd.setFont(FontStyle2.small);
+        buttonAdd.setFont(FontStyle.small);
         
         frameRute.add(title);
         frameRute.add(idRute);
@@ -160,7 +160,7 @@ public class AddRuteScreen2 implements ActionListener {
         try{
             tgl = new SimpleDateFormat("yyyy-MM-dd").parse(this.datePicker.getJFormattedTextField().getText());
         }catch(ParseException ex){
-            Logger.getLogger(AddRuteScreen2.class.getName()).log(Level.SEVERE,null,ex);
+            Logger.getLogger(AddRuteScreen.class.getName()).log(Level.SEVERE,null,ex);
         }
         String jam = this.jamText.getText();
         String kelasBis = this.kelasBisText.getText();

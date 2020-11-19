@@ -15,7 +15,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import model.Member;
 import model.UserManager;
-import model.ListOrder2;
+import model.ListOrder;
 
 /**
  *
@@ -29,7 +29,7 @@ public class RiwayatPemesananTiket implements ActionListener {
     
     public RiwayatPemesananTiket(){
         Member member = (Member) UserManager.getInstance().getUser();
-        ArrayList<ListOrder2> order = Controller.getRiwayat(member);
+        ArrayList<ListOrder> order = Controller.getRiwayat(member);
         
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);

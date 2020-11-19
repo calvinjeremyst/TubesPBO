@@ -6,7 +6,7 @@
 package view;
 
 import model.DetailRute;
-import view.Helper.TampungDipilih2;
+import view.Helper.TampungDipilih;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -27,7 +27,7 @@ public class HasilPencarianMemberScreen implements ActionListener {
     ArrayList<JRadioButton> listTombol = new ArrayList<>();
     ButtonGroup buttonGroup = new ButtonGroup();
     int tinggiRadio = 150;
-    TampungDipilih2 dipilih = new TampungDipilih2();
+    TampungDipilih dipilih = new TampungDipilih();
     ArrayList<DetailRute> drutes = new ArrayList<>();
     String rute = "";
     JTable jt;

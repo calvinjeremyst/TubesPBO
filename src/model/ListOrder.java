@@ -11,7 +11,7 @@ import java.sql.Date;
  *
  * @author lenovo
  */
-public class ListOrder2 {
+public class ListOrder {
     
     private int idOrder;
     private Date tanggalOrder;
@@ -22,17 +22,17 @@ public class ListOrder2 {
     private String jamBerangkat;
     private Date tanggalBerangkat;
     
-    public ListOrder2() {
+    public ListOrder() {
         
     }
 
-    public ListOrder2(int idOrder, Date tanggalOrder, int idRute) {
+    public ListOrder(int idOrder, Date tanggalOrder, int idRute) {
         this.idOrder = idOrder;
         this.tanggalOrder = tanggalOrder;
         this.idRute = idRute;
     }
     
-    public ListOrder2(int idOrder, Date tanggalOrder, int idRute, String kotaAsal, String kotaTujuan, int idBis, String jamBerangkat, Date tanggalBerangkat) {
+    public ListOrder(int idOrder, Date tanggalOrder, int idRute, String kotaAsal, String kotaTujuan, int idBis, String jamBerangkat, Date tanggalBerangkat) {
         this.idOrder = idOrder;
         this.tanggalOrder = tanggalOrder;
         this.idRute = idRute;
@@ -43,7 +43,7 @@ public class ListOrder2 {
         this.tanggalBerangkat = tanggalBerangkat;
     }
 
-    public ListOrder2(Date tanggalOrder, int idRute, String kotaAsal, String kotaTujuan, int idBis, String jamBerangkat, Date tanggalBerangkat) {
+    public ListOrder(Date tanggalOrder, int idRute, String kotaAsal, String kotaTujuan, int idBis, String jamBerangkat, Date tanggalBerangkat) {
         this.tanggalOrder = tanggalOrder;
         this.idRute = idRute;
         this.kotaAsal = kotaAsal;

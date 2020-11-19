@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import model.UserManager;
-import view.Helper.FontStyle2;
+import view.Helper.FontStyle;
 
 /**
  *
@@ -37,7 +37,7 @@ public class MenuUtamaAdmin implements ActionListener {
         judul.setBounds(500, 20, 500, 100);
         
         namaAkun = new JLabel("Halo " + UserManager.getInstance().getUser().getUsername());
-        namaAkun.setFont(FontStyle2.small);
+        namaAkun.setFont(FontStyle.small);
         namaAkun.setBounds(1000,20,300,50);
         
         lihatDataMember = new JButton("Lihat Data Member");
@@ -74,7 +74,7 @@ public class MenuUtamaAdmin implements ActionListener {
             new PencarianRuteScreenAdmin();
             frame.dispose();
         }else if(e.getActionCommand().equals("Tambah List Perjalanan")){
-            new AddRuteScreen2();
+            new AddRuteScreen();
             frame.dispose();
         }
     }

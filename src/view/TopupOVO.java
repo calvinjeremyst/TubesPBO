@@ -56,7 +56,7 @@ public class TopupOVO implements ActionListener {
         //logo
         logo = new JLabel("OVO");
         logo.setBounds(0,0,300,50);
-        logo.setFont(FontStyle2.logo);
+        logo.setFont(FontStyle.logo);
         logo.setForeground(Color.white);
         layerLogo = new JLayeredPane();
         layerLogo.add(logo);
@@ -64,31 +64,31 @@ public class TopupOVO implements ActionListener {
         
         salam = new JLabel("Hi, " + mem.getUsername());
         salam.setBounds(950,10,400,50);
-        salam.setFont(FontStyle2.small);
+        salam.setFont(FontStyle.small);
         salam.setForeground(Color.white);
        
         buttonHistory = new JButton("Riwayat");
         buttonHistory.setBounds(600,100,600,50);
-        buttonHistory.setFont(FontStyle2.medium);
+        buttonHistory.setFont(FontStyle.medium);
         buttonHistory.addActionListener(this);
         
         buttonTopUp = new JButton("Top Up");
         buttonTopUp.setBounds(400,450,400,100);
-        buttonTopUp.setFont(FontStyle2.large);
+        buttonTopUp.setFont(FontStyle.large);
         buttonTopUp.setForeground(Color.black);
         buttonTopUp.addActionListener(this);
        
         //button buttonTopUp
         lcomboNominal = new JLabel("Jumlah Nominal : ");
         lcomboNominal.setBounds(50,50,300,20);
-        lcomboNominal.setFont(FontStyle2.small);
+        lcomboNominal.setFont(FontStyle.small);
         lcomboNominal.setForeground(Color.white);
         Integer[] arrayNominal = {50000,100000,200000,500000,1000000,1500000,2000000};
         comboNominal = new JComboBox(arrayNominal);
         comboNominal.setBounds(320,45,100,30);
         lcomboMetode = new JLabel("Metode Pembayaran : ");
         lcomboMetode.setBounds(50,150,300,20);
-        lcomboMetode.setFont(FontStyle2.small);
+        lcomboMetode.setFont(FontStyle.small);
         lcomboMetode.setForeground(Color.white);
         String[] arrayMetode = {"Transfer","Cash"};
         comboMetode = new JComboBox(arrayMetode);

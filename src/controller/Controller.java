@@ -19,7 +19,7 @@ import model.ListBus;
 import model.RiwayatTopup;
 import model.User;
 import model.UserManager;
-import model.ListOrder2;
+import model.ListOrder;
 import model.TransaksiPembayaran;
 
 /**
@@ -313,7 +313,7 @@ public class Controller {
         
     }
     
-    public static boolean insertOrder(TransaksiPembayaran trk, ListOrder2 order){
+    public static boolean insertOrder(TransaksiPembayaran trk, ListOrder order){
         conn.Connect();
         String query = "INSERT INTO transaksi(banyakPenumpang,grandTotal,cashback,useOvo,metodePembayaran,tanggalTransaksi)"
               + "VALUES(?,?,?,?,?,?)";
@@ -366,15 +366,15 @@ public class Controller {
         return cek;
     }
     
-    public static ArrayList<ListOrder2> getRiwayat(Member member){
-        ArrayList<ListOrder2> list = new ArrayList<>();
+    public static ArrayList<ListOrder> getRiwayat(Member member){
+        ArrayList<ListOrder> list = new ArrayList<>();
         conn.Connect();
         String query = "SELECT * FROM listorder WHERE ID_Member='" + member.getID_Member()+ "'";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                ListOrder2 order = new ListOrder2();
+                ListOrder order = new ListOrder();
                 order.setIdOrder(rs.getInt("ID_Order"));
                 order.setTanggalOrder(rs.getDate("tanggalOrder"));
                 order.setIdRute(rs.getInt("ID_Rute"));

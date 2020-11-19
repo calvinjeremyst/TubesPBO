@@ -7,7 +7,7 @@ package view;
 
 import controller.Controller;
 import model.EnumBis;
-import view.Helper.TampungDipilih2;
+import view.Helper.TampungDipilih;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -27,10 +27,10 @@ public class PemilihanKursi implements ActionListener {
     int x = 130;
     int y = 130;
     int banyakPenumpang = 0;
-    TampungDipilih2 dipilih2 = new TampungDipilih2();
+    TampungDipilih dipilih2 = new TampungDipilih();
     ListBus bus;
     
-    public PemilihanKursi(TampungDipilih2 dipilih) {
+    public PemilihanKursi(TampungDipilih dipilih) {
         dipilih2 = dipilih;
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
