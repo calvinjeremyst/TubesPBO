@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.*;
-import view.Helper.FontStyle;
+import view.Helper.FontStyle2;
 import controller.Controller;
 import java.awt.Color;
 import model.UserManager;
@@ -36,24 +36,24 @@ public class LoginScreen implements ActionListener {
         Loginframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         title.setBounds(575,200,200,50);
-        title.setFont(FontStyle.medium);
+        title.setFont(FontStyle2.medium);
         title.setBackground(Color.BLACK);
         title.setForeground(Color.white);
         title.setOpaque(true);
         username.setBounds(500,300,150,50);
         usernameField.setBounds(650,310,200,30);
-        username.setFont(FontStyle.small);
+        username.setFont(FontStyle2.small);
         
         password.setBounds(500,360,150,50);
         passwordField.setBounds(650,370,200,30);
-        password.setFont(FontStyle.small);
+        password.setFont(FontStyle2.small);
         
         submit.setBounds(400,470,250,50);
-        submit.setFont(FontStyle.small);
+        submit.setFont(FontStyle2.small);
         submit.addActionListener(this);
         
         back.setBounds(680,470,250,50);
-        back.setFont(FontStyle.small);
+        back.setFont(FontStyle2.small);
         back.addActionListener(this);
       
         Loginframe.add(title);

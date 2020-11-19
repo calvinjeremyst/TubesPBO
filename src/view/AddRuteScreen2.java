@@ -14,7 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import view.Helper.FontStyle;
+import view.Helper.FontStyle2;
 import view.Helper.DateLabelFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -67,22 +67,22 @@ public class AddRuteScreen2 implements ActionListener {
     
     public AddRuteScreen2() {
         title.setBounds(500,1,400,150);
-        title.setFont(FontStyle.medium);
+        title.setFont(FontStyle2.medium);
         
         idRute.setBounds(450,70,230,100);
         idRuteText.setBounds(600,110,300,30);
-        idRute.setFont(FontStyle.small);
+        idRute.setFont(FontStyle2.small);
         
         kotaAsal.setBounds(450,110,230,100);
         kotaAsalText.setBounds(600,150,300,30);
-        kotaAsal.setFont(FontStyle.small);
+        kotaAsal.setFont(FontStyle2.small);
         
         kotaTujuan.setBounds(450,150,230,100);
         kotaTujuanText.setBounds(600,190,300,30);
-        kotaTujuan.setFont(FontStyle.small);
+        kotaTujuan.setFont(FontStyle2.small);
         
         tanggalBerangkat.setBounds(450,200,200,100);
-        tanggalBerangkat.setFont(FontStyle.small);
+        tanggalBerangkat.setFont(FontStyle2.small);
         
         model = new UtilDateModel();
         p = new Properties();
@@ -93,36 +93,36 @@ public class AddRuteScreen2 implements ActionListener {
         datePanel = new JDatePanelImpl(model, p);
         datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         datePicker.setBounds(600, 240, 50, 20);
-        datePicker.setFont(FontStyle.small);
+        datePicker.setFont(FontStyle2.small);
         datePicker.setBackground(new Color(200, 200, 100));
         
         jam.setBounds(450,270,200,50);
         jamText.setBounds(620,270,90,40);
-        jam.setFont(FontStyle.small);
+        jam.setFont(FontStyle2.small);
         
         kelasBis.setBounds(450,320,200,50);
         kelasBisText.setBounds(600,330,300,30);
-        kelasBis.setFont(FontStyle.small);
+        kelasBis.setFont(FontStyle2.small);
         
         hargaRute.setBounds(450,370,200,50);
         hargaRuteText.setBounds(600,380,300,30);
-        hargaRute.setFont(FontStyle.small);
+        hargaRute.setFont(FontStyle2.small);
         
         hargaBis.setBounds(450,420,200,50);
         hargaBisText.setBounds(600,430,300,30);
-        hargaBis.setFont(FontStyle.small);
+        hargaBis.setFont(FontStyle2.small);
         
         idBis.setBounds(450,470,200,50);
         idBisText.setBounds(600,480,300,30);
-        idBis.setFont(FontStyle.small);
+        idBis.setFont(FontStyle2.small);
         
         jumlahKapasitas.setBounds(450,520,200,50);
-        jumlahKapasitas.setFont(FontStyle.small);
+        jumlahKapasitas.setFont(FontStyle2.small);
         isiJumlahKapasitas.setBounds(650,530,300,30);
         
         buttonAdd.setBounds(580,600,100,30);
         buttonAdd.addActionListener(this);
-        buttonAdd.setFont(FontStyle.small);
+        buttonAdd.setFont(FontStyle2.small);
         
         frameRute.add(title);
         frameRute.add(idRute);

@@ -5,7 +5,7 @@
  */
 package view;
 
-import view.Helper.FontStyle;
+import view.Helper.FontStyle2;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -27,12 +27,12 @@ public class ScreenHistoryOVO implements ActionListener {
     public ScreenHistoryOVO() {
         frameHistory.setSize(2000,2000);
         title.setBounds(500,200,300,100);
-        title.setFont(FontStyle.medium);
+        title.setFont(FontStyle2.medium);
         IDMember.setBounds(450,300,200,120);
         IDMemberText.setBounds(600,340,300,30);
-        IDMember.setFont(FontStyle.small);
+        IDMember.setFont(FontStyle2.small);
         buttonSearch.setBounds(630,400,120,20);
-        buttonSearch.setFont(FontStyle.small);
+        buttonSearch.setFont(FontStyle2.small);
        
         frameHistory.add(title);
         frameHistory.add(IDMember);

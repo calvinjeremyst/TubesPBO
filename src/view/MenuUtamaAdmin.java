@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import model.UserManager;
-import view.Helper.FontStyle;
+import view.Helper.FontStyle2;
 
 /**
  *
@@ -37,7 +37,7 @@ public class MenuUtamaAdmin implements ActionListener {
         judul.setBounds(500, 20, 500, 100);
         
         namaAkun = new JLabel("Halo " + UserManager.getInstance().getUser().getUsername());
-        namaAkun.setFont(FontStyle.small);
+        namaAkun.setFont(FontStyle2.small);
         namaAkun.setBounds(1000,20,300,50);
         
         lihatDataMember = new JButton("Lihat Data Member");

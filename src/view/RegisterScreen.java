@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.*;
-import view.Helper.FontStyle;
+import view.Helper.FontStyle2;
 import model.Member;
 
 /**
@@ -43,36 +43,36 @@ public class RegisterScreen implements ActionListener {
         Regisframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Regisframe.setSize(2000,2000);
         title.setBounds(500,1,300,150);
-        title.setFont(FontStyle.medium);
+        title.setFont(FontStyle2.medium);
         username.setBounds(400,100,200,90);
         usernameField.setBounds(600,130,200,30);
-        username.setFont(FontStyle.small);
+        username.setFont(FontStyle2.small);
         
         password.setBounds(400,180,200,90);
         passwordField.setBounds(600,210,200,30);
         repassword.setBounds(400,250,200,90);
         repassField.setBounds(600,280,200,30);
-        password.setFont(FontStyle.small);
-        repassword.setFont(FontStyle.small);
+        password.setFont(FontStyle2.small);
+        repassword.setFont(FontStyle2.small);
         
         umur.setBounds(400,355,200,20);
         umurField.setBounds(600,350,200,30);
-        umur.setFont(FontStyle.small);
+        umur.setFont(FontStyle2.small);
         
         alamat.setBounds(400,430,200,20);
         alamatField.setBounds(600,420,200,30);
-        alamat.setFont(FontStyle.small);
+        alamat.setFont(FontStyle2.small);
         
         noHP.setBounds(400,520,200,20);
         noHPfield.setBounds(600,515,200,30);
-        noHP.setFont(FontStyle.small);
+        noHP.setFont(FontStyle2.small);
         
         KTP.setBounds(400,580,200,20);
         KTPfield.setBounds(600,580,230,30);
-        KTP.setFont(FontStyle.small);
+        KTP.setFont(FontStyle2.small);
         
         submit.setBounds(490,650,200,50);
-        submit.setFont(FontStyle.small);
+        submit.setFont(FontStyle2.small);
         submit.addActionListener(this);
         Regisframe.add(title);
         Regisframe.add(username);
