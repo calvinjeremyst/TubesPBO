@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -19,16 +18,13 @@ import javax.swing.JTextField;
  * @author lenovo
  */
 public class ScreenHistory implements ActionListener {
-    
     JFrame frameHistory = new JFrame("History Pemesanan : ");
     JLabel title = new JLabel("History Pemesanan");
     JLabel IDMember = new JLabel("ID Member : ");
     JTextField IDMemberText = new JTextField();
     JButton buttonSearch = new JButton("Search");
     
-    
-    public ScreenHistory(){
-        
+    public ScreenHistory() {
         frameHistory.setSize(2000,2000);
         title.setBounds(500,200,300,100);
         title.setFont(fontStyle.medium);
@@ -47,16 +43,11 @@ public class ScreenHistory implements ActionListener {
         
     }
     
-       
     @Override
-public void actionPerformed(ActionEvent e){
+    public void actionPerformed(ActionEvent e){
    
    
     
         
-    }
-    
-    public static void main(String[] args) {
-        new ScreenHistory();
     }
 }

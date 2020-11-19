@@ -124,7 +124,7 @@ public class PencarianRuteScreen implements ActionListener {
                 }
             }
         }else if(e.getActionCommand().equals("BACK")){
-            new MenuUtamaMember();
+            new MenuUtamaMember(null);
             frame.dispose();
         }
     }

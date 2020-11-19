@@ -5,13 +5,11 @@
  */
 package view;
 import controller.Controller;
-import controller.DataBaseHandler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
-import java.awt.event.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -22,17 +20,13 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 import model.DetailRute;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import model.Rute;
 import model.listBis;
 
 /**
  *
  * @author lenovo
  */
-public class addRuteScreen implements ActionListener{
-    
+public class addRuteScreen implements ActionListener {
     JFrame frameRute = new JFrame("Menambahkan List perjalanan");
     JLabel title = new JLabel("Menambahkan Rute");
     JLabel idRute = new JLabel("ID Rute : ");
@@ -70,14 +64,16 @@ public class addRuteScreen implements ActionListener{
     
     JButton buttonAdd = new JButton("Add");
     
-    
-    public addRuteScreen(){
-        
+    public addRuteScreen() {    
+        frameRute.getContentPane().setBackground(Color.WHITE);
+        frameRute.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frameRute.setLocationRelativeTo(null);
+        frameRute.setLayout(null);
+        frameRute.setVisible(true);
         frameRute.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frameRute.setSize(2000,2000);
+        
         title.setBounds(500,1,400,150);
         title.setFont(fontStyle.medium);
-        
         
         idRute.setBounds(450,70,230,100);
         idRuteText.setBounds(600,110,300,30);
@@ -158,67 +154,57 @@ public class addRuteScreen implements ActionListener{
         frameRute.add(buttonAdd);
         frameRute.setLayout(null);
         frameRute.setVisible(true);
+        
     }
-    
-   
     
     @Override
     public void actionPerformed(ActionEvent e){
-       String ID_Rute = idRuteText.getText();
-       String kotaAsal = kotaAsalText.getText();
-       Date tgl = null;
-       try{
-             tgl = new SimpleDateFormat("yyyy-MM-dd").parse(this.datePicker.getJFormattedTextField().getText());
-      
-       }catch(ParseException ex){
-           Logger.getLogger(addRuteScreen.class.getName()).log(Level.SEVERE,null,ex);
-           
-       }
-       String jam = this.jamText.getText();
-       String kelasBis = this.kelasBisText.getText();
-       double hargaBis = Double.parseDouble(this.hargaBisText.getText());
-       double hargaRute = Double.parseDouble(this.hargaRuteText.getText());
-       String ID_Bis = this.idBisText.getText();
-       int jumlahMuatan = Integer.parseInt(this.isiJumlahKapasitas.getText());
-       String kotaTujuan = kotaTujuanText.getText();
-       
-       int Choose = JOptionPane.showOptionDialog(null, "Are you sure?", "Confirm", 
-            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
-       if(Choose == JOptionPane.YES_OPTION){
+        String ID_Rute = idRuteText.getText();
+        String kotaAsal = kotaAsalText.getText();
+        Date tgl = null;
+        try{
+            tgl = new SimpleDateFormat("yyyy-MM-dd").parse(this.datePicker.getJFormattedTextField().getText());
+        }catch(ParseException ex){
+            Logger.getLogger(addRuteScreen.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        String jam = this.jamText.getText();
+        String kelasBis = this.kelasBisText.getText();
+        double hargaBis = Double.parseDouble(this.hargaBisText.getText());
+        double hargaRute = Double.parseDouble(this.hargaRuteText.getText());
+        String ID_Bis = this.idBisText.getText();
+        int jumlahMuatan = Integer.parseInt(this.isiJumlahKapasitas.getText());
+        String kotaTujuan = kotaTujuanText.getText();
+
+        int Choose = JOptionPane.showOptionDialog(null, "Are you sure?", "Confirm", 
+             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+        if(Choose == JOptionPane.YES_OPTION){
             if(ID_Rute.length() == 0 || kotaAsal.length() == 0 || kotaTujuan.length() == 0 || tgl == null
                 || jam.length() == 0 || kelasBis.length() == 0 || ID_Bis.length() == 0 || hargaRute == 0 || hargaBis == 0){
                 JOptionPane.showMessageDialog(null, "Input all the data ", "Alert", JOptionPane.WARNING_MESSAGE);
             }else{
-           DetailRute Detailrute = new DetailRute();
-           Rute rute = new Rute();
-          
-           listBis list = new listBis();
-          
-           list.setIDbis(ID_Bis);
-           list.setKelasBis(kelasBis);
-           list.setJumlahKapasitas(jumlahMuatan);
-        
-           
-           rute.setID_Rute(ID_Rute);
-           rute.setID_Bis(ID_Bis);
-           Detailrute.setKotaAsal(kotaAsal);
-           Detailrute.setKotaTujuan(kotaTujuan);
-           
-           Detailrute.setHargaBis(hargaBis);
-           Detailrute.setHargaRute(hargaRute);
-           Detailrute.setJamBerangkat(jam);
-           Detailrute.setTanggalBerangkat(tgl);
-           Detailrute.setID_Rute(rute.getID_Rute());
-           
-           if(Controller.insertPerjalanan(Detailrute, list)){
-               JOptionPane.showMessageDialog(null, "Rute berhasil ditambahkan !");
-               frameRute.dispose();   
-           }else{   
-               JOptionPane.showMessageDialog(null, "Data can't be inserted!", "Alert", JOptionPane.WARNING_MESSAGE);
-           }
-       }  
-   
-   } 
-}
+                DetailRute Detailrute = new DetailRute();
+                listBis list = new listBis();
+                list.setIDbis(ID_Bis);
+                list.setKelasBis(kelasBis);
+                list.setJumlahKapasitas(jumlahMuatan);
 
+                Detailrute.setIdRute(ID_Rute);
+                Detailrute.setIdbis(ID_Bis);
+                Detailrute.setKotaAsal(kotaAsal);
+                Detailrute.setKotaTujuan(kotaTujuan);
+
+                Detailrute.setHargaBis(hargaBis);
+                Detailrute.setHargaRute(hargaRute);
+                Detailrute.setJamBerangkat(jam);
+                Detailrute.setTanggalBerangkat(tgl);
+
+                if(Controller.insertPerjalanan(Detailrute, list)){
+                    JOptionPane.showMessageDialog(null, "Rute berhasil ditambahkan !");
+                    frameRute.dispose();   
+                }else{   
+                    JOptionPane.showMessageDialog(null, "Data can't be inserted!", "Alert", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        } 
+    }
 }

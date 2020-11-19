@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author lenovo
  */
-public class TransaksiPembayaran extends Harga {
+public class TransaksiPembayaran extends harga {
     private String idTransaksi;
     private double grandTotal;
     private double cashBack;

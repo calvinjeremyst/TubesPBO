@@ -101,7 +101,7 @@ public class PemilihanKursi implements ActionListener {
             new SummaryScreen(dipilih2);
             frame.dispose();
         }else if(e.getActionCommand().equals("BACK")){
-            new MenuUtamaMember();
+            new MenuUtamaMember(null);
         }
     }
     

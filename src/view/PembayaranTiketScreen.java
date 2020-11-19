@@ -136,7 +136,7 @@ public class PembayaranTiketScreen implements ActionListener {
         if(e.getActionCommand().equals("SUBMIT")){
             //Jika sudah insert into listorder di database
             JOptionPane.showMessageDialog(null,"Tiket Anda Berhasil Dipesan!"); 
-            new MenuUtamaMember();
+            new MenuUtamaMember(null);
             frame.dispose();
         }
     }

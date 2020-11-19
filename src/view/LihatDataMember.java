@@ -38,8 +38,6 @@ public class LihatDataMember {
             frame.add(tampilUser);
             x += 40;
         }
-        
-        
     }
     
 }

@@ -10,6 +10,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import model.User;
+import view.Helper.fontStyle;
 
 /**
  *
@@ -18,9 +20,9 @@ import javax.swing.*;
 public class MenuUtamaMember implements ActionListener {
     JFrame frame = new JFrame("Terminal Bis Emen");
     JButton pesanTiket, batalTiket,riwayatTiket,cekOvo,topupOvo;
-    JLabel judul;
+    JLabel judul, namaAkun;
     
-    public MenuUtamaMember() {
+    public MenuUtamaMember(User usr) {
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
@@ -31,6 +33,11 @@ public class MenuUtamaMember implements ActionListener {
         judul = new JLabel("Menu Utama Member");
         judul.setFont(new Font("Consolas", Font.PLAIN, 32));
         judul.setBounds(500, 20, 500, 100);
+        
+        usr.setUsername(usr.getUsername());
+        namaAkun = new JLabel("Halo " + usr.getUsername());
+        namaAkun.setFont(fontStyle.small);
+        namaAkun.setBounds(1000,20,100,20);
         
         pesanTiket = new JButton("Pesan Tiket");
         pesanTiket.setBounds(550, 120, 200, 30);
@@ -63,6 +70,7 @@ public class MenuUtamaMember implements ActionListener {
         topupOvo.setFont(new Font("Consolas", Font.PLAIN, 24));
     
         frame.add(judul);
+        frame.add(namaAkun);
         frame.add(pesanTiket);
         frame.add(batalTiket);
         frame.add(riwayatTiket);

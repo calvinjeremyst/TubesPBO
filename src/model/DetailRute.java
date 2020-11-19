@@ -114,8 +114,8 @@ public class DetailRute extends Rute {
     @Override
     public String toString(){
         String hasil = "";
-        hasil = "ID_Rute : " + this.getID_Rute()+ "\n" + 
-                "ID Bis : " + this.getID_Bis()+ "\n" + 
+        hasil = "ID_Rute : " + this.getIdRute()+ "\n" + 
+                "ID Bis : " + this.getIdbis()+ "\n" + 
                 "Kota Asal : " + this.getKotaAsal() + "\n" + 
                 "Kota Tujuan : " + this.getKotaTujuan() + "\n" +
                 "Harga Bis : " + this.getHargaBis() + "\n" + 

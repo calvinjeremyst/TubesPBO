@@ -81,7 +81,7 @@ public class SummaryScreen implements ActionListener {
             new PembayaranTiketScreen(dipilih2); 
             frame.dispose();
         }else if(e.getActionCommand().equals("Back to Main Menu")){
-            new MenuUtamaMember();
+            new MenuUtamaMember(null);
             frame.dispose();
         }
         

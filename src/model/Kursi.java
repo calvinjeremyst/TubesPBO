@@ -11,11 +11,11 @@ import java.util.Date;
  *
  * @author Hp
  */
-public class Kursi extends ListOrder {
+public class Kursi extends listOrder {
     private String nomorKursi;
 
     public Kursi(String nomorKursi, int idOrder, Date tanggalOrder, int banyakPenumpang, Member member, Rute rute, TransaksiPembayaran transaksi) {
-        super(idOrder, tanggalOrder, banyakPenumpang, member, rute, transaksi);
+        super(idOrder, tanggalOrder, banyakPenumpang, rute, transaksi);
         this.nomorKursi = nomorKursi;
     }
 

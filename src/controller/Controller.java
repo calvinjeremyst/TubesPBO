@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.sql.PreparedStatement;
 import model.listBis;
 import model.Admin;
 import model.DetailRute;
@@ -14,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import model.User;
 
 /**
  *
@@ -21,7 +23,7 @@ import java.util.Date;
  */
 public class Controller {  
 
-    static controller.DatabaseHandler conn = new controller.DatabaseHandler();
+    static controller.DataBaseHandler conn = new DataBaseHandler();
     
     public static boolean insertPerjalanan(DetailRute rute,listBis list){
         
@@ -47,7 +49,7 @@ public class Controller {
             statement.close();
             
             statement = conn.con.prepareStatement(queryRute);
-            statement.setString(1,rute.getID_Rute());
+            statement.setString(1,rute.getIdRute());
             statement.setString(2,rute.getKotaAsal());
             statement.setString(3,rute.getKotaTujuan());
             statement.setString(4,list.getIDbis());
@@ -60,7 +62,7 @@ public class Controller {
             statement.setDate(2, new java.sql.Date(rute.getTanggalBerangkat().getTime()));
             statement.setDouble(3, rute.getHargaRute());
             statement.setDouble(4, rute.getHargaBis());
-            statement.setString(5, rute.getID_Rute());
+            statement.setString(5, rute.getIdRute());
             statement.executeUpdate();
           
             statement.close();
@@ -73,15 +75,13 @@ public class Controller {
       }
     }
   
-    public static boolean insertMember(Member member){
-
+    public static boolean insertMember(Member member) {
       conn.Connect();
       String query = "INSERT INTO usr(nama,pass,alamat,nohp)"
               + "VALUES(?,?,?,?)";
       String query2 = "SELECT ID_User FROM usr";
       String query3 = "INSERT INTO member(umur,KTP,ovoBalance,ID_User)"
               + "VALUES(?,?,?,?)";
-      
       try{
           Statement stmts = conn.con.createStatement();
           ResultSet rs = stmts.executeQuery(query2);
@@ -105,30 +105,28 @@ public class Controller {
           stmt.executeUpdate();
           stmt.close();
           return true;
-      
       }catch(SQLException ex){
           ex.printStackTrace();
           return false;
       }
     }
   
-    public static ArrayList<DetailRute> cariDetailRute(String kotaAsal,String kotaTujuan){
+    public static ArrayList<DetailRute> cariDetailRute(String kotaAsal,String kotaTujuan) {
       ArrayList<DetailRute> dtrute = new ArrayList();
       conn.Connect();
       String query = "SELECT rute.ID_Rute,rute.kotaAsal,rute.kotaTujuan,rute.ID_Bis,detailrute.jamBerangkat,"
                 + "detailrute.tanggalBerangkat,detailrute.hargaRute,detailrute.hargaBis FROM rute,detailrute "
-                + "WHERE rute.ID_Rute = detailrute.ID_Rute && rute.kotaAsal='"+kotaAsal+"'&& "
-                + "rute.kotaTujuan='"+kotaTujuan+"'";
-     
+                + "WHERE rute.ID_Rute = detailrute.ID_Rute && rute.kotaAsal='" + kotaAsal + "'&& "
+                + "rute.kotaTujuan='" + kotaTujuan + "'";
        try{
            Statement statement = conn.con.createStatement();
            ResultSet result = statement.executeQuery(query);
            while(result.next()){
                DetailRute detilrute = new DetailRute();
-               detilrute.setID_Rute(result.getString("ID_Rute"));
+               detilrute.setIdRute(result.getString("ID_Rute"));
                detilrute.setKotaAsal(result.getString("kotaAsal"));
                detilrute.setKotaTujuan(result.getString("kotaTujuan"));
-               detilrute.setID_Bis(result.getString("ID_Bis"));
+               detilrute.setIdbis(result.getString("ID_Bis"));
                detilrute.setJamBerangkat(result.getString("jamBerangkat"));
                detilrute.setTanggalBerangkat(result.getDate("tanggalBerangkat"));
                detilrute.setHargaRute(result.getDouble("hargaRute"));
@@ -142,52 +140,36 @@ public class Controller {
        return dtrute;
   }
     
-  public static Member loginMember(String username,String password){
-      conn.Connect();
-      String query = "SELECT * FROM usr WHERE nama = '"+username+"' &&  pass = '"+password+"'";
-      Member mem = new Member();
-      try{
-          Statement stmt = conn.con.createStatement();
-          ResultSet rs = stmt.executeQuery(query);
-          while(rs.next()){
-               mem.setID_User(rs.getInt("ID_User"));
-               mem.setUsername(rs.getString("nama"));
-               mem.setPassword(rs.getString("pass"));
-               mem.setAlamat(rs.getString("alamat"));
-               mem.setNoHp(rs.getString("noHp")); 
-          }
-      }
-      catch(SQLException ex){
-          ex.printStackTrace();
-      }
-      return mem;
-  } 
-  
-  public static Admin loginAdmin(String username,String password){
-      conn.Connect();
-      String query = "SELECT * FROM usr WHERE nama = '"+username+"' &&  pass = '"+password+"'";
-      Admin adm = new Admin();
-      Member mem = new Member();
-      try{ 
-          Statement stmt = conn.con.createStatement();
-          ResultSet rs = stmt.executeQuery(query);
-          while(rs.next()){
-               mem.setID_User(rs.getInt("ID_User"));
-               mem.setUsername(rs.getString("nama"));
-               mem.setPassword(rs.getString("pass"));
-               mem.setAlamat(rs.getString("alamat"));
-               mem.setNoHp(rs.getString("noHp"));  
-          }
-      }
-      catch(SQLException ex){
-          ex.printStackTrace();
-      }
-      return adm;
-  }
+    public static User login(String username,String password){
+        conn.Connect();
+        String query = "SELECT * FROM usr WHERE nama = '"+username+"' &&  pass = '"+password+"'";
+        User usr = null;
+        try{
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                int tipe = rs.getInt("Tipe_User");
+                if(tipe == 0){
+                    usr = new Admin();
+                }else{
+                    usr = new Member();
+                }
+                usr.setID_User(rs.getInt("ID_User"));
+                usr.setUsername(rs.getString("nama"));
+                usr.setPassword(rs.getString("pass"));
+                usr.setAlamat(rs.getString("alamat"));
+                usr.setNoHp(rs.getString("noHp")); 
+            }
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return usr;
+    } 
     
     public static ArrayList<DetailRute> cariRute(String kotaAsal, String kotaTujuan, Date tanggalPergi) {
         ArrayList<DetailRute> droute = new ArrayList<>();
-        conn.connect();
+        conn.Connect();
         String query = "SELECT rute.ID_Rute,rute.kotaAsal,rute.kotaTujuan,rute.ID_Bis,detailrute.jamBerangkat,"
                 + "detailrute.tanggalBerangkat,detailrute.hargaRute,detailrute.hargaBis FROM rute,detailrute "
                 + "WHERE rute.ID_Rute = detailrute.ID_Rute && rute.kotaAsal='"+kotaAsal+"' && "
@@ -214,7 +196,7 @@ public class Controller {
     }
     
     public static boolean cekTiket(int id) {
-        conn.connect();
+        conn.Connect();
         String query = "SELECT * FROM listorder WHERE ID_Order='" + id + "'";
         try {
             Statement stmt = conn.con.createStatement();
@@ -230,7 +212,7 @@ public class Controller {
     }
     
     public static boolean deleteTiket(int id) {
-        conn.connect();
+        conn.Connect();
         String query = "DELETE FROM listorder WHERE ID_Order='" + id + "'";
         try {
             Statement stmt = conn.con.createStatement();
@@ -244,7 +226,7 @@ public class Controller {
     
     public static ArrayList<Member> getAllMember() {
         ArrayList<Member> members = new ArrayList<>();
-        conn.connect();
+        conn.Connect();
         String query = "SELECT * FROM usr";
         try {
             Statement stmt = conn.con.createStatement();
@@ -263,4 +245,13 @@ public class Controller {
         }
         return (members);
     }
+    
+    /*public static boolean insertOrder(){
+        conn.Connect();
+        String query = "INSERT INTO transaksi(nama,pass,alamat,nohp)"
+              + "VALUES(?,?,?,?)";
+        String query2 = "INSERT INTO listorder(nama,pass,alamat,nohp)"
+              + "VALUES(?,?,?,?)";
+    }
+    */
 }

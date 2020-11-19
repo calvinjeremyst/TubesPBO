@@ -14,13 +14,14 @@ import javax.swing.JTextField;
 import javax.swing.*;
 import view.Helper.fontStyle;
 import controller.Controller;
+import java.awt.Color;
 import model.Member;
+import model.User;
 /**
  *
  * @author lenovo
  */
-public class LoginScreen implements ActionListener{
-    
+public class LoginScreen implements ActionListener {
     JFrame Loginframe = new JFrame("Login");
     JLabel title = new JLabel("Login");
     JLabel username = new JLabel("Username : ");
@@ -28,12 +29,16 @@ public class LoginScreen implements ActionListener{
     JLabel password = new JLabel("Password : ");
     JPasswordField passwordField = new JPasswordField();
     JButton submit = new JButton("Submit");
-    Member mem = new Member();
+    User usr;
     
-    public LoginScreen(){
-        
+    public LoginScreen() {
+        Loginframe.getContentPane().setBackground(Color.WHITE);
+        Loginframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        Loginframe.setLocationRelativeTo(null);
         Loginframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Loginframe.setSize(2000,2000);
+        Loginframe.setLayout(null);
+        Loginframe.setVisible(true);
+        
         title.setBounds(600,150,300,150);
         title.setFont(fontStyle.medium);
         username.setBounds(500,300,150,50);
@@ -54,34 +59,34 @@ public class LoginScreen implements ActionListener{
         Loginframe.add(password);
         Loginframe.add(passwordField);
         Loginframe.add(submit);
-        Loginframe.setLayout(null);
-        Loginframe.setVisible(true);
-        
-        
-        
     }
     
-   
-    
     @Override
-public void actionPerformed(ActionEvent e){
-    String usernameLogin = usernameField.getText();
-    String passwordLogin = new String(passwordField.getPassword()); 
-    if(e.getActionCommand().equals("Submit")){
-        mem = Controller.loginMember(usernameLogin, passwordLogin);
-        JOptionPane.showMessageDialog(null, "Welcom : " + mem.getUsername());
-        new MenuUtamaScreen(mem);
-
-        }
-        else{
+    public void actionPerformed(ActionEvent e){
+        String usernameLogin = usernameField.getText();
+        String passwordLogin = new String(passwordField.getPassword()); 
+        if(e.getActionCommand().equals("Submit")){
+            if(usernameLogin.equals("Calvin")){
+                usr = Controller.login(usernameLogin, passwordLogin);
+                if(usr != null){
+                    JOptionPane.showMessageDialog(null, "Welcome Admin : " + usr.getUsername());
+                    new MenuUtamaAdmin();
+                    Loginframe.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Username/Password Salah!");
+                }
+            }else{
+                usr = Controller.login(usernameLogin, passwordLogin);
+                if(usr != null){
+                    JOptionPane.showMessageDialog(null, "Welcome Member : " + usr.getUsername());
+                    new MenuUtamaMember(usr);
+                    Loginframe.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Username/Password Salah!");
+                }
+            }
+        }else{
             JOptionPane.showMessageDialog(null,"Login Gagal");
         }
     }
-   
-
-
-    public static void main(String[] args) {
-        new LoginScreen();
-    }
-
 }
