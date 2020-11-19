@@ -13,9 +13,8 @@ import java.util.Date;
  */
 public class listOrder {
     private int idOrder;
-    private Date TanggalOrder;
+    private Date tanggalOrder;
     private int banyakPenumpang;
-    private Member member;
     private Rute rute;
     private TransaksiPembayaran transaksi;
     
@@ -23,10 +22,12 @@ public class listOrder {
         
     }
 
-    public listOrder(int idOrder, Date TanggalOrder, int banyakPenumpang) {
+    public listOrder(int idOrder, Date tanggalOrder, int banyakPenumpang, Rute rute, TransaksiPembayaran transaksi) {
         this.idOrder = idOrder;
-        this.TanggalOrder = TanggalOrder;
+        this.tanggalOrder = tanggalOrder;
         this.banyakPenumpang = banyakPenumpang;
+        this.rute = rute;
+        this.transaksi = transaksi;
     }
 
     public int getIdOrder() {
@@ -38,11 +39,11 @@ public class listOrder {
     }
 
     public Date getTanggalOrder() {
-        return TanggalOrder;
+        return tanggalOrder;
     }
 
     public void setTanggalOrder(Date TanggalOrder) {
-        this.TanggalOrder = TanggalOrder;
+        this.tanggalOrder = TanggalOrder;
     }
 
     public int getBanyakPenumpang() {
@@ -51,14 +52,6 @@ public class listOrder {
 
     public void setBanyakPenumpang(int banyakPenumpang) {
         this.banyakPenumpang = banyakPenumpang;
-    }
-
-    public Member getMember() {
-        return member;
-    }
-
-    public void setMember(Member member) {
-        this.member = member;
     }
 
     public Rute getRute() {

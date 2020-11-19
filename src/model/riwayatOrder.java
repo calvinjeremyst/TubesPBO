@@ -14,8 +14,8 @@ import java.util.Date;
  */
 public class riwayatOrder extends listOrder {
     
-    public riwayatOrder(int ID_Order, Date TanggalOrder, int banyakPenumpang){
-            super(ID_Order, TanggalOrder, banyakPenumpang);
+    public riwayatOrder(int idOrder, Date tanggalOrder, int banyakPenumpang, Rute rute, TransaksiPembayaran transaksi){
+            super(idOrder, tanggalOrder, banyakPenumpang, rute, transaksi);
     }
     
 }
