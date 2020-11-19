@@ -10,6 +10,10 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import model.Member;
+import model.User;
+import model.UserManager;
+import view.Helper.FontStyle;
 
 /**
  *
@@ -18,7 +22,7 @@ import javax.swing.*;
 public class MenuUtamaMember implements ActionListener {
     JFrame frame = new JFrame("Terminal Bis Emen");
     JButton pesanTiket, batalTiket,riwayatTiket,cekOvo,topupOvo;
-    JLabel judul;
+    JLabel judul, namaAkun;
     
     public MenuUtamaMember() {
         frame.getContentPane().setBackground(Color.WHITE);
@@ -31,6 +35,13 @@ public class MenuUtamaMember implements ActionListener {
         judul = new JLabel("Menu Utama Member");
         judul.setFont(new Font("Consolas", Font.PLAIN, 32));
         judul.setBounds(500, 20, 500, 100);
+        
+        namaAkun = new JLabel("Halo " + UserManager.getInstance().getUser().getUsername());
+        namaAkun.setFont(FontStyle.small);
+        namaAkun.setBackground(Color.BLACK);
+        namaAkun.setForeground(Color.WHITE);
+        namaAkun.setOpaque(true);
+        namaAkun.setBounds(1000,20,300,50);
         
         pesanTiket = new JButton("Pesan Tiket");
         pesanTiket.setBounds(550, 120, 200, 30);
@@ -63,6 +74,7 @@ public class MenuUtamaMember implements ActionListener {
         topupOvo.setFont(new Font("Consolas", Font.PLAIN, 24));
     
         frame.add(judul);
+        frame.add(namaAkun);
         frame.add(pesanTiket);
         frame.add(batalTiket);
         frame.add(riwayatTiket);
@@ -80,11 +92,14 @@ public class MenuUtamaMember implements ActionListener {
             new PembatalanTiketScreen();
             frame.dispose();
         }else if(e.getActionCommand().equals("Riwayat Pemesanan Tiket")){
-            //new RiwayatPemesanan();
+            new RiwayatPemesananTiket();
+            frame.dispose();
         }else if(e.getActionCommand().equals("Cek Saldo OVO")){
-            //new CekSaldo();
+            new CekSaldo();
+            frame.dispose();
         }else if(e.getActionCommand().equals("TopUp Saldo OVO")){
-            //new Topup();
+            new TopupOVO();
+            frame.dispose();
         }
     }
     

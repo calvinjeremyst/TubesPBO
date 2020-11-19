@@ -13,25 +13,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author user
  */
-public class HasilPencarianRuteScreen implements ActionListener {
+public class HasilPencarianMemberScreen implements ActionListener {
     JLabel judul, LlistPerjalanan, header;
     JFrame frame = new JFrame("Terminal Bis Emen");
     JButton pesan,back;
     ArrayList<JLabel> listPerjalanan = new ArrayList<>();
     ArrayList<JRadioButton> listTombol = new ArrayList<>();
     ButtonGroup buttonGroup = new ButtonGroup();
-    int tinggi = 150;
-    int tinggi2 = 165;
+    int tinggiRadio = 150;
     TampungDipilih dipilih = new TampungDipilih();
     ArrayList<DetailRute> drutes = new ArrayList<>();
     String rute = "";
+    JTable jt;
      
-    public HasilPencarianRuteScreen(ArrayList<DetailRute> drute) {
+    public HasilPencarianMemberScreen(ArrayList<DetailRute> drute) {
         drutes = drute;
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -52,21 +53,40 @@ public class HasilPencarianRuteScreen implements ActionListener {
         header.setFont(new Font("Consolas", Font.PLAIN, 20));
         header.setBounds(270, 110, 250, 50);
         
+        jt = new JTable();
+        jt.setBounds(270,150,700,50);
+        DefaultTableModel model = new DefaultTableModel();
+        Object[] namaKolom = new Object[8];
+        namaKolom[0] = "ID Rute";
+        namaKolom[1] = "Kota Asal";
+        namaKolom[2] = "Kota Tujuan";
+        namaKolom[3] = "ID Bis";
+        namaKolom[4] = "Jam Berangkat";
+        namaKolom[5] = "Tanggal Berangkat";
+        namaKolom[6] = "Harga Bis";
+        namaKolom[7] = "Harga Rute";
+        model.setColumnIdentifiers(namaKolom);
+        Object[] dataKolom = new Object[8];
+        
         for (int i = 0; i < drute.size(); i++) {
-            rute = drute.get(i).toString();
-            listPerjalanan.add(new JLabel(rute));
-            listPerjalanan.get(i).setFont(new Font("Consolas", Font.PLAIN, 18));
-            listPerjalanan.get(i).setBounds(270,tinggi,700, 50);
-            frame.add(listPerjalanan.get(i));
-            tinggi += 40;
+            dataKolom[0] = drute.get(i).getIdRute();
+            dataKolom[1] = drute.get(i).getKotaAsal();
+            dataKolom[2] = drute.get(i).getKotaTujuan();
+            dataKolom[3] = drute.get(i).getIdbis();
+            dataKolom[4] = drute.get(i).getJamBerangkat();
+            dataKolom[5] = drute.get(i).getTanggalBerangkat();
+            dataKolom[6] = drute.get(i).getHargaBis();
+            dataKolom[7] = drute.get(i).getHargaRute();
+            model.addRow(dataKolom);
             
             listTombol.add(new JRadioButton());
-            listTombol.get(i).setBounds(800,tinggi2,20,20);
+            listTombol.get(i).setBounds(900,tinggiRadio,20,20);
             buttonGroup.add(listTombol.get(i));
             frame.add(listTombol.get(i));
-            tinggi2 += 40;
-        }
-        
+            tinggiRadio += 40;
+        }  
+        jt.setModel(model);
+      
         pesan = new JButton("PESAN");
         pesan.setBounds(400, 500, 250, 30);
         pesan.setEnabled(true);
@@ -81,6 +101,7 @@ public class HasilPencarianRuteScreen implements ActionListener {
         
         frame.add(judul);
         frame.add(LlistPerjalanan);
+        frame.add(jt);
         frame.add(header);
         frame.add(pesan);
         frame.add(back);

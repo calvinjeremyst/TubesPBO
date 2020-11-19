@@ -5,17 +5,22 @@
  */
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
  * @author Hp
  */
 public class Kursi extends ListOrder {
+    
     private String nomorKursi;
 
-    public Kursi(String nomorKursi, int idOrder, Date tanggalOrder, int banyakPenumpang, Member member, Rute rute, TransaksiPembayaran transaksi) {
-        super(idOrder, tanggalOrder, banyakPenumpang, member, rute, transaksi);
+    public Kursi(){
+        
+    }
+    
+    public Kursi(String nomorKursi, int idOrder, Date tanggalOrder, Member member, int idrute) {
+        super(idOrder, tanggalOrder, idrute);
         this.nomorKursi = nomorKursi;
     }
 

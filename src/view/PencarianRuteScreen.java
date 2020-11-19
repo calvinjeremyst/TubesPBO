@@ -5,6 +5,7 @@
  */
 package view;
 
+import view.Helper.DateLabelFormatter;
 import model.DetailRute;
 import controller.Controller;
 import java.awt.Color;
@@ -119,7 +120,7 @@ public class PencarianRuteScreen implements ActionListener {
                 } else {
                     java.sql.Date date = new java.sql.Date(tanggalPergi.getTime());
                     ArrayList<DetailRute> drute = Controller.cariRute(kotaAsal, kotaTujuan, date);
-                    new HasilPencarianRuteScreen(drute);
+                    new HasilPencarianMemberScreen(drute);
                     frame.dispose();
                 }
             }

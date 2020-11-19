@@ -10,27 +10,28 @@ package model;
  * @author Hp
  */
 public abstract class Rute {
-    public String idRute;
+    
+    public int idRute;
     public String kotaAsal;
     public String kotaTujuan;
-    public String idbis;
+    public int idbis;
     
-    public Rute(){
+    public Rute() {
         
     }
     
-    public Rute(String idRute, String kotaAsal, String kotaTujuan, String idbis) {
+    public Rute(int idRute, String kotaAsal, String kotaTujuan, int idbis) {
         this.idRute = idRute;
         this.kotaAsal = kotaAsal;
         this.kotaTujuan = kotaTujuan;
         this.idbis = idbis;
     }
 
-    public String getIdRute() {
+    public int getIdRute() {
         return idRute;
     }
 
-    public void setIdRute(String idRute) {
+    public void setIdRute(int idRute) {
         this.idRute = idRute;
     }
 
@@ -50,11 +51,11 @@ public abstract class Rute {
         this.kotaTujuan = kotaTujuan;
     }
 
-    public String getIdbis() {
+    public int getIdbis() {
         return idbis;
     }
 
-    public void setIdbis(String idbis) {
+    public void setIdbis(int idbis) {
         this.idbis = idbis;
     }
     

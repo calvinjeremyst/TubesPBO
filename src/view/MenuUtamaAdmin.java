@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import model.UserManager;
+import view.Helper.FontStyle;
 
 /**
  *
@@ -20,7 +22,7 @@ import javax.swing.JLabel;
 public class MenuUtamaAdmin implements ActionListener {
     JFrame frame = new JFrame("Terminal Bis Emen");
     JButton lihatDataMember,tambahListPerjalanan, cekListPerjalanan;
-    JLabel judul;
+    JLabel judul,namaAkun;
 
     public MenuUtamaAdmin() {
         frame.getContentPane().setBackground(Color.WHITE);
@@ -33,6 +35,10 @@ public class MenuUtamaAdmin implements ActionListener {
         judul = new JLabel("Menu Utama Admin");
         judul.setFont(new Font("Consolas", Font.PLAIN, 32));
         judul.setBounds(500, 20, 500, 100);
+        
+        namaAkun = new JLabel("Halo " + UserManager.getInstance().getUser().getUsername());
+        namaAkun.setFont(FontStyle.small);
+        namaAkun.setBounds(1000,20,300,50);
         
         lihatDataMember = new JButton("Lihat Data Member");
         lihatDataMember.setBounds(500, 120, 300, 30);
@@ -53,6 +59,7 @@ public class MenuUtamaAdmin implements ActionListener {
         tambahListPerjalanan.setFont(new Font("Consolas", Font.PLAIN, 24));
         
         frame.add(judul);
+        frame.add(namaAkun);
         frame.add(lihatDataMember);
         frame.add(cekListPerjalanan);
         frame.add(tambahListPerjalanan);
@@ -62,11 +69,13 @@ public class MenuUtamaAdmin implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Lihat Data Member")){
             new LihatDataMember();
+            frame.dispose();
         }else if(e.getActionCommand().equals("Cek List Perjalanan")){
             new PencarianRuteScreenAdmin();
+            frame.dispose();
         }else if(e.getActionCommand().equals("Tambah List Perjalanan")){
-            new addRuteScreen();
-        
+            new AddRuteScreen();
+            frame.dispose();
         }
     }
     

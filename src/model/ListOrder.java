@@ -5,33 +5,54 @@
  */
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
- * @author Hp
+ * @author lenovo
  */
 public class ListOrder {
+    
     private int idOrder;
     private Date tanggalOrder;
-    private int banyakPenumpang;
-    private Member member;
-    private Rute rute;
-    private TransaksiPembayaran transaksi;
-
-    public ListOrder(){
+    private int idRute;
+    private String kotaAsal;
+    private String kotaTujuan;
+    private int idBis;
+    private String jamBerangkat;
+    private Date tanggalBerangkat;
+    
+    public ListOrder() {
         
     }
-    
-    public ListOrder(int idOrder, Date tanggalOrder, int banyakPenumpang, Member member, Rute rute, TransaksiPembayaran transaksi) {
+
+    public ListOrder(int idOrder, Date tanggalOrder, int idRute) {
         this.idOrder = idOrder;
         this.tanggalOrder = tanggalOrder;
-        this.banyakPenumpang = banyakPenumpang;
-        this.member = member;
-        this.rute = rute;
-        this.transaksi = transaksi;
+        this.idRute = idRute;
+    }
+    
+    public ListOrder(int idOrder, Date tanggalOrder, int idRute, String kotaAsal, String kotaTujuan, int idBis, String jamBerangkat, Date tanggalBerangkat) {
+        this.idOrder = idOrder;
+        this.tanggalOrder = tanggalOrder;
+        this.idRute = idRute;
+        this.kotaAsal = kotaAsal;
+        this.kotaTujuan = kotaTujuan;
+        this.idBis = idBis;
+        this.jamBerangkat = jamBerangkat;
+        this.tanggalBerangkat = tanggalBerangkat;
     }
 
+    public ListOrder(Date tanggalOrder, int idRute, String kotaAsal, String kotaTujuan, int idBis, String jamBerangkat, Date tanggalBerangkat) {
+        this.tanggalOrder = tanggalOrder;
+        this.idRute = idRute;
+        this.kotaAsal = kotaAsal;
+        this.kotaTujuan = kotaTujuan;
+        this.idBis = idBis;
+        this.jamBerangkat = jamBerangkat;
+        this.tanggalBerangkat = tanggalBerangkat;
+    }
+    
     public int getIdOrder() {
         return idOrder;
     }
@@ -44,42 +65,56 @@ public class ListOrder {
         return tanggalOrder;
     }
 
-    public void setTanggalOrder(Date tanggalOrder) {
-        this.tanggalOrder = tanggalOrder;
-    }
-
-    public int getBanyakPenumpang() {
-        return banyakPenumpang;
-    }
-
-    public void setBanyakPenumpang(int banyakPenumpang) {
-        this.banyakPenumpang = banyakPenumpang;
-    }
-
-    public Member getMember() {
-        return member;
-    }
-
-    public void setMember(Member member) {
-        this.member = member;
-    }
-
-    public Rute getRute() {
-        return rute;
-    }
-
-    public void setRute(Rute rute) {
-        this.rute = rute;
-    }
-
-    public TransaksiPembayaran getTransaksi() {
-        return transaksi;
-    }
-
-    public void setTransaksi(TransaksiPembayaran transaksi) {
-        this.transaksi = transaksi;
+    public void setTanggalOrder(Date TanggalOrder) {
+        this.tanggalOrder = TanggalOrder;
     }
     
-    
+    public int getIdRute() {
+        return idRute;
+    }
+
+    public void setIdRute(int idRute) {
+        this.idRute = idRute;
+    }
+
+    public String getKotaAsal() {
+        return kotaAsal;
+    }
+
+    public void setKotaAsal(String kotaAsal) {
+        this.kotaAsal = kotaAsal;
+    }
+
+    public String getKotaTujuan() {
+        return kotaTujuan;
+    }
+
+    public void setKotaTujuan(String kotaTujuan) {
+        this.kotaTujuan = kotaTujuan;
+    }
+
+    public int getIdBis() {
+        return idBis;
+    }
+
+    public void setIdBis(int idBis) {
+        this.idBis = idBis;
+    }
+
+    public String getJamBerangkat() {
+        return jamBerangkat;
+    }
+
+    public void setJamBerangkat(String jamBerangkat) {
+        this.jamBerangkat = jamBerangkat;
+    }
+
+    public Date getTanggalBerangkat() {
+        return tanggalBerangkat;
+    }
+
+    public void setTanggalBerangkat(Date tanggalBerangkat) {
+        this.tanggalBerangkat = tanggalBerangkat;
+    }
     
 }

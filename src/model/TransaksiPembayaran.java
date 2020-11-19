@@ -5,17 +5,17 @@
  */
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
  * @author lenovo
  */
-public class TransaksiPembayaran extends Harga {
-    private String idTransaksi;
+public class TransaksiPembayaran {
+    private int banyakPenumpang;
     private double grandTotal;
     private double cashBack;
-    private boolean useOVO;
+    private int useOVO;
     private String metodePembayaran;
     private Date tanggalTransaksi;
 
@@ -23,10 +23,8 @@ public class TransaksiPembayaran extends Harga {
     
     }
     
-    public TransaksiPembayaran(String kodePembayaran,String idTransaksi,double grandTotal,double cashBack,boolean useOVO,
-            String metodePembayaran,Date tanggalTransaksi){
-        super(kodePembayaran);
-        this.idTransaksi = idTransaksi;
+    public TransaksiPembayaran(int banyakPenumpang,double grandTotal,double cashBack,int useOVO,String metodePembayaran,Date tanggalTransaksi){
+        this.banyakPenumpang = banyakPenumpang;
         this.grandTotal = grandTotal;
         this.cashBack = cashBack;
         this.useOVO = useOVO;
@@ -34,14 +32,14 @@ public class TransaksiPembayaran extends Harga {
         this.tanggalTransaksi = tanggalTransaksi;
     }
 
-    public String getIdTransaksi() {
-        return idTransaksi;
+    public int getBanyakPenumpang() {
+        return banyakPenumpang;
     }
 
-    public void setIdTransaksi(String idTransaksi) {
-        this.idTransaksi = idTransaksi;
+    public void setBanyakPenumpang(int banyakPenumpang) {
+        this.banyakPenumpang = banyakPenumpang;
     }
-
+    
     public double getGrandTotal() {
         return grandTotal;
     }
@@ -58,11 +56,11 @@ public class TransaksiPembayaran extends Harga {
         this.cashBack = cashBack;
     }
 
-    public boolean isUseOVO() {
+    public int getUseOVO() {
         return useOVO;
     }
 
-    public void setUseOVO(boolean useOVO) {
+    public void setUseOVO(int useOVO) {
         this.useOVO = useOVO;
     }
 
