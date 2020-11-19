@@ -5,16 +5,16 @@
  */
 package main;
 
-import view.MenuUtamaMember;
+import view.MenuUtamaScreen;
 
 /**
  *
- * @author Hp
+ * @author lenovo
  */
-public class Main {
-
-    public static void main(String[] args) {
-        new MenuUtamaMember();
+public class Main2 {
+    
+    public static void main(String[] args){
+        new MenuUtamaScreen();
     }
     
 }
