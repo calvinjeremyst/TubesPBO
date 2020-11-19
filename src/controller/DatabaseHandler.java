@@ -5,11 +5,17 @@
  */
 package controller;
 
+/**
+ *
+ * @author hanschristian
+ */
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.TimeZone;
 import javax.swing.JOptionPane;
 
 public class DatabaseHandler {
+
     public Connection con;
     private String driver = "com.mysql.cj.jdbc.Driver";
     private String url = "jdbc:mysql://localhost/terminal2";
