@@ -10,8 +10,10 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import model.Member;
 import model.User;
-import view.Helper.fontStyle;
+import model.UserManager;
+import view.Helper.FontStyle;
 
 /**
  *
@@ -22,7 +24,7 @@ public class MenuUtamaMember implements ActionListener {
     JButton pesanTiket, batalTiket,riwayatTiket,cekOvo,topupOvo;
     JLabel judul, namaAkun;
     
-    public MenuUtamaMember(User usr) {
+    public MenuUtamaMember() {
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
@@ -34,10 +36,12 @@ public class MenuUtamaMember implements ActionListener {
         judul.setFont(new Font("Consolas", Font.PLAIN, 32));
         judul.setBounds(500, 20, 500, 100);
         
-        usr.setUsername(usr.getUsername());
-        namaAkun = new JLabel("Halo " + usr.getUsername());
-        namaAkun.setFont(fontStyle.small);
-        namaAkun.setBounds(1000,20,100,20);
+        namaAkun = new JLabel("Halo " + UserManager.getInstance().getUser().getUsername());
+        namaAkun.setFont(FontStyle.small);
+        namaAkun.setBackground(Color.BLACK);
+        namaAkun.setForeground(Color.WHITE);
+        namaAkun.setOpaque(true);
+        namaAkun.setBounds(1000,20,300,50);
         
         pesanTiket = new JButton("Pesan Tiket");
         pesanTiket.setBounds(550, 120, 200, 30);
@@ -88,11 +92,14 @@ public class MenuUtamaMember implements ActionListener {
             new PembatalanTiketScreen();
             frame.dispose();
         }else if(e.getActionCommand().equals("Riwayat Pemesanan Tiket")){
-            //new RiwayatPemesanan();
+            new RiwayatPemesananTiket();
+            frame.dispose();
         }else if(e.getActionCommand().equals("Cek Saldo OVO")){
-            //new CekSaldo();
+            new CekSaldo();
+            frame.dispose();
         }else if(e.getActionCommand().equals("TopUp Saldo OVO")){
-            //new Topup();
+            new TopupOVO();
+            frame.dispose();
         }
     }
     

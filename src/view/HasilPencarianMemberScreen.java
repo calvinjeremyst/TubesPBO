@@ -6,7 +6,7 @@
 package view;
 
 import model.DetailRute;
-import view.Helper.TampungDipilih;
+import view.Helper.TampungDipilih2;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author user
  */
-public class HasilPencarianRuteScreen implements ActionListener {
+public class HasilPencarianMemberScreen implements ActionListener {
     JLabel judul, LlistPerjalanan, header;
     JFrame frame = new JFrame("Terminal Bis Emen");
     JButton pesan,back;
@@ -27,11 +27,12 @@ public class HasilPencarianRuteScreen implements ActionListener {
     ArrayList<JRadioButton> listTombol = new ArrayList<>();
     ButtonGroup buttonGroup = new ButtonGroup();
     int tinggiRadio = 150;
-    TampungDipilih dipilih = new TampungDipilih();
+    TampungDipilih2 dipilih = new TampungDipilih2();
     ArrayList<DetailRute> drutes = new ArrayList<>();
+    String rute = "";
     JTable jt;
      
-    public HasilPencarianRuteScreen(ArrayList<DetailRute> drute) {
+    public HasilPencarianMemberScreen(ArrayList<DetailRute> drute) {
         drutes = drute;
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -53,7 +54,7 @@ public class HasilPencarianRuteScreen implements ActionListener {
         header.setBounds(270, 110, 250, 50);
         
         jt = new JTable();
-        jt.setBounds(270,150,700, 50);
+        jt.setBounds(270,150,700,50);
         DefaultTableModel model = new DefaultTableModel();
         Object[] namaKolom = new Object[8];
         namaKolom[0] = "ID Rute";
@@ -83,10 +84,9 @@ public class HasilPencarianRuteScreen implements ActionListener {
             buttonGroup.add(listTombol.get(i));
             frame.add(listTombol.get(i));
             tinggiRadio += 40;
-        }
-        
+        }  
         jt.setModel(model);
-        
+      
         pesan = new JButton("PESAN");
         pesan.setBounds(400, 500, 250, 30);
         pesan.setEnabled(true);
@@ -101,8 +101,8 @@ public class HasilPencarianRuteScreen implements ActionListener {
         
         frame.add(judul);
         frame.add(LlistPerjalanan);
-        frame.add(header);
         frame.add(jt);
+        frame.add(header);
         frame.add(pesan);
         frame.add(back);
         

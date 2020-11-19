@@ -5,14 +5,19 @@
  */
 package view;
 
-import view.Helper.TampungDipilih;
+import controller.Controller;
+import view.Helper.TampungDipilih2;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.*;
+import model.ListOrder2;
+import model.TransaksiPembayaran;
 
 /**
  *
@@ -25,8 +30,10 @@ public class PembayaranTiketScreen implements ActionListener {
     JRadioButton credit,ovo;
     JButton bayar,back;
     ButtonGroup bg;
+    TampungDipilih2 dipilih2;
     
-    public PembayaranTiketScreen(TampungDipilih dipilih) {
+    public PembayaranTiketScreen(TampungDipilih2 dipilih) {
+        dipilih2 = dipilih;
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
@@ -132,12 +139,47 @@ public class PembayaranTiketScreen implements ActionListener {
     }
     
     @Override
-    public void actionPerformed(ActionEvent e) {  
+    public void actionPerformed(ActionEvent e) { 
+        int banyakPenumpang = this.dipilih2.getBanyakPenumpang();
+        double total = this.dipilih2.getHargaBis() + this.dipilih2.getHargaRute();
+        double cashback = 0;
+        if(total < 200000){
+            cashback = 0.05 * total;
+        }else if(total > 200000){
+            cashback = 0.1 * total;
+        }
+        double grandTotal = this.dipilih2.getHargaBis() + this.dipilih2.getHargaRute() - cashback;
+        String metode = "";
+        int useOvo = 0;
+        if(this.ovo.isSelected()){   
+            metode = "OVO";
+            useOvo = 1;
+        }else if(this.credit.isSelected()){   
+            metode = "Credit Card";
+            useOvo = 0;
+        }
+        Date tanggalPesan = new Date();
+        java.sql.Date tanggalPesan2 = new java.sql.Date(tanggalPesan.getTime());
+        int idRute = this.dipilih2.getIdRute();
+        String kotaAsal = this.dipilih2.getKotaAsal();
+        String kotaTujuan = this.dipilih2.getKotaTujuan();
+        java.sql.Date tanggalPergi = new java.sql.Date(this.dipilih2.getTanggalBerangkat().getTime());
+        String jam = this.dipilih2.getJamBerangkat();
+        int idBis = this.dipilih2.getIdbis();
+        
         if(e.getActionCommand().equals("SUBMIT")){
-            //Jika sudah insert into listorder di database
-            JOptionPane.showMessageDialog(null,"Tiket Anda Berhasil Dipesan!"); 
-            new MenuUtamaMember(null);
-            frame.dispose();
+            TransaksiPembayaran trk = new TransaksiPembayaran(banyakPenumpang,grandTotal,cashback,useOvo,metode,tanggalPesan2);
+            ListOrder2 order = new ListOrder2(tanggalPesan2,idRute,kotaAsal,kotaTujuan,idBis,jam,tanggalPergi);
+            if(Controller.insertOrder(trk,order)){
+                JOptionPane.showMessageDialog(null,"Tiket Anda Berhasil Dipesan!"); 
+                new MenuUtamaMember();
+                frame.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null,"Tiket Anda Gagal Dipesan!"); 
+                new MenuUtamaMember();
+                frame.dispose();
+            }
         }
     }
+    
 }

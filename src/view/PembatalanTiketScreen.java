@@ -70,7 +70,7 @@ public class PembatalanTiketScreen implements ActionListener {
             if(Controller.cekTiket(idAngka)){
                 if(Controller.deleteTiket(idAngka)){;
                     JOptionPane.showMessageDialog(null,"Tiket Berhasil Dibatalkan!");
-                    new MenuUtamaMember(null);
+                    new MenuUtamaMember();
                 }else{
                      JOptionPane.showMessageDialog(null,"Failed to Delete!");
                 }
@@ -78,7 +78,7 @@ public class PembatalanTiketScreen implements ActionListener {
                 JOptionPane.showMessageDialog(null,"ID Order Tidak Ditemukan!");
             }
         }else if(e.getActionCommand().equals("BACK")){
-            new MenuUtamaMember(null);
+            new MenuUtamaMember();
         }
     }
     

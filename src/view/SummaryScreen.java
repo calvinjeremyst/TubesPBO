@@ -5,7 +5,7 @@
  */
 package view;
 
-import view.Helper.TampungDipilih;
+import view.Helper.TampungDipilih2;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -22,9 +22,9 @@ public class SummaryScreen implements ActionListener {
     JLabel hasil = new JLabel();
     JLabel banyak2 = new JLabel();
     JButton bayar,back;
-    TampungDipilih dipilih2 = new TampungDipilih();
+    TampungDipilih2 dipilih2 = new TampungDipilih2();
  
-    public SummaryScreen(TampungDipilih dipilih) {
+    public SummaryScreen(TampungDipilih2 dipilih) {
         dipilih2 = dipilih;
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -81,7 +81,7 @@ public class SummaryScreen implements ActionListener {
             new PembayaranTiketScreen(dipilih2); 
             frame.dispose();
         }else if(e.getActionCommand().equals("Back to Main Menu")){
-            new MenuUtamaMember(null);
+            new MenuUtamaMember();
             frame.dispose();
         }
         

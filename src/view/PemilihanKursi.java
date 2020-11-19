@@ -5,13 +5,15 @@
  */
 package view;
 
+import controller.Controller;
 import model.EnumBis;
-import view.Helper.TampungDipilih;
+import view.Helper.TampungDipilih2;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import model.ListBus;
 /**
  *
  * @author user
@@ -25,9 +27,10 @@ public class PemilihanKursi implements ActionListener {
     int x = 130;
     int y = 130;
     int banyakPenumpang = 0;
-    TampungDipilih dipilih2 = new TampungDipilih();
+    TampungDipilih2 dipilih2 = new TampungDipilih2();
+    ListBus bus;
     
-    public PemilihanKursi(TampungDipilih dipilih) {
+    public PemilihanKursi(TampungDipilih2 dipilih) {
         dipilih2 = dipilih;
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -44,32 +47,36 @@ public class PemilihanKursi implements ActionListener {
         pilihan.setFont(new Font("Consolas", Font.PLAIN, 20));
         pilihan.setBounds(20, 110, 250, 50);
         
-        EnumBis vip = EnumBis.VIP;
-        EnumBis reguler = EnumBis.Reguler;
-        EnumBis ekonomi = EnumBis.Ekonomi;
+        //Cek Tipe Bis
+        Controller.getKelasBis(dipilih2.getIdbis());
         
-        //IF BUS VIP
-        for(int i=1; i<=20; i++){
-            if(i<=10){
-                noKursi[i] = new JLabel("Kursi " + i);
-                noKursi[i].setBounds(500,x,80,20);
-                noKursi[i].setFont(new Font("Consolas", Font.PLAIN, 18));
-                frame.add(noKursi[i]);
-                kursi[i] = new JCheckBox();
-                kursi[i].setBounds(600,x,20,20);
-                frame.add(kursi[i]);
-                x += 30;
-            }else{
-                noKursi[i] = new JLabel("Kursi " + i);
-                noKursi[i].setFont(new Font("Consolas", Font.PLAIN, 18));
-                noKursi[i].setBounds(700,y,80,20);
-                frame.add(noKursi[i]);
-                kursi[i] = new JCheckBox();
-                kursi[i].setBounds(800,y,20,20);
-                frame.add(kursi[i]);
-                y += 30;   
+        //if(bus.getKelas().equals(EnumBis.VIP)){
+            for(int i=1; i<=20; i++){
+                if(i<=10){
+                    noKursi[i] = new JLabel("Kursi " + i);
+                    noKursi[i].setBounds(500,x,80,20);
+                    noKursi[i].setFont(new Font("Consolas", Font.PLAIN, 18));
+                    frame.add(noKursi[i]);
+                    kursi[i] = new JCheckBox();
+                    kursi[i].setBounds(600,x,20,20);
+                    frame.add(kursi[i]);
+                    x += 30;
+                }else{
+                    noKursi[i] = new JLabel("Kursi " + i);
+                    noKursi[i].setFont(new Font("Consolas", Font.PLAIN, 18));
+                    noKursi[i].setBounds(700,y,80,20);
+                    frame.add(noKursi[i]);
+                    kursi[i] = new JCheckBox();
+                    kursi[i].setBounds(800,y,20,20);
+                    frame.add(kursi[i]);
+                    y += 30;   
+                }
             }
-        }
+       // }else if(bus.getKelas().equals("Reguler")){
+            
+       // }else if(bus.getKelas().equals("Ekonomi")){
+            
+       // }
         
         next = new JButton("SUMMARY");
         next.setBounds(400, 500, 250, 30);
@@ -101,7 +108,7 @@ public class PemilihanKursi implements ActionListener {
             new SummaryScreen(dipilih2);
             frame.dispose();
         }else if(e.getActionCommand().equals("BACK")){
-            new MenuUtamaMember(null);
+            new MenuUtamaMember();
         }
     }
     

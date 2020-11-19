@@ -5,7 +5,7 @@
  */
 package view;
 
-import view.Helper.fontStyle;
+import view.Helper.FontStyle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -17,37 +17,34 @@ import javax.swing.JTextField;
  *
  * @author lenovo
  */
-public class ScreenHistory implements ActionListener {
+public class ScreenHistoryOVO implements ActionListener {
     JFrame frameHistory = new JFrame("History Pemesanan : ");
     JLabel title = new JLabel("History Pemesanan");
     JLabel IDMember = new JLabel("ID Member : ");
     JTextField IDMemberText = new JTextField();
     JButton buttonSearch = new JButton("Search");
     
-    public ScreenHistory() {
+    public ScreenHistoryOVO() {
         frameHistory.setSize(2000,2000);
         title.setBounds(500,200,300,100);
-        title.setFont(fontStyle.medium);
+        title.setFont(FontStyle.medium);
         IDMember.setBounds(450,300,200,120);
         IDMemberText.setBounds(600,340,300,30);
-        IDMember.setFont(fontStyle.small);
+        IDMember.setFont(FontStyle.small);
         buttonSearch.setBounds(630,400,120,20);
-        buttonSearch.setFont(fontStyle.small);
+        buttonSearch.setFont(FontStyle.small);
        
-       frameHistory.add(title);
-       frameHistory.add(IDMember);
-       frameHistory.add(IDMemberText);
-       frameHistory.add(buttonSearch);
+        frameHistory.add(title);
+        frameHistory.add(IDMember);
+        frameHistory.add(IDMemberText);
+        frameHistory.add(buttonSearch);
         frameHistory.setLayout(null);
         frameHistory.setVisible(true);
-        
     }
     
     @Override
     public void actionPerformed(ActionEvent e){
-   
-   
-    
         
     }
+    
 }
