@@ -23,11 +23,11 @@ import model.User;
  */
 public class Controller {  
 
-    static controller.DataBaseHandler conn = new DataBaseHandler();
+    static controller.DatabaseHandler conn = new DatabaseHandler();
     
     public static boolean insertPerjalanan(DetailRute rute,listBis list){
         
-        conn.Connect();
+        conn.connect();
         
         String queryListBis = "INSERT INTO listbis(ID_Bis,kelasBis,jumlahKapasitas)"
                 + "VALUES(?,?,?)";
@@ -76,7 +76,7 @@ public class Controller {
     }
   
     public static boolean insertMember(Member member) {
-      conn.Connect();
+      conn.connect();
       String query = "INSERT INTO usr(nama,pass,alamat,nohp)"
               + "VALUES(?,?,?,?)";
       String query2 = "SELECT ID_User FROM usr";
@@ -113,7 +113,7 @@ public class Controller {
   
     public static ArrayList<DetailRute> cariDetailRute(String kotaAsal,String kotaTujuan) {
       ArrayList<DetailRute> dtrute = new ArrayList();
-      conn.Connect();
+      conn.connect();
       String query = "SELECT rute.ID_Rute,rute.kotaAsal,rute.kotaTujuan,rute.ID_Bis,detailrute.jamBerangkat,"
                 + "detailrute.tanggalBerangkat,detailrute.hargaRute,detailrute.hargaBis FROM rute,detailrute "
                 + "WHERE rute.ID_Rute = detailrute.ID_Rute && rute.kotaAsal='" + kotaAsal + "'&& "
@@ -141,7 +141,7 @@ public class Controller {
   }
     
     public static User login(String username,String password){
-        conn.Connect();
+        conn.connect();
         String query = "SELECT * FROM usr WHERE nama = '"+username+"' &&  pass = '"+password+"'";
         User usr = null;
         try{
@@ -169,7 +169,7 @@ public class Controller {
     
     public static ArrayList<DetailRute> cariRute(String kotaAsal, String kotaTujuan, Date tanggalPergi) {
         ArrayList<DetailRute> droute = new ArrayList<>();
-        conn.Connect();
+        conn.connect();
         String query = "SELECT rute.ID_Rute,rute.kotaAsal,rute.kotaTujuan,rute.ID_Bis,detailrute.jamBerangkat,"
                 + "detailrute.tanggalBerangkat,detailrute.hargaRute,detailrute.hargaBis FROM rute,detailrute "
                 + "WHERE rute.ID_Rute = detailrute.ID_Rute && rute.kotaAsal='"+kotaAsal+"' && "
@@ -196,7 +196,7 @@ public class Controller {
     }
     
     public static boolean cekTiket(int id) {
-        conn.Connect();
+        conn.connect();
         String query = "SELECT * FROM listorder WHERE ID_Order='" + id + "'";
         try {
             Statement stmt = conn.con.createStatement();
@@ -212,7 +212,7 @@ public class Controller {
     }
     
     public static boolean deleteTiket(int id) {
-        conn.Connect();
+        conn.connect();
         String query = "DELETE FROM listorder WHERE ID_Order='" + id + "'";
         try {
             Statement stmt = conn.con.createStatement();
@@ -226,7 +226,7 @@ public class Controller {
     
     public static ArrayList<Member> getAllMember() {
         ArrayList<Member> members = new ArrayList<>();
-        conn.Connect();
+        conn.connect();
         String query = "SELECT * FROM usr";
         try {
             Statement stmt = conn.con.createStatement();
