@@ -39,6 +39,7 @@ public class HasilPencarianAdminScreen implements ActionListener{
         framehasilCari.setLayout(null);
         
         judul = new JLabel("Hasil Pencarian Rute");
+        back = new JButton("Back");
         judul.setFont(new Font("Consolas", Font.PLAIN, 32));
         judul.setBounds(400, 20, 600, 100);
         
@@ -69,12 +70,9 @@ public class HasilPencarianAdminScreen implements ActionListener{
             model.addRow(dataKolom);
         }
         jt.setModel(model);
-        
-        back = new JButton("Back");
-        back.setBounds(550,700,100,30);
+        back.setBounds(700,800,100,30);
         back.setEnabled(true);
         back.addActionListener(this);
-        
         framehasilCari.add(judul);
         framehasilCari.add(jt);
         framehasilCari.add(back);

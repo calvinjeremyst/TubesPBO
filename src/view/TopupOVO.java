@@ -23,7 +23,7 @@ public class TopupOVO implements ActionListener {
     static JFrame frameOVO,frameTopUp,frameMember;
     JLayeredPane layerLogo,layerBack,layerTable;
     JLabel logo,salam,lcomboNominal,lcomboMetode;
-    JButton buttonCek,buttonTopUp,buttonHistory,buttonKonfirmasi;
+    JButton buttonBack,buttonTopUp,buttonHistory,buttonKonfirmasi;
     JPanel panel;
     JPanel p1,p2,p3;
     JTable jt,table;
@@ -37,22 +37,11 @@ public class TopupOVO implements ActionListener {
     
     public TopupOVO() {
         Member mem = (Member) UserManager.getInstance().getUser();
-        
-        /*
-        members = Controller.getAllData();
-        for (Member member : members) {
-           System.out.println(member.toString());
-        }
-        id = JOptionPane.showInputDialog("Masukan id : ");
-        */
-        //riwayat = Controller.getData(id);
-        
         topups = Controller.getHistory(mem.getID_Member());
         
         frameOVO = new JFrame("OVO");
         frameTopUp = new JFrame("Top Up OVO");
-        //frameMember = new JFrame("Lihat data member");
-       
+        
         //logo
         logo = new JLabel("OVO");
         logo.setBounds(0,0,300,50);
@@ -73,10 +62,16 @@ public class TopupOVO implements ActionListener {
         buttonHistory.addActionListener(this);
         
         buttonTopUp = new JButton("Top Up");
-        buttonTopUp.setBounds(400,450,400,100);
+        buttonTopUp.setBounds(200,450,200,50);
         buttonTopUp.setFont(FontStyle.large);
         buttonTopUp.setForeground(Color.black);
         buttonTopUp.addActionListener(this);
+        
+        buttonBack = new JButton("Back");
+        buttonBack.setBounds(300,550,200,50);
+        buttonBack.setFont(FontStyle.large);
+        buttonBack.setForeground(Color.black);
+        buttonBack.addActionListener(this);
        
         //button buttonTopUp
         lcomboNominal = new JLabel("Jumlah Nominal : ");
@@ -84,6 +79,7 @@ public class TopupOVO implements ActionListener {
         lcomboNominal.setFont(FontStyle.small);
         lcomboNominal.setForeground(Color.white);
         Integer[] arrayNominal = {50000,100000,200000,500000,1000000,1500000,2000000};
+        
         comboNominal = new JComboBox(arrayNominal);
         comboNominal.setBounds(320,45,100,30);
         lcomboMetode = new JLabel("Metode Pembayaran : ");
@@ -91,6 +87,7 @@ public class TopupOVO implements ActionListener {
         lcomboMetode.setFont(FontStyle.small);
         lcomboMetode.setForeground(Color.white);
         String[] arrayMetode = {"Transfer","Cash"};
+        
         comboMetode = new JComboBox(arrayMetode);
         comboMetode.setBounds(320,145,100,30);
         buttonKonfirmasi = new JButton("Konfirmasi");
@@ -127,11 +124,11 @@ public class TopupOVO implements ActionListener {
         frameOVO.add(salam);
         frameOVO.add(layerLogo);
         frameOVO.add(buttonTopUp);
+        frameOVO.add(buttonBack);
         frameOVO.add(sp);
-        frameOVO.setSize(1200, 800);
+        frameOVO.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frameOVO.setVisible(true);
         frameOVO.getContentPane().setBackground(new java.awt.Color(76, 52, 148));
-        frameOVO.setResizable(false);
         frameOVO.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
         frameTopUp.add(lcomboNominal);
@@ -140,7 +137,7 @@ public class TopupOVO implements ActionListener {
         frameTopUp.add(comboMetode);
         frameTopUp.add(buttonKonfirmasi);
         frameTopUp.getContentPane().setLayout(null);
-        frameTopUp.setSize(500, 400);
+        frameTopUp.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frameTopUp.setVisible(false);
         frameTopUp.getContentPane().setBackground(new java.awt.Color(76, 52, 148));
       
@@ -165,12 +162,9 @@ public class TopupOVO implements ActionListener {
             logo.setVisible(false);
             salam.setVisible(false);
         }else if(e.getActionCommand().equals("Back")){
-            logo.setVisible(true);
-            salam.setVisible(true);
-            buttonHistory.setVisible(true);
-            buttonTopUp.setVisible(false);
-            sp.setVisible(false);
-            jt.setVisible(false);
+            new MenuUtamaMember();
+            frameTopUp.dispose();
+            frameOVO.dispose();
         }
     }
 }

@@ -64,12 +64,13 @@ public class PembatalanTiketScreen implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        String id = this.idOrder.getText();
-        int idAngka = Integer.parseInt(id);
         if(e.getActionCommand().equals("Cancel Ticket")){
+            String id = this.idOrder.getText();
+            int idAngka = Integer.parseInt(id);
             if(Controller.cekTiket(idAngka)){
                 if(Controller.deleteTiket(idAngka)){;
                     JOptionPane.showMessageDialog(null,"Tiket Berhasil Dibatalkan!");
+                    frame.dispose();
                     new MenuUtamaMember();
                 }else{
                      JOptionPane.showMessageDialog(null,"Failed to Delete!");
@@ -77,8 +78,9 @@ public class PembatalanTiketScreen implements ActionListener {
             }else{
                 JOptionPane.showMessageDialog(null,"ID Order Tidak Ditemukan!");
             }
-        }else if(e.getActionCommand().equals("BACK")){
+        }else if(e.getActionCommand().equals("Back")){
             new MenuUtamaMember();
+            frame.dispose();
         }
     }
     

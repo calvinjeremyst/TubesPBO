@@ -13,11 +13,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
 import model.ListOrder;
+import model.Member;
 import model.TransaksiPembayaran;
+import model.UserManager;
 
 /**
  *
@@ -33,6 +34,7 @@ public class PembayaranTiketScreen implements ActionListener {
     TampungDipilih dipilih2;
     
     public PembayaranTiketScreen(TampungDipilih dipilih) {
+        Member member = (Member) UserManager.getInstance().getUser();
         dipilih2 = dipilih;
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -88,7 +90,9 @@ public class PembayaranTiketScreen implements ActionListener {
         isiOvoLabel.setFont(new Font("Consolas", Font.PLAIN, 20));
         isiOvoLabel.setBounds(500 ,140, 250, 30);
         
-        isiOvo = new JLabel("50000");
+        String saldo = String.valueOf(member.getOvoBalance());
+        
+        isiOvo = new JLabel(saldo);
         isiOvo.setVisible(false);
         isiOvo.setFont(new Font("Consolas", Font.PLAIN, 20));
         isiOvo.setBounds(800 ,140, 250, 30);
@@ -140,6 +144,7 @@ public class PembayaranTiketScreen implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) { 
+        Member member = (Member) UserManager.getInstance().getUser();
         int banyakPenumpang = this.dipilih2.getBanyakPenumpang();
         double total = this.dipilih2.getHargaBis() + this.dipilih2.getHargaRute();
         double cashback = 0;
@@ -161,15 +166,10 @@ public class PembayaranTiketScreen implements ActionListener {
         Date tanggalPesan = new Date();
         java.sql.Date tanggalPesan2 = new java.sql.Date(tanggalPesan.getTime());
         int idRute = this.dipilih2.getIdRute();
-        String kotaAsal = this.dipilih2.getKotaAsal();
-        String kotaTujuan = this.dipilih2.getKotaTujuan();
-        java.sql.Date tanggalPergi = new java.sql.Date(this.dipilih2.getTanggalBerangkat().getTime());
-        String jam = this.dipilih2.getJamBerangkat();
-        int idBis = this.dipilih2.getIdbis();
         
         if(e.getActionCommand().equals("SUBMIT")){
             TransaksiPembayaran trk = new TransaksiPembayaran(banyakPenumpang,grandTotal,cashback,useOvo,metode,tanggalPesan2);
-            ListOrder order = new ListOrder(tanggalPesan2,idRute,kotaAsal,kotaTujuan,idBis,jam,tanggalPergi);
+            ListOrder order = new ListOrder(tanggalPesan2,member.getID_Member(),idRute);
             if(Controller.insertOrder(trk,order)){
                 JOptionPane.showMessageDialog(null,"Tiket Anda Berhasil Dipesan!"); 
                 new MenuUtamaMember();
