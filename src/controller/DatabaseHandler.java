@@ -14,7 +14,7 @@ import java.sql.DriverManager;
 import java.util.TimeZone;
 import javax.swing.JOptionPane;
 
-public class DataBaseHandler {
+public class DatabaseHandler {
     public Connection con;
     private String driver = "com.mysql.cj.jdbc.Driver";
     private String uname = "root";

@@ -27,11 +27,11 @@ import model.TransaksiPembayaran;
  * @author Hp
  */
 public class Controller {    
-    static controller.DataBaseHandler conn = new DataBaseHandler();
+    static controller.DatabaseHandler conn = new DatabaseHandler();
     
     public static boolean insertPerjalanan(DetailRute rute,ListBus list){
         conn.Connect();
-        String queryListBis = "INSERT INTO listbis(ID_Bis,tipeBis,jumlahPenumpang)"
+        String queryListBis = "INSERT INTO listbis(ID_Bis,kelasBis,jumlahPenumpang)"
                 + "VALUES(?,?,?)";
         String queryRute = "INSERT INTO rute(ID_Rute,kotaAsal,kotaTujuan,ID_Bis)"
                 + "VALUES(?,?,?,?)";
@@ -314,11 +314,14 @@ public class Controller {
     }
     
     public static boolean insertOrder(TransaksiPembayaran trk, ListOrder order){
+        TransaksiPembayaran transaksi = new TransaksiPembayaran();
         conn.Connect();
         String query = "INSERT INTO transaksi(banyakPenumpang,grandTotal,cashback,useOvo,metodePembayaran,tanggalTransaksi)"
               + "VALUES(?,?,?,?,?,?)";
-        String query2 = "INSERT INTO listorder(nama,pass,alamat,nohp)"
+        String query2 = "SELECT ID_Transaksi FROM transaksi";
+        String query3 = "INSERT INTO orders(tanggalOrder,ID_Member,ID_Rute,ID_Transaksi)"
               + "VALUES(?,?,?,?)";
+        String query4 = "UPDATE member SET ovoBalance = ovoBalance - '"+trk.getGrandTotal()+"' WHERE ID_Member = '"+order.getIdMember()+"'";
         try{
             PreparedStatement statement = conn.con.prepareStatement(query);
             statement.setInt(1,trk.getBanyakPenumpang());
@@ -330,16 +333,23 @@ public class Controller {
             statement.executeUpdate();
             statement.close();
             
-            statement = conn.con.prepareStatement(query2);
-            statement.setInt(1,order.getIdRute());
-            statement.setDate(2,order.getTanggalOrder());
-            statement.setInt(3,order.getIdBis());
-            statement.setString(4,order.getKotaAsal());
-            statement.setString(5,order.getKotaTujuan());
-            statement.setDate(6,order.getTanggalBerangkat());
-            statement.setString(7,order.getJamBerangkat());
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query2);
+            while (rs.next()) {
+                transaksi.setIdTransaksi(rs.getInt("ID_Transaksi"));
+            }
+            stmt.close();
+            
+            statement = conn.con.prepareStatement(query3);
+            statement.setDate(1,order.getTanggalOrder());
+            statement.setInt(2,order.getIdMember());
+            statement.setInt(3,order.getIdRute());
+            statement.setInt(4,transaksi.getIdTransaksi());
             statement.executeUpdate();
             statement.close();
+            
+            stmt = conn.con.createStatement();
+            stmt.executeUpdate(query4);
             return true;
         }
         catch(SQLException ex){
@@ -366,29 +376,59 @@ public class Controller {
         return cek;
     }
     
-    public static ArrayList<ListOrder> getRiwayat(Member member){
-        ArrayList<ListOrder> list = new ArrayList<>();
+    public static boolean getRiwayat(Member member,ArrayList<ListOrder> list,ArrayList<TransaksiPembayaran> list2,
+                                    ArrayList<DetailRute> list3){
+        boolean hasil = false;
         conn.Connect();
-        String query = "SELECT * FROM listorder WHERE ID_Member='" + member.getID_Member()+ "'";
+        String query = "SELECT orders.ID_Order,"
+                + "orders.tanggalOrder,"
+                + "transaksi.ID_Transaksi,"
+                + "transaksi.metodePembayaran,"
+                + "transaksi.grandTotal,"
+                + "transaksi.banyakPenumpang,"
+                + "orders.ID_Rute,"
+                + "rute.kotaAsal,"
+                + "rute.kotaTujuan,"
+                + "detailrute.jamBerangkat,"
+                + "detailrute.tanggalBerangkat,"
+                + "detailrute.hargaRute,"
+                + "detailrute.hargaBis "
+                + "FROM orders "
+                + "JOIN transaksi ON transaksi.ID_Transaksi = orders.ID_Transaksi "
+                + "JOIN rute ON rute.ID_Rute = orders.ID_Rute "
+                + "JOIN detailrute ON rute.ID_Rute = detailrute.ID_Rute "
+                + "WHERE orders.ID_Member = '" + member.getID_Member() + "'";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 ListOrder order = new ListOrder();
-                order.setIdOrder(rs.getInt("ID_Order"));
-                order.setTanggalOrder(rs.getDate("tanggalOrder"));
-                order.setIdRute(rs.getInt("ID_Rute"));
-                order.setKotaAsal(rs.getString("kotaAsal"));
-                order.setKotaTujuan(rs.getString("kotaTujuan"));
-                order.setIdBis(rs.getInt("idBis"));
-                order.setTanggalBerangkat(rs.getDate("tanggalBerangkat"));
-                order.setJamBerangkat(rs.getString("jamBerangkat"));
+                TransaksiPembayaran trk = new TransaksiPembayaran();
+                DetailRute drute = new DetailRute();
+                order.setIdOrder(rs.getInt("orders.ID_Order"));
+                order.setTanggalOrder(rs.getDate("orders.tanggalOrder"));
+                trk.setIdTransaksi(rs.getInt("transaksi.ID_Transaksi"));
+                trk.setMetodePembayaran(rs.getString("transaksi.metodePembayaran"));
+                trk.setGrandTotal(rs.getDouble("grandTotal"));
+                trk.setBanyakPenumpang(rs.getInt("transaksi.banyakPenumpang"));
+                order.setIdRute(rs.getInt("orders.ID_Rute"));
+                drute.setKotaAsal(rs.getString("rute.kotaAsal"));
+                drute.setKotaTujuan(rs.getString("rute.kotaTujuan"));
+                drute.setJamBerangkat(rs.getString("detailrute.jamBerangkat"));
+                drute.setTanggalBerangkat(rs.getDate("detailrute.tanggalBerangkat"));
+                drute.setHargaRute(rs.getDouble("detailrute.hargaRute"));
+                drute.setHargaBis(rs.getDouble("detailrute.hargaBis"));
                 list.add(order);
+                list2.add(trk);
+                list3.add(drute);
+                hasil = true;
             }
+            
         } catch (SQLException e) {
             e.printStackTrace();
+            hasil = false;
         }
-        return list;
+        return hasil;
     }
     
     public static boolean getKelasBis(int id){
@@ -412,7 +452,6 @@ public class Controller {
                         break;
                 }
             }
-            
             return (true);
             
         } catch (SQLException e) {

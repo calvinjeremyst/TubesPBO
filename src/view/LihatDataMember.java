@@ -58,11 +58,9 @@ public class LihatDataMember {
            tableModel.addRow(kolomData);
         }
         table.setModel(tableModel);
-        panel.setLayout(new BorderLayout());
         scroll = new JScrollPane(table);
         scroll.setVisible(true);
-        table.add(panel);
-        
+       
         frameMember.add(table);
         frameMember.add(scroll);
     }

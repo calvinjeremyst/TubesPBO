@@ -15,44 +15,30 @@ public class ListOrder {
     
     private int idOrder;
     private Date tanggalOrder;
+    private int idMember;
     private int idRute;
-    private String kotaAsal;
-    private String kotaTujuan;
-    private int idBis;
-    private String jamBerangkat;
-    private Date tanggalBerangkat;
+    private int idTransaksi;
     
     public ListOrder() {
         
     }
 
-    public ListOrder(int idOrder, Date tanggalOrder, int idRute) {
+    public ListOrder(int idOrder, Date tanggalOrder, int idMember, int idRute, int idTransaksi) {
         this.idOrder = idOrder;
         this.tanggalOrder = tanggalOrder;
+        this.idMember = idMember;
         this.idRute = idRute;
+        this.idTransaksi = idTransaksi;
     }
     
-    public ListOrder(int idOrder, Date tanggalOrder, int idRute, String kotaAsal, String kotaTujuan, int idBis, String jamBerangkat, Date tanggalBerangkat) {
+    public ListOrder(Date tanggalOrder, int idMember, int idRute) {
         this.idOrder = idOrder;
         this.tanggalOrder = tanggalOrder;
+        this.idMember = idMember;
         this.idRute = idRute;
-        this.kotaAsal = kotaAsal;
-        this.kotaTujuan = kotaTujuan;
-        this.idBis = idBis;
-        this.jamBerangkat = jamBerangkat;
-        this.tanggalBerangkat = tanggalBerangkat;
+        this.idTransaksi = idTransaksi;
     }
 
-    public ListOrder(Date tanggalOrder, int idRute, String kotaAsal, String kotaTujuan, int idBis, String jamBerangkat, Date tanggalBerangkat) {
-        this.tanggalOrder = tanggalOrder;
-        this.idRute = idRute;
-        this.kotaAsal = kotaAsal;
-        this.kotaTujuan = kotaTujuan;
-        this.idBis = idBis;
-        this.jamBerangkat = jamBerangkat;
-        this.tanggalBerangkat = tanggalBerangkat;
-    }
-    
     public int getIdOrder() {
         return idOrder;
     }
@@ -65,10 +51,18 @@ public class ListOrder {
         return tanggalOrder;
     }
 
-    public void setTanggalOrder(Date TanggalOrder) {
-        this.tanggalOrder = TanggalOrder;
+    public void setTanggalOrder(Date tanggalOrder) {
+        this.tanggalOrder = tanggalOrder;
     }
-    
+
+    public int getIdMember() {
+        return idMember;
+    }
+
+    public void setIdMember(int idMember) {
+        this.idMember = idMember;
+    }
+
     public int getIdRute() {
         return idRute;
     }
@@ -77,44 +71,12 @@ public class ListOrder {
         this.idRute = idRute;
     }
 
-    public String getKotaAsal() {
-        return kotaAsal;
+    public int getIdTransaksi() {
+        return idTransaksi;
     }
 
-    public void setKotaAsal(String kotaAsal) {
-        this.kotaAsal = kotaAsal;
-    }
-
-    public String getKotaTujuan() {
-        return kotaTujuan;
-    }
-
-    public void setKotaTujuan(String kotaTujuan) {
-        this.kotaTujuan = kotaTujuan;
-    }
-
-    public int getIdBis() {
-        return idBis;
-    }
-
-    public void setIdBis(int idBis) {
-        this.idBis = idBis;
-    }
-
-    public String getJamBerangkat() {
-        return jamBerangkat;
-    }
-
-    public void setJamBerangkat(String jamBerangkat) {
-        this.jamBerangkat = jamBerangkat;
-    }
-
-    public Date getTanggalBerangkat() {
-        return tanggalBerangkat;
-    }
-
-    public void setTanggalBerangkat(Date tanggalBerangkat) {
-        this.tanggalBerangkat = tanggalBerangkat;
+    public void setIdTransaksi(int idTransaksi) {
+        this.idTransaksi = idTransaksi;
     }
     
 }

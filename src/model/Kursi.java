@@ -19,8 +19,8 @@ public class Kursi extends ListOrder {
         
     }
     
-    public Kursi(String nomorKursi, int idOrder, Date tanggalOrder, Member member, int idrute) {
-        super(idOrder, tanggalOrder, idrute);
+    public Kursi(String nomorKursi, int idOrder, Date tanggalOrder, int idMember, int idrute, int idTransaksi) {
+        super(idOrder, tanggalOrder, idMember, idrute, idTransaksi);
         this.nomorKursi = nomorKursi;
     }
 
