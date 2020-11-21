@@ -13,8 +13,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.*;
+import model.Kursi;
 import model.ListOrder;
 import model.Member;
 import model.TransaksiPembayaran;
@@ -26,16 +28,19 @@ import model.UserManager;
  */
 public class PembayaranTiketScreen implements ActionListener {
     JFrame frame = new JFrame("Terminal Bis Emen");
-    JLabel judul,metode,banyakKursi,kursi,isiCCLabel,isiOvoLabel,isiOvo;
+    JLabel judul,metode,banyakKursi,lkursi,isiCCLabel,isiOvoLabel,isiOvo,total,totalHarga;
     JTextField isiCC;
     JRadioButton credit,ovo;
-    JButton bayar,back;
+    JButton bayar;
     ButtonGroup bg;
-    TampungDipilih dipilih2;
+    TampungDipilih dipilih2 = new TampungDipilih();
+    ArrayList<Kursi> kursi2 = new ArrayList<>();
     
-    public PembayaranTiketScreen(TampungDipilih dipilih) {
+    public PembayaranTiketScreen(TampungDipilih dipilih, ArrayList<Kursi> kursi) {
         Member member = (Member) UserManager.getInstance().getUser();
         dipilih2 = dipilih;
+        kursi2 = kursi;
+        
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
@@ -53,11 +58,22 @@ public class PembayaranTiketScreen implements ActionListener {
         
         banyakKursi = new JLabel("Banyak Penumpang : ");
         banyakKursi.setFont(new Font("Consolas", Font.PLAIN, 20));
-        banyakKursi.setBounds(20, 210, 250, 50);
+        banyakKursi.setBounds(20, 250, 250, 50);
         
-        kursi = new JLabel(Integer.toString(dipilih.getBanyakPenumpang()));
-        kursi.setFont(new Font("Consolas", Font.PLAIN, 20));
-        kursi.setBounds(270, 210, 250, 50);
+        lkursi = new JLabel(Integer.toString(dipilih.getBanyakPenumpang()));
+        lkursi.setFont(new Font("Consolas", Font.PLAIN, 20));
+        lkursi.setBounds(270, 250, 250, 50);
+        
+        total = new JLabel("Total Harga : ");
+        total.setFont(new Font("Consolas", Font.PLAIN, 20));
+        total.setBounds(20, 310, 250, 50);
+        
+        totalHarga = new JLabel();
+        totalHarga.setFont(new Font("Consolas", Font.PLAIN, 20));
+        totalHarga.setBounds(240,320,135,30);
+        double harga = dipilih.getHargaRute() + dipilih.getHargaBis();
+        totalHarga.setText(Double.toString(harga));
+        frame.add(totalHarga);
         
         isiCCLabel = new JLabel("Nomor Credit Card");
         isiCCLabel.setVisible(false);
@@ -121,16 +137,11 @@ public class PembayaranTiketScreen implements ActionListener {
         bayar.addActionListener(this);
         bayar.setFont(new Font("Consolas", Font.PLAIN, 24));
         
-        back = new JButton("BACK");
-        back.setBounds(700, 500, 250, 30);
-        back.setEnabled(true);
-        back.addActionListener(this);
-        back.setFont(new Font("Consolas", Font.PLAIN, 24));
-        
         frame.add(judul);
         frame.add(metode);
         frame.add(banyakKursi);
-        frame.add(kursi);
+        frame.add(total);
+        frame.add(lkursi);
         frame.add(credit);
         frame.add(isiCCLabel);
         frame.add(isiCC);
@@ -138,8 +149,6 @@ public class PembayaranTiketScreen implements ActionListener {
         frame.add(isiOvo);
         frame.add(ovo);
         frame.add(bayar);
-        frame.add(back);
-        
     }
     
     @Override
@@ -170,14 +179,44 @@ public class PembayaranTiketScreen implements ActionListener {
         if(e.getActionCommand().equals("SUBMIT")){
             TransaksiPembayaran trk = new TransaksiPembayaran(banyakPenumpang,grandTotal,cashback,useOvo,metode,tanggalPesan2);
             ListOrder order = new ListOrder(tanggalPesan2,member.getID_Member(),idRute);
-            if(Controller.insertOrder(trk,order)){
-                JOptionPane.showMessageDialog(null,"Tiket Anda Berhasil Dipesan!"); 
-                new MenuUtamaMember();
-                frame.dispose();
+            if(metode.equals("OVO")){
+                if(member.getOvoBalance() < total){
+                    JOptionPane.showMessageDialog(null,"Saldo OVO anda tidak cukup!");
+                }else{
+                    if(Controller.insertOrderOVO(trk,order)){
+                        for(int i=0; i<kursi2.size(); i++){
+                            if(Controller.insertKursi(kursi2.get(i).getNomorKursi(), order)){
+                                JOptionPane.showMessageDialog(null,"Kursi " + kursi2.get(i).getNomorKursi() + " Berhasil Dipesan!");
+                            }else{
+                                JOptionPane.showMessageDialog(null, "Kursi Gagal Dipesan!");
+                            }
+                        }
+                        JOptionPane.showMessageDialog(null,"Tiket Anda Berhasil Dipesan!"); 
+                        new MenuUtamaMember();
+                        frame.dispose();
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Tiket Anda Gagal Dipesan!"); 
+                        new MenuUtamaMember();
+                        frame.dispose();
+                    }
+                }
             }else{
-                JOptionPane.showMessageDialog(null,"Tiket Anda Gagal Dipesan!"); 
-                new MenuUtamaMember();
-                frame.dispose();
+                if(Controller.insertOrderCC(trk,order)){
+                    for(int i=0; i<kursi2.size(); i++){
+                        if(Controller.insertKursi(kursi2.get(i).getNomorKursi(), order)){
+                            JOptionPane.showMessageDialog(null,"Kursi " + kursi2.get(i).getNomorKursi() + " Berhasil Dipesan!");
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Kursi Gagal Dipesan!");
+                        }
+                    }
+                    JOptionPane.showMessageDialog(null,"Tiket Anda Berhasil Dipesan!"); 
+                    new MenuUtamaMember();
+                    frame.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null,"Tiket Anda Gagal Dipesan!"); 
+                    new MenuUtamaMember();
+                    frame.dispose();
+                }
             }
         }
     }

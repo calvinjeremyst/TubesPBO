@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * @author user
  */
 public class HasilPencarianMemberScreen implements ActionListener {
-    JLabel judul, LlistPerjalanan, header;
+    JLabel judul, LlistPerjalanan;
     JFrame frame = new JFrame("Terminal Bis Emen");
     JButton pesan,back;
     ArrayList<JLabel> listPerjalanan = new ArrayList<>();
@@ -31,7 +31,9 @@ public class HasilPencarianMemberScreen implements ActionListener {
     ArrayList<DetailRute> drutes = new ArrayList<>();
     String rute = "";
     JTable jt;
-     
+    JScrollPane js;
+    DefaultTableModel model = new DefaultTableModel();
+    
     public HasilPencarianMemberScreen(ArrayList<DetailRute> drute) {
         drutes = drute;
         frame.getContentPane().setBackground(Color.WHITE);
@@ -49,44 +51,18 @@ public class HasilPencarianMemberScreen implements ActionListener {
         LlistPerjalanan.setFont(new Font("Consolas", Font.PLAIN, 20));
         LlistPerjalanan.setBounds(20, 110, 200, 50);
         
-        header = new JLabel("ID Rute");
-        header.setFont(new Font("Consolas", Font.PLAIN, 20));
-        header.setBounds(270, 110, 250, 50);
-        
         jt = new JTable();
-        jt.setBounds(270,150,700,50);
-        DefaultTableModel model = new DefaultTableModel();
-        Object[] namaKolom = new Object[8];
-        namaKolom[0] = "ID Rute";
-        namaKolom[1] = "Kota Asal";
-        namaKolom[2] = "Kota Tujuan";
-        namaKolom[3] = "ID Bis";
-        namaKolom[4] = "Jam Berangkat";
-        namaKolom[5] = "Tanggal Berangkat";
-        namaKolom[6] = "Harga Bis";
-        namaKolom[7] = "Harga Rute";
-        model.setColumnIdentifiers(namaKolom);
-        Object[] dataKolom = new Object[8];
-        
-        for (int i = 0; i < drute.size(); i++) {
-            dataKolom[0] = drute.get(i).getIdRute();
-            dataKolom[1] = drute.get(i).getKotaAsal();
-            dataKolom[2] = drute.get(i).getKotaTujuan();
-            dataKolom[3] = drute.get(i).getIdbis();
-            dataKolom[4] = drute.get(i).getJamBerangkat();
-            dataKolom[5] = drute.get(i).getTanggalBerangkat();
-            dataKolom[6] = drute.get(i).getHargaBis();
-            dataKolom[7] = drute.get(i).getHargaRute();
-            model.addRow(dataKolom);
-            
-            listTombol.add(new JRadioButton());
-            listTombol.get(i).setBounds(900,tinggiRadio,20,20);
-            buttonGroup.add(listTombol.get(i));
-            frame.add(listTombol.get(i));
-            tinggiRadio += 40;
-        }  
+        String headers[] = {"ID Rute","Kota Asal","Kota Tujuan","ID Bis","Jam Berangkat","Tanggal Berangkat","Harga Bis","Harga Rute"};
+        model.setColumnIdentifiers(headers);
         jt.setModel(model);
-      
+        js = new JScrollPane(jt);
+        
+        insert();
+        
+        js.setBounds(270,130,700,300);
+        js.setVisible(true);
+        frame.add(js);
+        
         pesan = new JButton("PESAN");
         pesan.setBounds(400, 500, 250, 30);
         pesan.setEnabled(true);
@@ -101,8 +77,6 @@ public class HasilPencarianMemberScreen implements ActionListener {
         
         frame.add(judul);
         frame.add(LlistPerjalanan);
-        frame.add(jt);
-        frame.add(header);
         frame.add(pesan);
         frame.add(back);
         
@@ -116,6 +90,20 @@ public class HasilPencarianMemberScreen implements ActionListener {
             new PencarianRuteScreen();
             frame.dispose();
         }
+    }
+    
+    public void insert(){
+        for (int i = 0; i < drutes.size(); i++) {
+            model.addRow(new Object[]{drutes.get(i).getIdRute(),drutes.get(i).getKotaAsal(),drutes.get(i).getKotaTujuan(),
+                                        drutes.get(i).getIdbis(),drutes.get(i).getJamBerangkat(),drutes.get(i).getTanggalBerangkat(),
+                                        drutes.get(i).getHargaBis(),drutes.get(i).getHargaRute()
+                                     });
+            listTombol.add(new JRadioButton());
+            listTombol.get(i).setBounds(975,tinggiRadio,20,15);
+            buttonGroup.add(listTombol.get(i));
+            frame.add(listTombol.get(i));
+            tinggiRadio += 17;
+        }  
     }
     
     public void cekPilihan(){
@@ -136,7 +124,7 @@ public class HasilPencarianMemberScreen implements ActionListener {
         }
         
         if(pilihan){
-             new PemilihanKursi(dipilih); 
+            new PemilihanKursi(dipilih); 
             frame.dispose();
         }else{
             JOptionPane.showMessageDialog(null,"Silahkan Pilih Rute!");

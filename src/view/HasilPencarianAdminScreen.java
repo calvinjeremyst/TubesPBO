@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,63 +26,61 @@ import javax.swing.table.DefaultTableModel;
 public class HasilPencarianAdminScreen implements ActionListener{
     JLabel judul;
     JFrame framehasilCari = new JFrame("Terminal Bis Emen");
-    JLabel[] hasilPerjalanan = new JLabel[5];
-    JButton back = new JButton();
+    JButton back;
     JTable jt;
-    int x = 150;
+    JScrollPane js;
+    DefaultTableModel model = new DefaultTableModel();
+    ArrayList<DetailRute> drute2 = new ArrayList<>();
     
     public HasilPencarianAdminScreen(ArrayList<DetailRute> drute){
+        drute2 = drute;
         framehasilCari.setExtendedState(JFrame.MAXIMIZED_BOTH);
         framehasilCari.getContentPane().setBackground(Color.WHITE);
         framehasilCari.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         framehasilCari.setLocationRelativeTo(null);
         framehasilCari.setVisible(true);
-        framehasilCari.setLayout(null);
+        framehasilCari.setLayout(null); 
         
-        judul = new JLabel("Hasil Pencarian Rute");
-        back = new JButton("Back");
+        judul = new JLabel("Hasil Pencarian Rute Admin");
         judul.setFont(new Font("Consolas", Font.PLAIN, 32));
-        judul.setBounds(400, 20, 600, 100);
+        judul.setBounds(450, 20, 600, 100);
         
         jt = new JTable();
-        jt.setBounds(270,150,500,500);
-        DefaultTableModel model = new DefaultTableModel();
-        Object[] namaKolom = new Object[8];
-        namaKolom[0] = "ID Rute";
-        namaKolom[1] = "Kota Asal";
-        namaKolom[2] = "Kota Tujuan";
-        namaKolom[3] = "ID Bis";
-        namaKolom[4] = "Jam Berangkat";
-        namaKolom[5] = "Tanggal Berangkat";
-        namaKolom[6] = "Harga Bis";
-        namaKolom[7] = "Harga Rute";
-        model.setColumnIdentifiers(namaKolom);
-        Object[] dataKolom = new Object[8];
-        
-        for (int i = 0; i < drute.size(); i++) {
-            dataKolom[0] = drute.get(i).getIdRute();
-            dataKolom[1] = drute.get(i).getKotaAsal();
-            dataKolom[2] = drute.get(i).getKotaTujuan();
-            dataKolom[3] = drute.get(i).getIdbis();
-            dataKolom[4] = drute.get(i).getJamBerangkat();
-            dataKolom[5] = drute.get(i).getTanggalBerangkat();
-            dataKolom[6] = drute.get(i).getHargaBis();
-            dataKolom[7] = drute.get(i).getHargaRute();
-            model.addRow(dataKolom);
-        }
+        String headers[] = {"ID Rute","Kota Asal","Kota Tujuan","ID Bis","Jam Berangkat","Tanggal Berangkat","Harga Bis","Harga Rute"};
+        model.setColumnIdentifiers(headers);
         jt.setModel(model);
-        back.setBounds(700,800,100,30);
+        js = new JScrollPane(jt);
+        
+        insert();
+        
+        js.setBounds(340,130,700,300);
+        js.setVisible(true);
+        framehasilCari.add(js);
+        
+        back = new JButton("Back");
+        back.setBounds(550, 500, 250, 30);
         back.setEnabled(true);
         back.addActionListener(this);
+        back.setFont(new Font("Consolas", Font.PLAIN, 24));
+        
         framehasilCari.add(judul);
-        framehasilCari.add(jt);
         framehasilCari.add(back);
+    }
+    
+    public void insert(){
+        for (int i = 0; i < drute2.size(); i++) {
+            model.addRow(new Object[]{drute2.get(i).getIdRute(),drute2.get(i).getKotaAsal(),drute2.get(i).getKotaTujuan(),
+                                        drute2.get(i).getIdbis(),drute2.get(i).getJamBerangkat(),drute2.get(i).getTanggalBerangkat(),
+                                        drute2.get(i).getHargaBis(),drute2.get(i).getHargaRute()
+                                     });
+        }  
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
        if(e.getActionCommand().equals("Back")){
            new MenuUtamaAdmin();
+           framehasilCari.dispose();
        }
     }
 }

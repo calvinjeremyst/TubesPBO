@@ -10,7 +10,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import model.Kursi;
 
 /**
  *
@@ -18,13 +21,16 @@ import javax.swing.*;
  */
 public class SummaryScreen implements ActionListener {
     JFrame frame = new JFrame("Terminal Bis Emen");
-    JLabel judul,pilihan,penumpang;
-    JLabel hasil = new JLabel();
-    JLabel banyak2 = new JLabel();
+    JLabel judul,pilihan,penumpang,banyak2,total,totalHarga;
     JButton bayar,back;
+    JTable jt;
+    JScrollPane js;
+    DefaultTableModel model = new DefaultTableModel();
     TampungDipilih dipilih2 = new TampungDipilih();
+    ArrayList<Kursi> kursi2;
  
-    public SummaryScreen(TampungDipilih dipilih) {
+    public SummaryScreen(TampungDipilih dipilih, ArrayList<Kursi> kursi) {
+        kursi2 = kursi;
         dipilih2 = dipilih;
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -41,19 +47,38 @@ public class SummaryScreen implements ActionListener {
         pilihan.setFont(new Font("Consolas", Font.PLAIN, 20));
         pilihan.setBounds(20, 110, 250, 50);
         
-        penumpang = new JLabel("Banyak Penumpang");
+        penumpang = new JLabel("Banyak Penumpang : ");
         penumpang.setFont(new Font("Consolas", Font.PLAIN, 20));
-        penumpang.setBounds(850, 110, 250, 50);
+        penumpang.setBounds(20, 210, 250, 50);
         
         banyak2 = new JLabel();
         banyak2.setFont(new Font("Consolas", Font.PLAIN, 20));
-        banyak2.setBounds(930,155,135,30);
+        banyak2.setBounds(240,220,135,30);
         banyak2.setText(Integer.toString(dipilih.getBanyakPenumpang()));
         frame.add(banyak2);
         
-        hasil = new JLabel(dipilih.toString());
-        hasil.setFont(new Font("Consolas", Font.PLAIN, 18));
-        hasil.setBounds(270,150,700, 50);
+        total = new JLabel("Total Harga : ");
+        total.setFont(new Font("Consolas", Font.PLAIN, 20));
+        total.setBounds(20, 310, 250, 50);
+        
+        totalHarga = new JLabel();
+        totalHarga.setFont(new Font("Consolas", Font.PLAIN, 20));
+        totalHarga.setBounds(240,320,135,30);
+        double harga = dipilih.getHargaRute() + dipilih.getHargaBis();
+        totalHarga.setText(Double.toString(harga));
+        frame.add(totalHarga);
+        
+        jt = new JTable();
+        String headers[] = {"ID Rute","Kota Asal","Kota Tujuan","ID Bis","Jam Berangkat","Tanggal Berangkat","Harga Bis","Harga Rute"};
+        model.setColumnIdentifiers(headers);
+        jt.setModel(model);
+        js = new JScrollPane(jt);
+        
+        insert();
+        
+        js.setBounds(270,130,700,50);
+        js.setVisible(true);
+        frame.add(js);
         
         bayar = new JButton("Pembayaran");
         bayar.setBounds(380, 420, 300, 30);
@@ -70,15 +95,22 @@ public class SummaryScreen implements ActionListener {
         frame.add(judul);
         frame.add(pilihan);
         frame.add(penumpang);
-        frame.add(hasil);
         frame.add(bayar);
+        frame.add(total);
         frame.add(back);
+    }
+    
+    public void insert(){
+        model.addRow(new Object[]{dipilih2.getIdRute(),dipilih2.getKotaAsal(),dipilih2.getKotaTujuan(),
+                                    dipilih2.getIdbis(),dipilih2.getJamBerangkat(),dipilih2.getTanggalBerangkat(),
+                                    dipilih2.getHargaBis(),dipilih2.getHargaRute()
+                                  });
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Pembayaran")){
-            new PembayaranTiketScreen(dipilih2); 
+            new PembayaranTiketScreen(dipilih2,kursi2); 
             frame.dispose();
         }else if(e.getActionCommand().equals("Back to Main Menu")){
             new MenuUtamaMember();

@@ -163,7 +163,7 @@ public class AddRuteScreen implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e){
-        int ID_Rute = Integer.parseInt(idRuteText.getText());
+        int ID_Rute = Integer.parseInt(this.idRuteText.getText());
         String kotaAsal = kotaAsalText.getText();
         Date tgl = null;
         try{
@@ -191,31 +191,39 @@ public class AddRuteScreen implements ActionListener {
                 || jam.length() == 0 || kelasBis == 0 || ID_Bis == 0 || hargaRute == 0 || hargaBis == 0){
                 JOptionPane.showMessageDialog(null, "Input all the data ", "Alert", JOptionPane.WARNING_MESSAGE);
             }else{
-                DetailRute Detailrute = new DetailRute();
-                ListBus list = new ListBus();
-                list.setIdBis(ID_Bis);
-                if(kelasBis == 1){
-                    list.setKelas(EnumBis.VIP);
-                }else if(kelasBis == 2){
-                    list.setKelas(EnumBis.REGULER);
-                }else if(kelasBis == 3){
-                    list.setKelas(EnumBis.EKONOMI);
-                }
-                list.setJumlahKapasitas(jumlahMuatan);
-                Detailrute.setIdRute(ID_Rute);
-                Detailrute.setIdbis(ID_Bis);
-                Detailrute.setKotaAsal(kotaAsal);
-                Detailrute.setKotaTujuan(kotaTujuan); 
-                Detailrute.setHargaBis(hargaBis);
-                Detailrute.setHargaRute(hargaRute);
-                Detailrute.setJamBerangkat(jam);
-                Detailrute.setTanggalBerangkat(tgl);
-                if(Controller.insertPerjalanan(Detailrute, list)){
-                    JOptionPane.showMessageDialog(null, "Rute berhasil ditambahkan !");
-                    new MenuUtamaAdmin();
-                    frameRute.dispose();   
-                }else{   
-                    JOptionPane.showMessageDialog(null, "Data can't be inserted!", "Alert", JOptionPane.WARNING_MESSAGE);
+                if(Controller.cekIdBis(ID_Bis)){
+                    JOptionPane.showMessageDialog(null,"ID Bis Sudah Ada!");
+                }else{
+                    if(Controller.cekRute(ID_Rute)){
+                        JOptionPane.showMessageDialog(null,"ID Rute Sudah Ada!");
+                    }else{    
+                        DetailRute Detailrute = new DetailRute();
+                        ListBus list = new ListBus();
+                        list.setIdBis(ID_Bis);
+                        if(kelasBis == 1){
+                            list.setKelas(EnumBis.VIP);
+                        }else if(kelasBis == 2){
+                            list.setKelas(EnumBis.REGULER);
+                        }else if(kelasBis == 3){
+                            list.setKelas(EnumBis.EKONOMI);
+                        }
+                        list.setJumlahKapasitas(jumlahMuatan);
+                        Detailrute.setIdRute(ID_Rute);
+                        Detailrute.setIdbis(ID_Bis);
+                        Detailrute.setKotaAsal(kotaAsal);
+                        Detailrute.setKotaTujuan(kotaTujuan); 
+                        Detailrute.setHargaBis(hargaBis);
+                        Detailrute.setHargaRute(hargaRute);
+                        Detailrute.setJamBerangkat(jam);
+                        Detailrute.setTanggalBerangkat(tgl);
+                        if(Controller.insertPerjalanan(Detailrute, list)){
+                            JOptionPane.showMessageDialog(null, "Rute berhasil ditambahkan !");
+                            new MenuUtamaAdmin();
+                            frameRute.dispose(); 
+                        }else{   
+                            JOptionPane.showMessageDialog(null, "Data can't be inserted!", "Alert", JOptionPane.WARNING_MESSAGE);
+                        }
+                    }
                 }
             }  
         } 

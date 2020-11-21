@@ -76,7 +76,7 @@ public class PembatalanTiketScreen implements ActionListener {
                      JOptionPane.showMessageDialog(null,"Failed to Delete!");
                 }
             }else{
-                JOptionPane.showMessageDialog(null,"ID Order Tidak Ditemukan!");
+                JOptionPane.showMessageDialog(null,"ID Order Tidak Ditemukan!","Alert!",JOptionPane.WARNING_MESSAGE);
             }
         }else if(e.getActionCommand().equals("Back")){
             new MenuUtamaMember();

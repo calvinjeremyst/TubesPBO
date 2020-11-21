@@ -21,7 +21,6 @@ import view.Helper.*;
  */
 public class TopupOVO implements ActionListener {
     static JFrame frameOVO,frameTopUp,frameMember;
-    JLayeredPane layerLogo,layerBack,layerTable;
     JLabel logo,salam,lcomboNominal,lcomboMetode;
     JButton buttonBack,buttonTopUp,buttonHistory,buttonKonfirmasi;
     JPanel panel;
@@ -44,33 +43,28 @@ public class TopupOVO implements ActionListener {
         
         //logo
         logo = new JLabel("OVO");
-        logo.setBounds(0,0,300,50);
+        logo.setBounds(565,180,300,150);
         logo.setFont(FontStyle.logo);
         logo.setForeground(Color.white);
-        layerLogo = new JLayeredPane();
-        layerLogo.add(logo);
-        layerLogo.setBounds(0,0,300,50);
         
         salam = new JLabel("Hi, " + mem.getUsername());
-        salam.setBounds(950,10,400,50);
-        salam.setFont(FontStyle.small);
+        salam.setBounds(630,110,300,50);
+        salam.setFont(FontStyle.medium);
         salam.setForeground(Color.white);
        
         buttonHistory = new JButton("Riwayat");
-        buttonHistory.setBounds(600,100,600,50);
+        buttonHistory.setBounds(700,450,300,50);
         buttonHistory.setFont(FontStyle.medium);
         buttonHistory.addActionListener(this);
         
         buttonTopUp = new JButton("Top Up");
-        buttonTopUp.setBounds(200,450,200,50);
-        buttonTopUp.setFont(FontStyle.large);
-        buttonTopUp.setForeground(Color.black);
+        buttonTopUp.setBounds(350,450,300,50);
+        buttonTopUp.setFont(FontStyle.medium);
         buttonTopUp.addActionListener(this);
         
         buttonBack = new JButton("Back");
-        buttonBack.setBounds(300,550,200,50);
-        buttonBack.setFont(FontStyle.large);
-        buttonBack.setForeground(Color.black);
+        buttonBack.setBounds(520,550,300,50);
+        buttonBack.setFont(FontStyle.medium);
         buttonBack.addActionListener(this);
        
         //button buttonTopUp
@@ -91,7 +85,8 @@ public class TopupOVO implements ActionListener {
         comboMetode = new JComboBox(arrayMetode);
         comboMetode.setBounds(320,145,100,30);
         buttonKonfirmasi = new JButton("Konfirmasi");
-        buttonKonfirmasi.setBounds(200,250,100,50);
+        buttonKonfirmasi.setFont(FontStyle.medium);
+        buttonKonfirmasi.setBounds(100,250,300,50);
         buttonKonfirmasi.addActionListener(this);
 
         //lihat riwayatTopUp
@@ -122,7 +117,7 @@ public class TopupOVO implements ActionListener {
         
         frameOVO.add(buttonHistory);
         frameOVO.add(salam);
-        frameOVO.add(layerLogo);
+        frameOVO.add(logo);
         frameOVO.add(buttonTopUp);
         frameOVO.add(buttonBack);
         frameOVO.add(sp);
@@ -152,6 +147,8 @@ public class TopupOVO implements ActionListener {
             String comboMetodeOVO = (String) this.comboMetode.getSelectedItem();
             if(Controller.topUp(jmlNominal,comboMetodeOVO)){
                 JOptionPane.showMessageDialog(null,"Selamat TopUp Anda Berhasil !");
+                new TopupOVO();
+                frameTopUp.dispose();
             }else{
                  JOptionPane.showMessageDialog(null,"Mohon Maaf Pembayaran Anda Tidak Dapat Diproses !");
             }
