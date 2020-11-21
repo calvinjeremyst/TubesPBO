@@ -169,7 +169,7 @@ public class Controller {
     
     public static boolean cekTiket(int id) {
         conn.Connect();
-        String query = "SELECT * FROM listorder WHERE ID_Order='" + id + "'";
+        String query = "SELECT * FROM orders WHERE ID_Order='" + id + "'";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -185,7 +185,7 @@ public class Controller {
     
     public static boolean deleteTiket(int id) {
         conn.Connect();
-        String query = "DELETE FROM listorder WHERE ID_Order='" + id + "'";
+        String query = "DELETE FROM orders WHERE ID_Order='" + id + "'";
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
@@ -313,7 +313,23 @@ public class Controller {
         
     }
     
-    public static boolean insertOrder(TransaksiPembayaran trk, ListOrder order){
+    public static boolean insertKursi(String nomor, ListOrder order) {
+        conn.Connect();
+        String query = "INSERT INTO kursi (nomorKursi,ID_Order) VALUES(?,?)";
+        try{
+            PreparedStatement statement = conn.con.prepareStatement(query);
+            statement.setString(1,nomor);
+            statement.setInt(2,order.getIdOrder());
+            statement.executeUpdate();
+            return true;    
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+            return false;
+        }    
+    }
+    
+    public static boolean insertOrderOVO(TransaksiPembayaran trk, ListOrder order){
         TransaksiPembayaran transaksi = new TransaksiPembayaran();
         conn.Connect();
         String query = "INSERT INTO transaksi(banyakPenumpang,grandTotal,cashback,useOvo,metodePembayaran,tanggalTransaksi)"
@@ -321,7 +337,9 @@ public class Controller {
         String query2 = "SELECT ID_Transaksi FROM transaksi";
         String query3 = "INSERT INTO orders(tanggalOrder,ID_Member,ID_Rute,ID_Transaksi)"
               + "VALUES(?,?,?,?)";
-        String query4 = "UPDATE member SET ovoBalance = ovoBalance - '"+trk.getGrandTotal()+"' WHERE ID_Member = '"+order.getIdMember()+"'";
+        String query4 = "SELECT ID_Order FROM orders";
+        String query5 = "UPDATE member SET ovoBalance = ovoBalance - '" + trk.getGrandTotal() + "' WHERE ID_Member = '" + order.getIdMember() + "'";
+        
         try{
             PreparedStatement statement = conn.con.prepareStatement(query);
             statement.setInt(1,trk.getBanyakPenumpang());
@@ -349,10 +367,68 @@ public class Controller {
             statement.close();
             
             stmt = conn.con.createStatement();
-            stmt.executeUpdate(query4);
+            rs = stmt.executeQuery(query4);
+            while(rs.next()){
+                order.setIdOrder(rs.getInt("ID_Order"));
+            }
+            stmt.close();
+            
+            stmt = conn.con.createStatement();
+            stmt.executeUpdate(query5);
+            stmt.close();
             return true;
+           
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            return false;
         }
-        catch(SQLException ex){
+    }
+    
+    public static boolean insertOrderCC(TransaksiPembayaran trk, ListOrder order){
+        TransaksiPembayaran transaksi = new TransaksiPembayaran();
+        conn.Connect();
+        String query = "INSERT INTO transaksi(banyakPenumpang,grandTotal,cashback,useOvo,metodePembayaran,tanggalTransaksi)"
+              + "VALUES(?,?,?,?,?,?)";
+        String query2 = "SELECT ID_Transaksi FROM transaksi";
+        String query3 = "INSERT INTO orders(tanggalOrder,ID_Member,ID_Rute,ID_Transaksi)"
+              + "VALUES(?,?,?,?)";
+        String query4 = "SELECT ID_Order FROM orders";
+        
+        try{
+            PreparedStatement statement = conn.con.prepareStatement(query);
+            statement.setInt(1,trk.getBanyakPenumpang());
+            statement.setDouble(2,trk.getGrandTotal());
+            statement.setDouble(3,trk.getCashBack());
+            statement.setInt(4,trk.getUseOVO());
+            statement.setString(5,trk.getMetodePembayaran());
+            statement.setDate(6,trk.getTanggalTransaksi());
+            statement.executeUpdate();
+            statement.close();
+            
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query2);
+            while (rs.next()) {
+                transaksi.setIdTransaksi(rs.getInt("ID_Transaksi"));
+            }
+            stmt.close();
+            
+            statement = conn.con.prepareStatement(query3);
+            statement.setDate(1,order.getTanggalOrder());
+            statement.setInt(2,order.getIdMember());
+            statement.setInt(3,order.getIdRute());
+            statement.setInt(4,transaksi.getIdTransaksi());
+            statement.executeUpdate();
+            statement.close();
+            
+            stmt = conn.con.createStatement();
+            rs = stmt.executeQuery(query4);
+            while(rs.next()){
+                order.setIdOrder(rs.getInt("ID_Order"));
+            }
+            stmt.close();
+            return true;
+           
+        }catch(SQLException ex){
             ex.printStackTrace();
             return false;
         }
@@ -372,6 +448,45 @@ public class Controller {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        return cek;
+    }
+    
+    public static boolean cekRute(int id){
+        conn.Connect();
+        String query = "SELECT ID_Rute FROM rute WHERE ID_Rute = '"+id+"'";
+        boolean cek = false;
+        try{
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                if(rs.getInt("ID_Rute") ==id){
+                    cek = true;
+                }
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            cek = false;
+        }
+        return cek;
+    }
+    
+    public static boolean cekIdBis(int idBis){
+        conn.Connect();
+        String query = "SELECT ID_Bis FROM listbis WHERE ID_Bis = '"+idBis+"'";
+        boolean cek = false;
+        try{
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                if(rs.getInt("ID_Bis") == idBis){
+                    cek =true;
+                }
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            cek = false;
+
         }
         return cek;
     }
@@ -396,8 +511,10 @@ public class Controller {
                 + "FROM orders "
                 + "JOIN transaksi ON transaksi.ID_Transaksi = orders.ID_Transaksi "
                 + "JOIN rute ON rute.ID_Rute = orders.ID_Rute "
-                + "JOIN detailrute ON rute.ID_Rute = detailrute.ID_Rute "
-                + "WHERE orders.ID_Member = '" + member.getID_Member() + "'";
+                + "JOIN detailrute ON detailrute.ID_Rute = orders.ID_Rute "
+                + "JOIN member ON member.ID_Member = orders.ID_Member "
+                + "WHERE orders.ID_Member = '" + member.getID_Member() + "'"
+                + "ORDER BY ID_Order ASC";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -405,19 +522,19 @@ public class Controller {
                 ListOrder order = new ListOrder();
                 TransaksiPembayaran trk = new TransaksiPembayaran();
                 DetailRute drute = new DetailRute();
-                order.setIdOrder(rs.getInt("orders.ID_Order"));
-                order.setTanggalOrder(rs.getDate("orders.tanggalOrder"));
-                trk.setIdTransaksi(rs.getInt("transaksi.ID_Transaksi"));
-                trk.setMetodePembayaran(rs.getString("transaksi.metodePembayaran"));
+                order.setIdOrder(rs.getInt("ID_Order"));
+                order.setTanggalOrder(rs.getDate("tanggalOrder"));
+                trk.setIdTransaksi(rs.getInt("ID_Transaksi"));
+                trk.setMetodePembayaran(rs.getString("metodePembayaran"));
                 trk.setGrandTotal(rs.getDouble("grandTotal"));
-                trk.setBanyakPenumpang(rs.getInt("transaksi.banyakPenumpang"));
-                order.setIdRute(rs.getInt("orders.ID_Rute"));
-                drute.setKotaAsal(rs.getString("rute.kotaAsal"));
-                drute.setKotaTujuan(rs.getString("rute.kotaTujuan"));
-                drute.setJamBerangkat(rs.getString("detailrute.jamBerangkat"));
-                drute.setTanggalBerangkat(rs.getDate("detailrute.tanggalBerangkat"));
-                drute.setHargaRute(rs.getDouble("detailrute.hargaRute"));
-                drute.setHargaBis(rs.getDouble("detailrute.hargaBis"));
+                trk.setBanyakPenumpang(rs.getInt("banyakPenumpang"));
+                order.setIdRute(rs.getInt("ID_Rute"));
+                drute.setKotaAsal(rs.getString("kotaAsal"));
+                drute.setKotaTujuan(rs.getString("kotaTujuan"));
+                drute.setJamBerangkat(rs.getString("jamBerangkat"));
+                drute.setTanggalBerangkat(rs.getDate("tanggalBerangkat"));
+                drute.setHargaRute(rs.getDouble("hargaRute"));
+                drute.setHargaBis(rs.getDouble("hargaBis"));
                 list.add(order);
                 list2.add(trk);
                 list3.add(drute);
@@ -431,7 +548,7 @@ public class Controller {
         return hasil;
     }
     
-    public static boolean getKelasBis(int id){
+    public static ListBus getKelasBis(int id){
         ListBus bus = new ListBus();
         conn.Connect();
         String query = "SELECT kelasBis FROM listbis WHERE ID_Bis='" + id + "'";
@@ -439,25 +556,23 @@ public class Controller {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                int kelas = rs.getInt("kelasBis");
+                String kelas = rs.getString("kelasBis");
                 switch (kelas) {
-                    case 1:
+                    case "VIP":
                         bus.setKelas(EnumBis.VIP);
                         break;
-                    case 2:
+                    case "Reguler":
                         bus.setKelas(EnumBis.REGULER);
                         break;
-                    case 3:
+                    case "Ekonomi":
                         bus.setKelas(EnumBis.EKONOMI);
                         break;
                 }
             }
-            return (true);
-            
         } catch (SQLException e) {
             e.printStackTrace();
-            return (false);
         }
+        return bus;
     }
     
     public static User getUser(String username, String password) {
