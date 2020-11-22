@@ -32,11 +32,9 @@ public class ListOrder {
     }
     
     public ListOrder(Date tanggalOrder, int idMember, int idRute) {
-        this.idOrder = idOrder;
         this.tanggalOrder = tanggalOrder;
         this.idMember = idMember;
         this.idRute = idRute;
-        this.idTransaksi = idTransaksi;
     }
 
     public int getIdOrder() {
