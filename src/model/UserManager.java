@@ -7,29 +7,27 @@ package model;
 
 /**
  *
- * @author lenovo
+ * @author user
  */
 public class UserManager {
-    
+
     private static UserManager instance;
-    private Member mem;
-    
-    public static UserManager getInstance(){
-    
-        if(instance == null){
+    private  User person;
+
+    public static UserManager getInstance() {
+        if (instance == null) {
             instance = new UserManager();
-        
         }
         return instance;
     }
 
-    public Member getMem() {
-        return mem;
+    public User getUser() {
+        return person;
     }
 
-    public void setMem(Member mem) {
-        this.mem = mem;
+    public void setUser(User person) {
+        this.person = person;
     }
     
-    
 }
+

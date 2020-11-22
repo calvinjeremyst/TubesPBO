@@ -11,38 +11,25 @@ package view;
  */
 import model.DetailRute;
 import controller.Controller;
-import view.Helper.DateFormat;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 import java.util.ArrayList;
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilDateModel;
-
 /**
  *
  * @author user
  */
 public class PencarianRuteScreenAdmin implements ActionListener {
-    Properties p;
-    UtilDateModel model;
-    JDatePanelImpl datePanel;
-    JDatePickerImpl datePicker;
+    
     JLabel judul,LdatePicker,LkotaAsal,LkotaTujuan;
     JFrame frame = new JFrame("Terminal Bis Emen");
     JButton next,back;
     JTextField kotaAsal,kotaTujuan;
     
     public PencarianRuteScreenAdmin() {
+        
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
@@ -50,23 +37,10 @@ public class PencarianRuteScreenAdmin implements ActionListener {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             
-        judul = new JLabel("Pencarian Rute");
+        judul = new JLabel("Pencarian Rute Admin");
         judul.setFont(new Font("Consolas", Font.PLAIN, 32));
         judul.setBounds(500, 20, 500, 100);
-            
-        LdatePicker = new JLabel("Tanggal Perjalanan : ");
-        LdatePicker.setFont(new Font("Consolas", Font.PLAIN, 20));
-        LdatePicker.setBounds(20, 110, 250, 50);
-            
-        model = new UtilDateModel();
-        p = new Properties();
-        p.put("text.today", "Today");
-        p.put("text.month", "Month");
-        p.put("text.year", "Year");
-        datePanel = new JDatePanelImpl(model, p);
-        datePicker = new JDatePickerImpl(datePanel, new DateFormat());
-        datePicker.setBounds(270, 120, 150, 30);
-            
+        
         LkotaAsal = new JLabel("Kota Asal : ");
         LkotaAsal.setFont(new Font("Consolas", Font.PLAIN, 20));
         LkotaAsal.setBounds(20, 160, 250, 50);
@@ -94,8 +68,6 @@ public class PencarianRuteScreenAdmin implements ActionListener {
         back.setFont(new Font("Consolas", Font.PLAIN, 24));
             
         frame.add(judul);
-        frame.add(LdatePicker);
-        frame.add(datePicker);
         frame.add(LkotaAsal);
         frame.add(kotaAsal);
         frame.add(LkotaTujuan);
@@ -106,33 +78,23 @@ public class PencarianRuteScreenAdmin implements ActionListener {
         
     @Override
     public void actionPerformed(ActionEvent e) {
-       
+        ArrayList<DetailRute> dtrute = new ArrayList<>();
         String kotaAsal = this.kotaAsal.getText();
         String kotaTujuan = this.kotaTujuan.getText();
-       
-         ArrayList<DetailRute> dtrute = new ArrayList<>();
-        Date tanggalPergi = null;
-        try {
-            tanggalPergi = new SimpleDateFormat("yyyy-MM-dd").parse(this.datePicker.getJFormattedTextField().getText());
-        } catch (ParseException ex) {
-            Logger.getLogger(PencarianRuteScreenAdmin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
         int a = JOptionPane.showOptionDialog(null, "Are you sure?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
         if(e.getActionCommand().equals("NEXT")){
             if (a == JOptionPane.YES_OPTION) {
-                if (kotaAsal.length() == 0 || kotaTujuan.length() == 0 || tanggalPergi == null) {
+                if (kotaAsal.length() == 0 || kotaTujuan.length() == 0 ) {
                     JOptionPane.showMessageDialog(null, "Input all the data!", "Alert", JOptionPane.WARNING_MESSAGE);
                 } 
-                else {
-                     dtrute = Controller.cariDetailRute(kotaAsal,kotaTujuan);
-                      new HasilPencarianScreen(dtrute);
-                      frame.dispose();
-              
+                else{
+                    dtrute = Controller.cariRuteAdmin(kotaAsal,kotaTujuan);
+                    new HasilPencarianAdminScreen(dtrute);
+                    frame.dispose(); 
+                }
             }
-        }
+        }    
     }
-  }
     
 }
 

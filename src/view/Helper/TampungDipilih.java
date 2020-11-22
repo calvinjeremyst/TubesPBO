@@ -12,20 +12,21 @@ import java.util.Date;
  * @author user
  */
 public class TampungDipilih {
-    int banyakPenumpang = 0;
-    String jamBerangkat;
-    Date tanggalBerangkat;
-    double hargaRute;
-    double hargaBis;
-    String idRute;
-    String kotaAsal;
-    String kotaTujuan;
-    String idbis;
+    private int banyakPenumpang = 0;
+    private String jamBerangkat;
+    private Date tanggalBerangkat;
+    private double hargaRute;
+    private double hargaBis;
+    private int idRute;
+    private String kotaAsal;
+    private String kotaTujuan;
+    private int idbis;
     
     public TampungDipilih() {
+        
     }
 
-    public TampungDipilih(String jamBerangkat, Date tanggalBerangkat, double hargaRute, double hargaBis, String idRute, String kotaAsal, String kotaTujuan, String idbis, int banyakPenumpang) {
+    public TampungDipilih(String jamBerangkat, Date tanggalBerangkat, double hargaRute, double hargaBis, int idRute, String kotaAsal, String kotaTujuan, int idbis, int banyakPenumpang) {
         this.idRute = idRute;
         this.kotaAsal = kotaAsal;
         this.kotaTujuan = kotaTujuan;
@@ -45,11 +46,11 @@ public class TampungDipilih {
         this.banyakPenumpang = banyakPenumpang;
     }
     
-    public String getIdRute() {
+    public int getIdRute() {
         return idRute;
     }
 
-    public void setIdRute(String idRute) {
+    public void setIdRute(int idRute) {
         this.idRute = idRute;
     }
 
@@ -69,11 +70,11 @@ public class TampungDipilih {
         this.kotaTujuan = kotaTujuan;
     }
 
-    public String getIdbis() {
+    public int getIdbis() {
         return idbis;
     }
 
-    public void setIdbis(String idbis) {
+    public void setIdbis(int idbis) {
         this.idbis = idbis;
     }
 

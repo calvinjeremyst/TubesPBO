@@ -9,27 +9,38 @@ package model;
  *
  * @author Hp
  */
-public abstract class User {
+public class User {
+    
     public int ID_User;
     public String username;
     public String password;
     public String repassword;
     public String alamat;
     public String noHp;
+    public int tipeUser;
     
-    public User(){
+    public User() {
     
     }
 
-    public User(int ID_User,String username, String password,String repassword ,String alamat, String noHp) {
+    public User(int ID_User,String username, String password,String repassword ,String alamat, String noHp,int tipeUser) {
         this.ID_User = ID_User;
         this.username = username;
         this.password = password;
         this.repassword = repassword;
         this.alamat = alamat;
         this.noHp = noHp;
+        this.tipeUser = tipeUser;
     }
 
+    public int getTipeUser() {
+        return tipeUser;
+    }
+
+    public void setTipeUser(int tipeUser) {
+        this.tipeUser = tipeUser;
+    }
+    
     public int getID_User() {
         return ID_User;
     }

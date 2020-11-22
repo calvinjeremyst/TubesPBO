@@ -5,16 +5,16 @@
  */
 package main;
 
-import view.LoginScreen;
+import view.MenuUtamaScreen;
 
 /**
  *
  * @author lenovo
  */
-public class main {
+public class Main {
     
     public static void main(String[] args){
-        new LoginScreen();
+        new MenuUtamaScreen();
     }
     
 }

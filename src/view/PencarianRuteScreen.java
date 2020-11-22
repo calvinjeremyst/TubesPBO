@@ -5,6 +5,7 @@
  */
 package view;
 
+import view.Helper.DateLabelFormatter;
 import model.DetailRute;
 import controller.Controller;
 import java.awt.Color;
@@ -28,6 +29,7 @@ import org.jdatepicker.impl.UtilDateModel;
  * @author user
  */
 public class PencarianRuteScreen implements ActionListener {
+    
     Properties p;
     UtilDateModel model;
     JDatePanelImpl datePanel;
@@ -38,6 +40,7 @@ public class PencarianRuteScreen implements ActionListener {
     JTextField kotaAsal,kotaTujuan;
     
     public PencarianRuteScreen() {
+        
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
@@ -119,7 +122,7 @@ public class PencarianRuteScreen implements ActionListener {
                 } else {
                     java.sql.Date date = new java.sql.Date(tanggalPergi.getTime());
                     ArrayList<DetailRute> drute = Controller.cariRute(kotaAsal, kotaTujuan, date);
-                    new HasilPencarianRuteScreen(drute);
+                    new HasilPencarianMemberScreen(drute);
                     frame.dispose();
                 }
             }
@@ -128,4 +131,5 @@ public class PencarianRuteScreen implements ActionListener {
             frame.dispose();
         }
     }
+    
 }

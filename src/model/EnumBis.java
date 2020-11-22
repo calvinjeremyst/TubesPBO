@@ -10,5 +10,17 @@ package model;
  * @author Hp
  */
 public enum EnumBis {
-    Ekonomi,Reguler,VIP;
+    
+    EKONOMI("Ekonomi"), REGULER("Reguler"), VIP("VIP");
+    
+    private final String tipe;
+
+    private EnumBis(String tipe2) {
+        tipe = tipe2;
+    }
+    
+    @Override
+    public String toString() {
+        return this.tipe;
+    }
 }

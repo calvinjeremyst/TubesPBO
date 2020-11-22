@@ -5,28 +5,36 @@
  */
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
  * @author lenovo
  */
-public class listOrder {
-    private int idOrder;
-    private Date TanggalOrder;
-    private int banyakPenumpang;
-    private Member member;
-    private Rute rute;
-    private TransaksiPembayaran transaksi;
+public class ListOrder {
     
-    public listOrder(){
+    private int idOrder;
+    private Date tanggalOrder;
+    private int idMember;
+    private int idRute;
+    private int idTransaksi;
+    
+    public ListOrder() {
         
     }
 
-    public listOrder(int idOrder, Date TanggalOrder, int banyakPenumpang) {
+    public ListOrder(int idOrder, Date tanggalOrder, int idMember, int idRute, int idTransaksi) {
         this.idOrder = idOrder;
-        this.TanggalOrder = TanggalOrder;
-        this.banyakPenumpang = banyakPenumpang;
+        this.tanggalOrder = tanggalOrder;
+        this.idMember = idMember;
+        this.idRute = idRute;
+        this.idTransaksi = idTransaksi;
+    }
+    
+    public ListOrder(Date tanggalOrder, int idMember, int idRute) {
+        this.tanggalOrder = tanggalOrder;
+        this.idMember = idMember;
+        this.idRute = idRute;
     }
 
     public int getIdOrder() {
@@ -38,43 +46,35 @@ public class listOrder {
     }
 
     public Date getTanggalOrder() {
-        return TanggalOrder;
+        return tanggalOrder;
     }
 
-    public void setTanggalOrder(Date TanggalOrder) {
-        this.TanggalOrder = TanggalOrder;
+    public void setTanggalOrder(Date tanggalOrder) {
+        this.tanggalOrder = tanggalOrder;
     }
 
-    public int getBanyakPenumpang() {
-        return banyakPenumpang;
+    public int getIdMember() {
+        return idMember;
     }
 
-    public void setBanyakPenumpang(int banyakPenumpang) {
-        this.banyakPenumpang = banyakPenumpang;
+    public void setIdMember(int idMember) {
+        this.idMember = idMember;
     }
 
-    public Member getMember() {
-        return member;
+    public int getIdRute() {
+        return idRute;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setIdRute(int idRute) {
+        this.idRute = idRute;
     }
 
-    public Rute getRute() {
-        return rute;
+    public int getIdTransaksi() {
+        return idTransaksi;
     }
 
-    public void setRute(Rute rute) {
-        this.rute = rute;
-    }
-
-    public TransaksiPembayaran getTransaksi() {
-        return transaksi;
-    }
-
-    public void setTransaksi(TransaksiPembayaran transaksi) {
-        this.transaksi = transaksi;
+    public void setIdTransaksi(int idTransaksi) {
+        this.idTransaksi = idTransaksi;
     }
     
 }

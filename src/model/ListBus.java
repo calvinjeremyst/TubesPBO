@@ -10,11 +10,16 @@ package model;
  * @author Hp
  */
 public class ListBus {
-    private String idBis;
+    
+    private int idBis;
     private EnumBis kelas;
     private int jumlahKapasitas;
     
-    public ListBus(String idBis, int jumlahKapasitas) {
+    public ListBus() {
+        
+    }
+    
+    public ListBus(int idBis, int jumlahKapasitas) {
         this.idBis = idBis;
         this.jumlahKapasitas = jumlahKapasitas;
     }
@@ -27,14 +32,14 @@ public class ListBus {
         this.kelas = kelas;
     }
     
-    public String getIdBis() {
+    public int getIdBis() {
         return idBis;
     }
 
-    public void setIdBis(String idBis) {
+    public void setIdBis(int idBis) {
         this.idBis = idBis;
     }
-
+    
     public int getJumlahKapasitas() {
         return jumlahKapasitas;
     }

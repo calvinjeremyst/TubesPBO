@@ -17,12 +17,14 @@ import javax.swing.*;
  * @author user
  */
 public class PembatalanTiketScreen implements ActionListener {
+    
     JFrame frame = new JFrame("Terminal Bis Emen");
     JButton cancel,back;
     JLabel judul,LidOrder;
     JTextField idOrder;
     
     public PembatalanTiketScreen() {
+        
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
@@ -64,21 +66,23 @@ public class PembatalanTiketScreen implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        String id = this.idOrder.getText();
-        int idAngka = Integer.parseInt(id);
         if(e.getActionCommand().equals("Cancel Ticket")){
+            String id = this.idOrder.getText();
+            int idAngka = Integer.parseInt(id);
             if(Controller.cekTiket(idAngka)){
                 if(Controller.deleteTiket(idAngka)){;
                     JOptionPane.showMessageDialog(null,"Tiket Berhasil Dibatalkan!");
+                    frame.dispose();
                     new MenuUtamaMember();
                 }else{
                      JOptionPane.showMessageDialog(null,"Failed to Delete!");
                 }
             }else{
-                JOptionPane.showMessageDialog(null,"ID Order Tidak Ditemukan!");
+                JOptionPane.showMessageDialog(null,"ID Order Tidak Ditemukan!","Alert!",JOptionPane.WARNING_MESSAGE);
             }
-        }else if(e.getActionCommand().equals("BACK")){
+        }else if(e.getActionCommand().equals("Back")){
             new MenuUtamaMember();
+            frame.dispose();
         }
     }
     

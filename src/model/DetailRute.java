@@ -12,17 +12,18 @@ import java.util.Date;
  * @author Hp
  */
 public class DetailRute extends Rute {
+    
     private String jamBerangkat;
     private Date tanggalBerangkat;
     private double hargaRute;
     private double hargaBis;
     private String jenisBis;
 
-    public DetailRute(){
+    public DetailRute() {
         
     }
     
-    public DetailRute(String jamBerangkat, Date tanggalBerangkat, double hargaRute, double hargaBis, String idRute, String kotaAsal, String kotaTujuan, String idbis, String jenisBis) {
+    public DetailRute(String jamBerangkat, Date tanggalBerangkat, double hargaRute, double hargaBis, int idRute, String kotaAsal, String kotaTujuan, int idbis, String jenisBis) {
         super(idRute, kotaAsal, kotaTujuan, idbis);
         this.jamBerangkat = jamBerangkat;
         this.tanggalBerangkat = tanggalBerangkat;
@@ -32,12 +33,12 @@ public class DetailRute extends Rute {
     }
 
     @Override
-    public String getIdRute() {
+    public int getIdRute() {
         return idRute;
     }
     
     @Override
-    public void setIdRute(String idRute) {
+    public void setIdRute(int idRute) {
         this.idRute = idRute;
     }
 
@@ -62,12 +63,12 @@ public class DetailRute extends Rute {
     }
 
     @Override
-    public String getIdbis() {
+    public int getIdbis() {
         return idbis;
     }
 
     @Override
-    public void setIdbis(String idbis) {
+    public void setIdbis(int idbis) {
         this.idbis = idbis;
     }
     

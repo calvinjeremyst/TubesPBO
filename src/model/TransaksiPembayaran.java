@@ -5,17 +5,19 @@
  */
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
  * @author lenovo
  */
-public class TransaksiPembayaran extends Harga {
-    private String idTransaksi;
+public class TransaksiPembayaran {
+    
+    private int idTransaksi;
+    private int banyakPenumpang;
     private double grandTotal;
     private double cashBack;
-    private boolean useOVO;
+    private int useOVO;
     private String metodePembayaran;
     private Date tanggalTransaksi;
 
@@ -23,10 +25,17 @@ public class TransaksiPembayaran extends Harga {
     
     }
     
-    public TransaksiPembayaran(String kodePembayaran,String idTransaksi,double grandTotal,double cashBack,boolean useOVO,
-            String metodePembayaran,Date tanggalTransaksi){
-        super(kodePembayaran);
+    public TransaksiPembayaran(int idTransaksi,int banyakPenumpang,double grandTotal,double cashBack,int useOVO,String metodePembayaran,Date tanggalTransaksi){
         this.idTransaksi = idTransaksi;
+        this.banyakPenumpang = banyakPenumpang;
+        this.grandTotal = grandTotal;
+        this.cashBack = cashBack;
+        this.useOVO = useOVO;
+        this.metodePembayaran = metodePembayaran;
+        this.tanggalTransaksi = tanggalTransaksi;
+    }
+    public TransaksiPembayaran(int banyakPenumpang,double grandTotal,double cashBack,int useOVO,String metodePembayaran,Date tanggalTransaksi){
+        this.banyakPenumpang = banyakPenumpang;
         this.grandTotal = grandTotal;
         this.cashBack = cashBack;
         this.useOVO = useOVO;
@@ -34,14 +43,22 @@ public class TransaksiPembayaran extends Harga {
         this.tanggalTransaksi = tanggalTransaksi;
     }
 
-    public String getIdTransaksi() {
+    public int getIdTransaksi() {
         return idTransaksi;
     }
 
-    public void setIdTransaksi(String idTransaksi) {
+    public void setIdTransaksi(int idTransaksi) {
         this.idTransaksi = idTransaksi;
     }
+    
+    public int getBanyakPenumpang() {
+        return banyakPenumpang;
+    }
 
+    public void setBanyakPenumpang(int banyakPenumpang) {
+        this.banyakPenumpang = banyakPenumpang;
+    }
+    
     public double getGrandTotal() {
         return grandTotal;
     }
@@ -58,11 +75,11 @@ public class TransaksiPembayaran extends Harga {
         this.cashBack = cashBack;
     }
 
-    public boolean isUseOVO() {
+    public int getUseOVO() {
         return useOVO;
     }
 
-    public void setUseOVO(boolean useOVO) {
+    public void setUseOVO(int useOVO) {
         this.useOVO = useOVO;
     }
 

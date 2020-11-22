@@ -6,40 +6,78 @@
 package view;
 
 import controller.Controller;
-import model.Member;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import model.Member;
 import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author user
  */
-public class LihatDataMember {
-    JLabel tampilUser;
-    JFrame frame = new JFrame("Terminal Bis Emen");
-    JButton back;
-    int x=110;
+public class LihatDataMember implements ActionListener {
     
-    public LihatDataMember(){
-        frame.getContentPane().setBackground(Color.WHITE);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setLocationRelativeTo(null);
-        frame.setLayout(null);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    JLabel judul;
+    JFrame frameMember = new JFrame("Terminal Bis Emen");
+    JButton back;
+    JTable jt;
+    JScrollPane js;
+    DefaultTableModel model = new DefaultTableModel();
+    ArrayList<Member> members = Controller.getAllData();
+    
+    public LihatDataMember() {
         
-        ArrayList<Member> members = Controller.getAllMember();
-        for(Member member : members){
-            tampilUser = new JLabel(member.toString());
-            tampilUser.setBounds(270,x,500, 50);
-            frame.add(tampilUser);
-            x += 40;
-        }
+        frameMember.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frameMember.getContentPane().setBackground(Color.WHITE);
+        frameMember.setLocationRelativeTo(null);
+        frameMember.setLayout(null);
+        frameMember.setVisible(true);
+        frameMember.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+        judul = new JLabel("List Member");
+        judul.setFont(new Font("Consolas", Font.PLAIN, 32));
+        judul.setBounds(500, 20, 600, 100);
         
+        jt = new JTable();
+        String headers[] = {"ID Member","Nama","Password","Saldo"};
+        model.setColumnIdentifiers(headers);
+        jt.setModel(model);
+        js = new JScrollPane(jt);
+        
+        insert();
+        
+        js.setBounds(340,130,700,300);
+        js.setVisible(true);
+        frameMember.add(js);
+       
+        back = new JButton("Back");
+        back.setBounds(850, 50, 150, 50);
+        back.setEnabled(true);
+        back.addActionListener(this);
+        back.setFont(new Font("Consolas", Font.PLAIN, 24));
+        
+        frameMember.add(judul);
+        frameMember.add(back);
+    }
+    
+    public void insert() {
+        for (int i = 0; i < members.size(); i++) {
+            model.addRow(new Object[]{members.get(i).getID_Member(),members.get(i).getUsername(),
+                                      members.get(i).getPassword(),members.get(i).getOvoBalance()
+                                     });
+        }  
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+       if(e.getActionCommand().equals("Back")){
+           new MenuUtamaAdmin();
+           frameMember.dispose();
+       }
     }
     
 }
