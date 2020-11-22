@@ -22,7 +22,7 @@ import java.util.Date;
  */
 public class Controller {  
 
-    static controller.DatabaseHandler conn = new controller.DatabaseHandler();
+    static DatabaseHandler conn = new DatabaseHandler();
     
     public static boolean insertPerjalanan(DetailRute rute,listBis list){
         
