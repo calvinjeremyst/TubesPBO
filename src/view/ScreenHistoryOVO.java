@@ -18,6 +18,7 @@ import javax.swing.JTextField;
  * @author lenovo
  */
 public class ScreenHistoryOVO implements ActionListener {
+    
     JFrame frameHistory = new JFrame("History Pemesanan : ");
     JLabel title = new JLabel("History Pemesanan");
     JLabel IDMember = new JLabel("ID Member : ");
@@ -25,7 +26,8 @@ public class ScreenHistoryOVO implements ActionListener {
     JButton buttonSearch = new JButton("Search");
     
     public ScreenHistoryOVO() {
-        frameHistory.setSize(2000,2000);
+        
+        frameHistory.setExtendedState(JFrame.MAXIMIZED_BOTH);
         title.setBounds(500,200,300,100);
         title.setFont(FontStyle.medium);
         IDMember.setBounds(450,300,200,120);

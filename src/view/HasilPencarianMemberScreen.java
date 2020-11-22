@@ -29,7 +29,6 @@ public class HasilPencarianMemberScreen implements ActionListener {
     int tinggiRadio = 150;
     TampungDipilih dipilih = new TampungDipilih();
     ArrayList<DetailRute> drutes = new ArrayList<>();
-    String rute = "";
     JTable jt;
     JScrollPane js;
     DefaultTableModel model = new DefaultTableModel();

@@ -6,12 +6,10 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import model.Member;
-import model.UserManager;
+import model.*;
 import view.Helper.FontStyle;
 
 /**
@@ -19,12 +17,14 @@ import view.Helper.FontStyle;
  * @author user
  */
 public class CekSaldo implements ActionListener {
+    
     JFrame frameOVO = new JFrame("Terminal Bis Emen");
     JLabel judul,lsaldo,saldo;
     JButton back;
     Member member = (Member) UserManager.getInstance().getUser();
     
     public CekSaldo() {
+        
         frameOVO.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frameOVO.setLocationRelativeTo(null);
         frameOVO.setLayout(null);

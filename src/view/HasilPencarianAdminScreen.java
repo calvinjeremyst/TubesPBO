@@ -11,11 +11,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -23,7 +19,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author lenovo
  */
-public class HasilPencarianAdminScreen implements ActionListener{
+public class HasilPencarianAdminScreen implements ActionListener {
+    
     JLabel judul;
     JFrame framehasilCari = new JFrame("Terminal Bis Emen");
     JButton back;
@@ -32,7 +29,8 @@ public class HasilPencarianAdminScreen implements ActionListener{
     DefaultTableModel model = new DefaultTableModel();
     ArrayList<DetailRute> drute2 = new ArrayList<>();
     
-    public HasilPencarianAdminScreen(ArrayList<DetailRute> drute){
+    public HasilPencarianAdminScreen(ArrayList<DetailRute> drute) {
+        
         drute2 = drute;
         framehasilCari.setExtendedState(JFrame.MAXIMIZED_BOTH);
         framehasilCari.getContentPane().setBackground(Color.WHITE);
@@ -83,4 +81,5 @@ public class HasilPencarianAdminScreen implements ActionListener{
            framehasilCari.dispose();
        }
     }
+    
 }

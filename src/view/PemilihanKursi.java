@@ -12,6 +12,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashSet;
 import javax.swing.*;
 import model.EnumBis;
 import model.Kursi;
@@ -31,9 +32,12 @@ public class PemilihanKursi implements ActionListener {
     int banyakPenumpang = 0;
     TampungDipilih dipilih2 = new TampungDipilih();
     ListBus bus2;
+    ArrayList<Kursi> arrKursi = new ArrayList<>();
     
     public PemilihanKursi(TampungDipilih dipilih) {
         dipilih2 = dipilih;
+        arrKursi = Controller.getKursi(dipilih2.getIdRute());
+        
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
@@ -63,6 +67,15 @@ public class PemilihanKursi implements ActionListener {
                     kursi[i] = new JCheckBox();
                     kursi[i].setBounds(600,x,20,20);
                     frame.add(kursi[i]);
+                    if(i-1 < arrKursi.size()){
+                        if(arrKursi.get(i-1).getNomorKursi().equals(String.valueOf(i))){
+                            kursi[i].setEnabled(false);
+                            kursi[i].setSelected(true);
+                        }else{
+                            kursi[i].setEnabled(true);
+                            kursi[i].setSelected(false);
+                        }
+                    }
                     x += 30;
                 }else{
                     noKursi[i] = new JLabel("Kursi " + i);
@@ -72,6 +85,15 @@ public class PemilihanKursi implements ActionListener {
                     kursi[i] = new JCheckBox();
                     kursi[i].setBounds(800,y,20,20);
                     frame.add(kursi[i]);
+                    if(i-1 < arrKursi.size()){
+                        if(arrKursi.get(i-1).getNomorKursi().equals(String.valueOf(i))){
+                            kursi[i].setEnabled(false);
+                            kursi[i].setSelected(true);
+                        }else{
+                            kursi[i].setEnabled(true);
+                            kursi[i].setSelected(false);
+                        }
+                    }
                     y += 30;   
                 }
             }
@@ -85,6 +107,15 @@ public class PemilihanKursi implements ActionListener {
                     kursi[i] = new JCheckBox();
                     kursi[i].setBounds(600,x,20,20);
                     frame.add(kursi[i]);
+                    if(i-1 < arrKursi.size()){
+                        if(arrKursi.get(i-1).getNomorKursi().equals(String.valueOf(i))){
+                            kursi[i].setEnabled(false);
+                            kursi[i].setSelected(true);
+                        }else{
+                            kursi[i].setEnabled(true);
+                            kursi[i].setSelected(false);
+                        }
+                    }
                     x += 30;
                 }else{
                     noKursi[i] = new JLabel("Kursi " + i);
@@ -94,6 +125,15 @@ public class PemilihanKursi implements ActionListener {
                     kursi[i] = new JCheckBox();
                     kursi[i].setBounds(800,y,20,20);
                     frame.add(kursi[i]);
+                    if(i-1 < arrKursi.size()){
+                        if(arrKursi.get(i-1).getNomorKursi().equals(String.valueOf(i))){
+                            kursi[i].setEnabled(false);
+                            kursi[i].setSelected(true);
+                        }else{
+                            kursi[i].setEnabled(true);
+                            kursi[i].setSelected(false);
+                        }
+                    }
                     y += 30;   
                 }
             }
@@ -107,6 +147,15 @@ public class PemilihanKursi implements ActionListener {
                     kursi[i] = new JCheckBox();
                     kursi[i].setBounds(600,x,20,20);
                     frame.add(kursi[i]);
+                    if(i-1 < arrKursi.size()){
+                        if(arrKursi.get(i-1).getNomorKursi().equals(String.valueOf(i))){
+                            kursi[i].setEnabled(false);
+                            kursi[i].setSelected(true);
+                        }else{
+                            kursi[i].setEnabled(true);
+                            kursi[i].setSelected(false);
+                        }
+                    }
                     x += 30;
                 }else{
                     noKursi[i] = new JLabel("Kursi " + i);
@@ -116,11 +165,20 @@ public class PemilihanKursi implements ActionListener {
                     kursi[i] = new JCheckBox();
                     kursi[i].setBounds(800,y,20,20);
                     frame.add(kursi[i]);
+                    if(i-1 < arrKursi.size()){
+                        if(arrKursi.get(i-1).getNomorKursi().equals(String.valueOf(i))){
+                            kursi[i].setEnabled(false);
+                            kursi[i].setSelected(true);
+                        }else{
+                            kursi[i].setEnabled(true);
+                            kursi[i].setSelected(false);
+                        }
+                    }
                     y += 30;   
                 }
             }
         }
-        
+      
         next = new JButton("SUMMARY");
         next.setBounds(400, 500, 250, 30);
         next.setEnabled(true);
@@ -142,9 +200,9 @@ public class PemilihanKursi implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         ArrayList<Kursi> kursi2 = new ArrayList<>();
-        Kursi kursi3 = new Kursi();
         if(bus2.getKelas().equals(EnumBis.VIP)){
             for(int i=1; i<=10; i++){
+                Kursi kursi3 = new Kursi();
                 String nomorKursi = "";
                 if(kursi[i].isSelected()){
                     nomorKursi += i;
@@ -155,6 +213,7 @@ public class PemilihanKursi implements ActionListener {
             }
         }else if(bus2.getKelas().equals(EnumBis.REGULER)){
             for(int i=1; i<=15; i++){
+                Kursi kursi3 = new Kursi();
                 String nomorKursi = "";
                 if(kursi[i].isSelected()){
                     nomorKursi += i;
@@ -165,6 +224,7 @@ public class PemilihanKursi implements ActionListener {
             }
         }else if(bus2.getKelas().equals(EnumBis.EKONOMI)){
             for(int i=1; i<=20; i++){
+                Kursi kursi3 = new Kursi();
                 String nomorKursi = "";
                 if(kursi[i].isSelected()){
                     nomorKursi += i;
@@ -177,8 +237,12 @@ public class PemilihanKursi implements ActionListener {
         
         if(e.getActionCommand().equals("SUMMARY")){
             dipilih2.setBanyakPenumpang(banyakPenumpang);
-            new SummaryScreen(dipilih2,kursi2);
-            frame.dispose();
+            if(banyakPenumpang == 0){
+                JOptionPane.showMessageDialog(null,"Silahkan Pilih Kursi!");
+            }else{
+                new SummaryScreen(dipilih2,kursi2);
+                frame.dispose();
+            }
         }else if(e.getActionCommand().equals("BACK")){
             new MenuUtamaMember();
             frame.dispose();

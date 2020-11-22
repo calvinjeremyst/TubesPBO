@@ -18,11 +18,13 @@ import view.Helper.FontStyle;
  * @author user
  */
 public class MenuUtamaMember implements ActionListener {
+    
     JFrame frame = new JFrame("Terminal Bis Emen");
     JButton pesanTiket, batalTiket,riwayatTiket,cekOvo,topupOvo,logOut;
     JLabel judul, namaAkun;
     
     public MenuUtamaMember() {
+        
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);

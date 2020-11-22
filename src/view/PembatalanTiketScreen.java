@@ -17,12 +17,14 @@ import javax.swing.*;
  * @author user
  */
 public class PembatalanTiketScreen implements ActionListener {
+    
     JFrame frame = new JFrame("Terminal Bis Emen");
     JButton cancel,back;
     JLabel judul,LidOrder;
     JTextField idOrder;
     
     public PembatalanTiketScreen() {
+        
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);

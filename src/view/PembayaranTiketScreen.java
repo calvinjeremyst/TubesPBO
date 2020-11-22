@@ -9,24 +9,18 @@ import controller.Controller;
 import view.Helper.TampungDipilih;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.*;
-import model.Kursi;
-import model.ListOrder;
-import model.Member;
-import model.TransaksiPembayaran;
-import model.UserManager;
+import model.*;
 
 /**
  *
  * @author user
  */
 public class PembayaranTiketScreen implements ActionListener {
+    
     JFrame frame = new JFrame("Terminal Bis Emen");
     JLabel judul,metode,banyakKursi,lkursi,isiCCLabel,isiOvoLabel,isiOvo,total,totalHarga;
     JTextField isiCC;
@@ -37,6 +31,7 @@ public class PembayaranTiketScreen implements ActionListener {
     ArrayList<Kursi> kursi2 = new ArrayList<>();
     
     public PembayaranTiketScreen(TampungDipilih dipilih, ArrayList<Kursi> kursi) {
+        
         Member member = (Member) UserManager.getInstance().getUser();
         dipilih2 = dipilih;
         kursi2 = kursi;
@@ -75,15 +70,15 @@ public class PembayaranTiketScreen implements ActionListener {
         totalHarga.setText(Double.toString(harga));
         frame.add(totalHarga);
         
-        isiCCLabel = new JLabel("Nomor Credit Card");
+        isiCCLabel = new JLabel("Nomor Credit Card (6 Digit) : ");
         isiCCLabel.setVisible(false);
         isiCCLabel.setFont(new Font("Consolas", Font.PLAIN, 20));
-        isiCCLabel.setBounds(500 ,140, 250, 30);
+        isiCCLabel.setBounds(500 ,140, 350, 30);
         
         isiCC = new JTextField();
         isiCC.setVisible(false);
         isiCC.setFont(new Font("Consolas", Font.PLAIN, 20));
-        isiCC.setBounds(800 ,140, 250, 30);
+        isiCC.setBounds(500 ,200, 150, 30);
         
         bg = new ButtonGroup();
         credit = new JRadioButton("Credit Card");
@@ -132,7 +127,7 @@ public class PembayaranTiketScreen implements ActionListener {
         bg.add(ovo);
         
         bayar = new JButton("SUBMIT");
-        bayar.setBounds(400, 500, 250, 30);
+        bayar.setBounds(550, 500, 250, 50);
         bayar.setEnabled(true);
         bayar.addActionListener(this);
         bayar.setFont(new Font("Consolas", Font.PLAIN, 24));
@@ -165,6 +160,7 @@ public class PembayaranTiketScreen implements ActionListener {
         double grandTotal = this.dipilih2.getHargaBis() + this.dipilih2.getHargaRute() - cashback;
         String metode = "";
         int useOvo = 0;
+        String nomorCC = this.isiCC.getText();
         if(this.ovo.isSelected()){   
             metode = "OVO";
             useOvo = 1;
@@ -185,7 +181,7 @@ public class PembayaranTiketScreen implements ActionListener {
                 }else{
                     if(Controller.insertOrderOVO(trk,order)){
                         for(int i=0; i<kursi2.size(); i++){
-                            if(Controller.insertKursi(kursi2.get(i).getNomorKursi(), order)){
+                            if(Controller.insertKursi(kursi2.get(i).getNomorKursi(), order, dipilih2)){
                                 JOptionPane.showMessageDialog(null,"Kursi " + kursi2.get(i).getNomorKursi() + " Berhasil Dipesan!");
                             }else{
                                 JOptionPane.showMessageDialog(null, "Kursi Gagal Dipesan!");
@@ -201,21 +197,27 @@ public class PembayaranTiketScreen implements ActionListener {
                     }
                 }
             }else{
-                if(Controller.insertOrderCC(trk,order)){
-                    for(int i=0; i<kursi2.size(); i++){
-                        if(Controller.insertKursi(kursi2.get(i).getNomorKursi(), order)){
-                            JOptionPane.showMessageDialog(null,"Kursi " + kursi2.get(i).getNomorKursi() + " Berhasil Dipesan!");
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Kursi Gagal Dipesan!");
-                        }
-                    }
-                    JOptionPane.showMessageDialog(null,"Tiket Anda Berhasil Dipesan!"); 
-                    new MenuUtamaMember();
-                    frame.dispose();
+                if(nomorCC.length() == 0){
+                    JOptionPane.showMessageDialog(null,"Masukan Nomor Kartu Kredit!");
+                }else if(nomorCC.length() <= 5 || nomorCC.length() >= 7){
+                    JOptionPane.showMessageDialog(null,"Nomor Kartu Kredit Tidak Valid!");
                 }else{
-                    JOptionPane.showMessageDialog(null,"Tiket Anda Gagal Dipesan!"); 
-                    new MenuUtamaMember();
-                    frame.dispose();
+                    if(Controller.insertOrderCC(trk,order)){
+                        for(int i=0; i<kursi2.size(); i++){
+                            if(Controller.insertKursi(kursi2.get(i).getNomorKursi(), order, dipilih2)){
+                                JOptionPane.showMessageDialog(null,"Kursi " + kursi2.get(i).getNomorKursi() + " Berhasil Dipesan!");
+                            }else{
+                                JOptionPane.showMessageDialog(null, "Kursi Gagal Dipesan!");
+                            }
+                        }
+                        JOptionPane.showMessageDialog(null,"Tiket Anda Berhasil Dipesan!"); 
+                        new MenuUtamaMember();
+                        frame.dispose();
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Tiket Anda Gagal Dipesan!"); 
+                        new MenuUtamaMember();
+                        frame.dispose();
+                    }
                 }
             }
         }

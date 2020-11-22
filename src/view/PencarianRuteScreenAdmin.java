@@ -22,12 +22,14 @@ import java.util.ArrayList;
  * @author user
  */
 public class PencarianRuteScreenAdmin implements ActionListener {
+    
     JLabel judul,LdatePicker,LkotaAsal,LkotaTujuan;
     JFrame frame = new JFrame("Terminal Bis Emen");
     JButton next,back;
     JTextField kotaAsal,kotaTujuan;
     
     public PencarianRuteScreenAdmin() {
+        
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
@@ -90,9 +92,9 @@ public class PencarianRuteScreenAdmin implements ActionListener {
                     new HasilPencarianAdminScreen(dtrute);
                     frame.dispose(); 
                 }
-        }
+            }
+        }    
     }
-  }
     
 }
 

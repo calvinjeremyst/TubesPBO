@@ -7,11 +7,6 @@ package view;
 import controller.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.*;
 import view.Helper.FontStyle;
 import model.Member;
@@ -21,6 +16,7 @@ import model.Member;
  * @author lenovo
  */
 public class RegisterScreen implements ActionListener {
+    
     JFrame Regisframe = new JFrame("Terminal Bis Emen");
     JLabel title = new JLabel("Registrasi Member");
     JLabel username = new JLabel("Username : ");
@@ -41,6 +37,7 @@ public class RegisterScreen implements ActionListener {
     JButton back = new JButton("Back To Main Screen");
     
     public RegisterScreen() {
+        
         Regisframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Regisframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
@@ -146,4 +143,5 @@ public class RegisterScreen implements ActionListener {
             Regisframe.dispose();
         }
     }
+    
 }

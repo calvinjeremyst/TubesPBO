@@ -24,6 +24,7 @@ import model.TransaksiPembayaran;
  * @author user
  */
 public class RiwayatPemesananTiket implements ActionListener {
+    
     JLabel judul;
     JFrame frame = new JFrame("Terminal Bis Emen");
     JButton back;
@@ -34,7 +35,8 @@ public class RiwayatPemesananTiket implements ActionListener {
     ArrayList<TransaksiPembayaran> list2 = new ArrayList<>();
     ArrayList<DetailRute> list3 = new ArrayList<>();
         
-    public RiwayatPemesananTiket(){
+    public RiwayatPemesananTiket() {
+        
         Member member = (Member) UserManager.getInstance().getUser();
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);

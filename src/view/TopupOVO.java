@@ -20,6 +20,7 @@ import view.Helper.*;
  * @author Christian
  */
 public class TopupOVO implements ActionListener {
+    
     static JFrame frameOVO,frameTopUp,frameMember;
     JLabel logo,salam,lcomboNominal,lcomboMetode;
     JButton buttonBack,buttonTopUp,buttonHistory,buttonKonfirmasi;
@@ -32,9 +33,9 @@ public class TopupOVO implements ActionListener {
     String comboMetodeOVO, id;
     RiwayatTopup riwayatTopUp;
     ArrayList<RiwayatTopup> topups;
-   
     
     public TopupOVO() {
+        
         Member mem = (Member) UserManager.getInstance().getUser();
         topups = Controller.getHistory(mem.getID_Member());
         
@@ -67,7 +68,7 @@ public class TopupOVO implements ActionListener {
         buttonBack.setFont(FontStyle.medium);
         buttonBack.addActionListener(this);
        
-        //button buttonTopUp
+        //buttonTopUp
         lcomboNominal = new JLabel("Jumlah Nominal : ");
         lcomboNominal.setBounds(50,50,300,20);
         lcomboNominal.setFont(FontStyle.small);
@@ -164,4 +165,5 @@ public class TopupOVO implements ActionListener {
             frameOVO.dispose();
         }
     }
+    
 }

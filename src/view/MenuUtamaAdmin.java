@@ -20,11 +20,13 @@ import view.Helper.FontStyle;
  * @author user
  */
 public class MenuUtamaAdmin implements ActionListener {
+    
     JFrame frame = new JFrame("Terminal Bis Emen");
     JButton lihatDataMember,tambahListPerjalanan, cekListPerjalanan,logOut;
     JLabel judul,namaAkun;
 
     public MenuUtamaAdmin() {
+        
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);

@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * @author user
  */
 public class LihatDataMember implements ActionListener {
+    
     JLabel judul;
     JFrame frameMember = new JFrame("Terminal Bis Emen");
     JButton back;
@@ -29,6 +30,7 @@ public class LihatDataMember implements ActionListener {
     ArrayList<Member> members = Controller.getAllData();
     
     public LihatDataMember() {
+        
         frameMember.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frameMember.getContentPane().setBackground(Color.WHITE);
         frameMember.setLocationRelativeTo(null);

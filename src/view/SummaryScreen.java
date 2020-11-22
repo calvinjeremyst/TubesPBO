@@ -20,6 +20,7 @@ import model.Kursi;
  * @author user
  */
 public class SummaryScreen implements ActionListener {
+    
     JFrame frame = new JFrame("Terminal Bis Emen");
     JLabel judul,pilihan,penumpang,banyak2,total,totalHarga;
     JButton bayar,back;
@@ -30,6 +31,7 @@ public class SummaryScreen implements ActionListener {
     ArrayList<Kursi> kursi2;
  
     public SummaryScreen(TampungDipilih dipilih, ArrayList<Kursi> kursi) {
+        
         kursi2 = kursi;
         dipilih2 = dipilih;
         frame.getContentPane().setBackground(Color.WHITE);
@@ -116,7 +118,6 @@ public class SummaryScreen implements ActionListener {
             new MenuUtamaMember();
             frame.dispose();
         }
-        
     }
     
 }
