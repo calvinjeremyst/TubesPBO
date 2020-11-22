@@ -17,12 +17,14 @@ import javax.swing.*;
  * @author user
  */
 public class PembatalanTiketScreen implements ActionListener {
+    
     JFrame frame = new JFrame("Terminal Bis Emen");
     JButton cancel,back;
     JLabel judul,LidOrder;
     JTextField idOrder;
     
     public PembatalanTiketScreen() {
+        
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
@@ -76,7 +78,7 @@ public class PembatalanTiketScreen implements ActionListener {
                      JOptionPane.showMessageDialog(null,"Failed to Delete!");
                 }
             }else{
-                JOptionPane.showMessageDialog(null,"ID Order Tidak Ditemukan!");
+                JOptionPane.showMessageDialog(null,"ID Order Tidak Ditemukan!","Alert!",JOptionPane.WARNING_MESSAGE);
             }
         }else if(e.getActionCommand().equals("Back")){
             new MenuUtamaMember();

@@ -12,17 +12,18 @@ import java.util.Date;
  * @author user
  */
 public class TampungDipilih {
-    int banyakPenumpang = 0;
-    String jamBerangkat;
-    Date tanggalBerangkat;
-    double hargaRute;
-    double hargaBis;
-    int idRute;
-    String kotaAsal;
-    String kotaTujuan;
-    int idbis;
+    private int banyakPenumpang = 0;
+    private String jamBerangkat;
+    private Date tanggalBerangkat;
+    private double hargaRute;
+    private double hargaBis;
+    private int idRute;
+    private String kotaAsal;
+    private String kotaTujuan;
+    private int idbis;
     
     public TampungDipilih() {
+        
     }
 
     public TampungDipilih(String jamBerangkat, Date tanggalBerangkat, double hargaRute, double hargaBis, int idRute, String kotaAsal, String kotaTujuan, int idbis, int banyakPenumpang) {

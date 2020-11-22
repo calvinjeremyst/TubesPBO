@@ -11,34 +11,25 @@ package view;
  */
 import model.DetailRute;
 import controller.Controller;
-import view.Helper.DateLabelFormatter;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 import java.util.ArrayList;
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilDateModel;
-
 /**
  *
  * @author user
  */
 public class PencarianRuteScreenAdmin implements ActionListener {
+    
     JLabel judul,LdatePicker,LkotaAsal,LkotaTujuan;
     JFrame frame = new JFrame("Terminal Bis Emen");
     JButton next,back;
     JTextField kotaAsal,kotaTujuan;
     
     public PencarianRuteScreenAdmin() {
+        
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
@@ -46,7 +37,7 @@ public class PencarianRuteScreenAdmin implements ActionListener {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             
-        judul = new JLabel("Pencarian Rute");
+        judul = new JLabel("Pencarian Rute Admin");
         judul.setFont(new Font("Consolas", Font.PLAIN, 32));
         judul.setBounds(500, 20, 500, 100);
         
@@ -101,9 +92,9 @@ public class PencarianRuteScreenAdmin implements ActionListener {
                     new HasilPencarianAdminScreen(dtrute);
                     frame.dispose(); 
                 }
-        }
+            }
+        }    
     }
-  }
     
 }
 

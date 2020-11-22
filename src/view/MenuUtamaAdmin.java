@@ -20,11 +20,13 @@ import view.Helper.FontStyle;
  * @author user
  */
 public class MenuUtamaAdmin implements ActionListener {
+    
     JFrame frame = new JFrame("Terminal Bis Emen");
-    JButton lihatDataMember,tambahListPerjalanan, cekListPerjalanan;
+    JButton lihatDataMember,tambahListPerjalanan, cekListPerjalanan,logOut;
     JLabel judul,namaAkun;
 
     public MenuUtamaAdmin() {
+        
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
@@ -36,8 +38,17 @@ public class MenuUtamaAdmin implements ActionListener {
         judul.setFont(new Font("Consolas", Font.PLAIN, 32));
         judul.setBounds(500, 20, 500, 100);
         
+        logOut = new JButton("Log Out");
+        logOut.setBounds(1000,100,300,50);
+        logOut.setEnabled(true);
+        logOut.addActionListener(this);
+        logOut.setFont(new Font("Consolas", Font.PLAIN, 24));
+        
         namaAkun = new JLabel("Halo " + UserManager.getInstance().getUser().getUsername());
         namaAkun.setFont(FontStyle.small);
+        namaAkun.setBackground(Color.BLACK);
+        namaAkun.setForeground(Color.WHITE);
+        namaAkun.setOpaque(true);
         namaAkun.setBounds(1000,20,300,50);
         
         lihatDataMember = new JButton("Lihat Data Member");
@@ -60,6 +71,7 @@ public class MenuUtamaAdmin implements ActionListener {
         
         frame.add(judul);
         frame.add(namaAkun);
+        frame.add(logOut);
         frame.add(lihatDataMember);
         frame.add(cekListPerjalanan);
         frame.add(tambahListPerjalanan);
@@ -75,6 +87,9 @@ public class MenuUtamaAdmin implements ActionListener {
             frame.dispose();
         }else if(e.getActionCommand().equals("Tambah List Perjalanan")){
             new AddRuteScreen();
+            frame.dispose();
+        }else if(e.getActionCommand().equals("Log Out")){
+            new LoginScreen();
             frame.dispose();
         }
     }

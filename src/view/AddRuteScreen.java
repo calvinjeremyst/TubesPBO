@@ -7,6 +7,8 @@ package view;
 import controller.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import javax.swing.*;
 import java.util.*;
 import java.text.ParseException;
@@ -18,16 +20,15 @@ import view.Helper.DateLabelFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
-import model.DetailRute;
-import model.EnumBis;
-import model.ListBus;
+import model.*;
 
 /**
  *
  * @author lenovo
  */
 public class AddRuteScreen implements ActionListener {
-    JFrame frameRute = new JFrame("Menambahkan List perjalanan");
+    
+    JFrame frameRute = new JFrame("Terminal Bis Emen");
     JLabel title = new JLabel("Menambahkan Rute");
     JLabel idRute = new JLabel("ID Rute : ");
     JTextField idRuteText = new JTextField();
@@ -68,6 +69,7 @@ public class AddRuteScreen implements ActionListener {
     JButton buttonAdd = new JButton("Add");
     
     public AddRuteScreen() {
+        
         title.setBounds(550,1,400,150);
         title.setFont(FontStyle.medium);
         
@@ -101,15 +103,41 @@ public class AddRuteScreen implements ActionListener {
         jamText.setBounds(630,285,90,35);
         jam.setFont(FontStyle.small);
         
-        bg2.add(vip);
-        bg2.add(reguler);
-        bg2.add(ekonomi);
-        
         kelasBis.setBounds(450,320,200,50);
         kelasBis.setFont(FontStyle.small);
         vip.setBounds(600,330,50,30);
+        vip.addItemListener(new ItemListener(){
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.SELECTED){
+                    hargaBisText.setText("50000");
+                    isiJumlahKapasitas.setText("10");
+                }
+            }
+        });
         reguler.setBounds(670,330,80,30);
+        reguler.addItemListener(new ItemListener(){
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.SELECTED){
+                    hargaBisText.setText("30000");
+                    isiJumlahKapasitas.setText("15");
+                }
+            }
+        });
         ekonomi.setBounds(760,330,80,30);
+        ekonomi.addItemListener(new ItemListener(){
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.SELECTED){
+                     hargaBisText.setText("20000");
+                     isiJumlahKapasitas.setText("20");
+                }
+            }
+        });
+        bg2.add(vip);
+        bg2.add(reguler);
+        bg2.add(ekonomi);
         
         hargaRute.setBounds(450,370,200,50);
         hargaRuteText.setBounds(600,380,300,30);
@@ -163,7 +191,7 @@ public class AddRuteScreen implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e){
-        int ID_Rute = Integer.parseInt(idRuteText.getText());
+        int ID_Rute = Integer.parseInt(this.idRuteText.getText());
         String kotaAsal = kotaAsalText.getText();
         Date tgl = null;
         try{
@@ -173,11 +201,11 @@ public class AddRuteScreen implements ActionListener {
         }
         String jam = this.jamText.getText();
         int kelasBis = 0;
-        if(this.vip.isSelected()){   
+        if(this.vip.isSelected()){ 
             kelasBis = 1;
-        }else if(this.reguler.isSelected()){   
+        }else if(this.reguler.isSelected()){
             kelasBis = 2;
-        }else if(this.ekonomi.isSelected()){   
+        }else if(this.ekonomi.isSelected()){
             kelasBis = 3;
         }
         double hargaBis = Double.parseDouble(this.hargaBisText.getText());
@@ -185,37 +213,45 @@ public class AddRuteScreen implements ActionListener {
         int ID_Bis = Integer.parseInt(this.idBisText.getText());
         int jumlahMuatan = Integer.parseInt(this.isiJumlahKapasitas.getText());
         String kotaTujuan = kotaTujuanText.getText();
-        int Choose = JOptionPane.showOptionDialog(null, "Are you sure?", "Confirm",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+        int Choose = JOptionPane.showOptionDialog(null, "Sudah Yakin?", "Confirm",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
         if(Choose == JOptionPane.YES_OPTION){
             if(ID_Rute == 0 || kotaAsal.length() == 0 || kotaTujuan.length() == 0 || tgl == null
                 || jam.length() == 0 || kelasBis == 0 || ID_Bis == 0 || hargaRute == 0 || hargaBis == 0){
-                JOptionPane.showMessageDialog(null, "Input all the data ", "Alert", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Input Semua Data! ", "Alert", JOptionPane.WARNING_MESSAGE);
             }else{
-                DetailRute Detailrute = new DetailRute();
-                ListBus list = new ListBus();
-                list.setIdBis(ID_Bis);
-                if(kelasBis == 1){
-                    list.setKelas(EnumBis.VIP);
-                }else if(kelasBis == 2){
-                    list.setKelas(EnumBis.REGULER);
-                }else if(kelasBis == 3){
-                    list.setKelas(EnumBis.EKONOMI);
-                }
-                list.setJumlahKapasitas(jumlahMuatan);
-                Detailrute.setIdRute(ID_Rute);
-                Detailrute.setIdbis(ID_Bis);
-                Detailrute.setKotaAsal(kotaAsal);
-                Detailrute.setKotaTujuan(kotaTujuan); 
-                Detailrute.setHargaBis(hargaBis);
-                Detailrute.setHargaRute(hargaRute);
-                Detailrute.setJamBerangkat(jam);
-                Detailrute.setTanggalBerangkat(tgl);
-                if(Controller.insertPerjalanan(Detailrute, list)){
-                    JOptionPane.showMessageDialog(null, "Rute berhasil ditambahkan !");
-                    new MenuUtamaAdmin();
-                    frameRute.dispose();   
-                }else{   
-                    JOptionPane.showMessageDialog(null, "Data can't be inserted!", "Alert", JOptionPane.WARNING_MESSAGE);
+                if(Controller.cekIdBis(ID_Bis)){
+                    JOptionPane.showMessageDialog(null,"ID Bis Sudah Ada!");
+                }else{
+                    if(Controller.cekRute(ID_Rute)){
+                        JOptionPane.showMessageDialog(null,"ID Rute Sudah Ada!");
+                    }else{    
+                        DetailRute Detailrute = new DetailRute();
+                        ListBus list = new ListBus();
+                        list.setIdBis(ID_Bis);
+                        if(kelasBis == 1){
+                            list.setKelas(EnumBis.VIP);
+                        }else if(kelasBis == 2){
+                            list.setKelas(EnumBis.REGULER);
+                        }else if(kelasBis == 3){
+                            list.setKelas(EnumBis.EKONOMI);
+                        }
+                        list.setJumlahKapasitas(jumlahMuatan);
+                        Detailrute.setIdRute(ID_Rute);
+                        Detailrute.setIdbis(ID_Bis);
+                        Detailrute.setKotaAsal(kotaAsal);
+                        Detailrute.setKotaTujuan(kotaTujuan); 
+                        Detailrute.setHargaBis(hargaBis);
+                        Detailrute.setHargaRute(hargaRute);
+                        Detailrute.setJamBerangkat(jam);
+                        Detailrute.setTanggalBerangkat(tgl);
+                        if(Controller.insertPerjalanan(Detailrute, list)){
+                            JOptionPane.showMessageDialog(null, "Rute berhasil ditambahkan !");
+                            new MenuUtamaAdmin();
+                            frameRute.dispose(); 
+                        }else{   
+                            JOptionPane.showMessageDialog(null, "Rute Gagal Ditambahkan!", "Alert", JOptionPane.WARNING_MESSAGE);
+                        }
+                    }
                 }
             }  
         } 

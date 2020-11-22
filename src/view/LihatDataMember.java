@@ -6,32 +6,31 @@
 package view;
 
 import controller.Controller;
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import model.Member;
 import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author user
  */
-public class LihatDataMember {
-    JLabel tampilUser;
+public class LihatDataMember implements ActionListener {
+    
+    JLabel judul;
     JFrame frameMember = new JFrame("Terminal Bis Emen");
     JButton back;
-    JTable table;
-    JScrollPane scroll;
-    int x=110;
-    JPanel panel;
+    JTable jt;
+    JScrollPane js;
+    DefaultTableModel model = new DefaultTableModel();
+    ArrayList<Member> members = Controller.getAllData();
     
     public LihatDataMember() {
+        
         frameMember.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frameMember.getContentPane().setBackground(Color.WHITE);
         frameMember.setLocationRelativeTo(null);
@@ -39,30 +38,46 @@ public class LihatDataMember {
         frameMember.setVisible(true);
         frameMember.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        ArrayList<Member> members = Controller.getAllData();
-        table = new JTable();
-        table.setBounds(0,0,1000,1000);
-        DefaultTableModel tableModel = new DefaultTableModel();
-        Object[] kolomNama = new Object[4];
-        kolomNama[0] = "ID";
-        kolomNama[1] = "Nama";
-        kolomNama[2] = "Pass";
-        kolomNama[3] = "Saldo";
-        tableModel.setColumnIdentifiers(kolomNama);
-        Object[] kolomData = new Object[4];
-        for (int i = 0; i < members.size(); i++) {
-           kolomData[0] = members.get(i).getID_Member();
-           kolomData[1] = members.get(i).getUsername();
-           kolomData[2] = members.get(i).getPassword();
-           kolomData[3] = members.get(i).getOvoBalance();
-           tableModel.addRow(kolomData);
-        }
-        table.setModel(tableModel);
-        scroll = new JScrollPane(table);
-        scroll.setVisible(true);
+        judul = new JLabel("List Member");
+        judul.setFont(new Font("Consolas", Font.PLAIN, 32));
+        judul.setBounds(500, 20, 600, 100);
+        
+        jt = new JTable();
+        String headers[] = {"ID Member","Nama","Password","Saldo"};
+        model.setColumnIdentifiers(headers);
+        jt.setModel(model);
+        js = new JScrollPane(jt);
+        
+        insert();
+        
+        js.setBounds(340,130,700,300);
+        js.setVisible(true);
+        frameMember.add(js);
        
-        frameMember.add(table);
-        frameMember.add(scroll);
+        back = new JButton("Back");
+        back.setBounds(850, 50, 150, 50);
+        back.setEnabled(true);
+        back.addActionListener(this);
+        back.setFont(new Font("Consolas", Font.PLAIN, 24));
+        
+        frameMember.add(judul);
+        frameMember.add(back);
+    }
+    
+    public void insert() {
+        for (int i = 0; i < members.size(); i++) {
+            model.addRow(new Object[]{members.get(i).getID_Member(),members.get(i).getUsername(),
+                                      members.get(i).getPassword(),members.get(i).getOvoBalance()
+                                     });
+        }  
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+       if(e.getActionCommand().equals("Back")){
+           new MenuUtamaAdmin();
+           frameMember.dispose();
+       }
     }
     
 }

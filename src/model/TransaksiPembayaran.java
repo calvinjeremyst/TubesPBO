@@ -12,6 +12,7 @@ import java.sql.Date;
  * @author lenovo
  */
 public class TransaksiPembayaran {
+    
     private int idTransaksi;
     private int banyakPenumpang;
     private double grandTotal;
@@ -34,7 +35,6 @@ public class TransaksiPembayaran {
         this.tanggalTransaksi = tanggalTransaksi;
     }
     public TransaksiPembayaran(int banyakPenumpang,double grandTotal,double cashBack,int useOVO,String metodePembayaran,Date tanggalTransaksi){
-        this.idTransaksi = idTransaksi;
         this.banyakPenumpang = banyakPenumpang;
         this.grandTotal = grandTotal;
         this.cashBack = cashBack;

@@ -15,6 +15,6 @@ public class FontStyle {
     public static Font large = new Font("Verdana",Font.PLAIN,45);
     public static Font medium = new Font("Verdana",Font.PLAIN,30);
     public static Font small = new Font("Verdana",Font.PLAIN,20);
-    public static Font logo = new Font("Serif",Font.PLAIN,60);
+    public static Font logo = new Font("Serif",Font.PLAIN,100);
 
 }

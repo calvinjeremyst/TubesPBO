@@ -10,6 +10,7 @@ package model;
  * @author Hp
  */
 public class Member extends User {
+    
     private int ID_Member;
     private int umur;
     private String KTP;

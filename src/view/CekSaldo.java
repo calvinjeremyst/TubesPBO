@@ -9,8 +9,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import model.Member;
-import model.UserManager;
+import model.*;
 import view.Helper.FontStyle;
 
 /**
@@ -18,35 +17,45 @@ import view.Helper.FontStyle;
  * @author user
  */
 public class CekSaldo implements ActionListener {
+    
     JFrame frameOVO = new JFrame("Terminal Bis Emen");
-    JLabel lsaldo,saldo;
+    JLabel judul,lsaldo,saldo;
     JButton back;
     Member member = (Member) UserManager.getInstance().getUser();
     
     public CekSaldo() {
+        
         frameOVO.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frameOVO.setLocationRelativeTo(null);
         frameOVO.setLayout(null);
         frameOVO.setVisible(true);
         frameOVO.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frameOVO.setBackground(Color.pink);
+        frameOVO.getContentPane().setBackground(new java.awt.Color(76, 52, 148));
         
-        lsaldo = new JLabel("Jumlah saldo :");
-        lsaldo.setBounds(300,150,300,300);
+        judul = new JLabel("OVO");
+        judul.setFont(FontStyle.large);
+        judul.setBounds(600, 20, 500, 100);
+        judul.setForeground(Color.white);
+        
+        lsaldo = new JLabel("Jumlah saldo " + UserManager.getInstance().getUser().getUsername() + " : ");
+        lsaldo.setBounds(400,150,300,300);
         lsaldo.setFont(FontStyle.medium);
+        lsaldo.setForeground(Color.white);
         lsaldo.setVisible(true);
         
         saldo = new JLabel("Rp. " + member.getOvoBalance());
         saldo.setBounds(700,150,300,300);
         saldo.setFont(FontStyle.medium);
+        saldo.setForeground(Color.white);
         saldo.setVisible(true);
         
         back = new JButton("Back To Main Menu");
-        back.setBounds(500,500,400,50);
-        back.setFont(FontStyle.medium);
+        back.setBounds(450,500,400,50);
+        back.setFont(FontStyle.small);
         back.setVisible(true);
         back.addActionListener(this);
         
+        frameOVO.add(judul);
         frameOVO.add(lsaldo);
         frameOVO.add(saldo);
         frameOVO.add(back);

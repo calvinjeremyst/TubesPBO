@@ -14,13 +14,17 @@ import java.sql.Date;
 public class Kursi extends ListOrder {
     
     private String nomorKursi;
-
+    
     public Kursi(){
         
     }
     
-    public Kursi(String nomorKursi, int idOrder, Date tanggalOrder, int idMember, int idrute, int idTransaksi) {
+    public Kursi(String nomorKursi,int idOrder, Date tanggalOrder, int idMember, int idrute, int idTransaksi) {
         super(idOrder, tanggalOrder, idMember, idrute, idTransaksi);
+        this.nomorKursi = nomorKursi;
+    }
+    
+    public Kursi(String nomorKursi) {
         this.nomorKursi = nomorKursi;
     }
 

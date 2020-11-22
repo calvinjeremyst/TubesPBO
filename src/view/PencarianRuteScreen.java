@@ -29,6 +29,7 @@ import org.jdatepicker.impl.UtilDateModel;
  * @author user
  */
 public class PencarianRuteScreen implements ActionListener {
+    
     Properties p;
     UtilDateModel model;
     JDatePanelImpl datePanel;
@@ -39,6 +40,7 @@ public class PencarianRuteScreen implements ActionListener {
     JTextField kotaAsal,kotaTujuan;
     
     public PencarianRuteScreen() {
+        
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
@@ -129,4 +131,5 @@ public class PencarianRuteScreen implements ActionListener {
             frame.dispose();
         }
     }
+    
 }

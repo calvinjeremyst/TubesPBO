@@ -10,8 +10,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import model.Member;
-import model.User;
 import model.UserManager;
 import view.Helper.FontStyle;
 
@@ -20,11 +18,13 @@ import view.Helper.FontStyle;
  * @author user
  */
 public class MenuUtamaMember implements ActionListener {
+    
     JFrame frame = new JFrame("Terminal Bis Emen");
-    JButton pesanTiket, batalTiket,riwayatTiket,cekOvo,topupOvo;
+    JButton pesanTiket, batalTiket,riwayatTiket,cekOvo,topupOvo,logOut;
     JLabel judul, namaAkun;
     
     public MenuUtamaMember() {
+        
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
@@ -42,6 +42,12 @@ public class MenuUtamaMember implements ActionListener {
         namaAkun.setForeground(Color.WHITE);
         namaAkun.setOpaque(true);
         namaAkun.setBounds(1000,20,300,50);
+        
+        logOut = new JButton("Log Out");
+        logOut.setBounds(1000,100,300,50);
+        logOut.setEnabled(true);
+        logOut.addActionListener(this);
+        logOut.setFont(new Font("Consolas", Font.PLAIN, 24));
         
         pesanTiket = new JButton("Pesan Tiket");
         pesanTiket.setBounds(550, 120, 200, 30);
@@ -75,6 +81,7 @@ public class MenuUtamaMember implements ActionListener {
     
         frame.add(judul);
         frame.add(namaAkun);
+        frame.add(logOut);
         frame.add(pesanTiket);
         frame.add(batalTiket);
         frame.add(riwayatTiket);
@@ -99,6 +106,9 @@ public class MenuUtamaMember implements ActionListener {
             frame.dispose();
         }else if(e.getActionCommand().equals("TopUp Saldo OVO")){
             new TopupOVO();
+            frame.dispose();
+        }else if(e.getActionCommand().equals("Log Out")){
+            new LoginScreen();
             frame.dispose();
         }
     }
